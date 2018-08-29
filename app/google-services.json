@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "882270141733",
+    "firebase_url": "https://fir-90da9.firebaseio.com",
+    "project_id": "fir-90da9",
+    "storage_bucket": "fir-90da9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882270141733:android:0b927aabc25b4470",
+        "android_client_info": {
+          "package_name": "com.example.farahreza.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "882270141733-t1sg6uacl2mq9pek8fkftgf0efb86n7h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.farahreza.demo",
+            "certificate_hash": "2cb239a7195f8fcdc7eeda58c78102490cdea804"
+          }
+        },
+        {
+          "client_id": "882270141733-ah9s99ag3on1psff1gupdud7nlsh9mrg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHLpRaEr0p_agR3zQIwNn3v2q4a81ObkQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "882270141733-ah9s99ag3on1psff1gupdud7nlsh9mrg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

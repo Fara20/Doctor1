@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2270d0"
+    tools:context=".SmsPage">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+
+
+
+
+    <EditText
+        android:id="@+id/Text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:width="150dp"
+        android:height="40dp"
+        android:gravity="center"
+        android:layout_weight="3"
+        android:layout_marginTop="10dp"
+        android:inputType="textPersonName"
+        android:textSize="35dp"
+        android:hint="Enter Text"
+        android:textStyle="bold"
+        android:textColorHint="#f5f2f2"
+        />
+
+
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+
+
+
+        <EditText
+            android:id="@+id/PhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:width="150dp"
+            android:height="40dp"
+            android:gravity="center"
+            android:layout_weight="3"
+            android:layout_marginTop="10dp"
+            android:inputType="number"
+            android:textSize="35dp"
+            android:hint="Enter Number"
+            android:textStyle="bold"
+            android:textColorHint="#f5f2f2"
+            />
+
+
+    </LinearLayout>
+
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Enter"
+            android:textStyle="bold"
+            android:textColor="#0909e4"/>
+    </LinearLayout>
+
