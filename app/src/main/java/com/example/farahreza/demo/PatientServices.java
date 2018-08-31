@@ -10,6 +10,7 @@ public class PatientServices extends AppCompatActivity {
 Button reminder;
 Button tips;
 Button sms;
+Button book;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +18,7 @@ Button sms;
         reminder=findViewById(R.id.button7);
         tips=findViewById(R.id.button6);
         sms=findViewById(R.id.button8);
+        book = findViewById(R.id.button1);
         reminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,6 +40,14 @@ Button sms;
             public void onClick(View view) {
                 final  Intent f=new Intent(getApplicationContext(),SmsPage.class);
                 startActivity(f);
+            }
+        });
+
+        book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final  Intent g=new Intent(getApplicationContext(),BookAppointment.class);
+                startActivity(g);
             }
         });
     }

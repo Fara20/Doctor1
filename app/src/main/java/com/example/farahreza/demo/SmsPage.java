@@ -15,6 +15,10 @@ public class SmsPage extends AppCompatActivity {
     EditText txtt;
     EditText num;
     String Phn,Txt;
+    String tt="Congratulation! ";
+    String tt1=" You have Signed Up!";
+    String total;
+
     private static final int PERMISSION_REQUEST_CODE = 1;
 
 
@@ -29,8 +33,10 @@ public class SmsPage extends AppCompatActivity {
         Enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Phn=txtt.getText().toString();
-                Txt=num.getText().toString();
+                Phn=num.getText().toString();
+                Txt=txtt.getText().toString();
+
+                total=tt + Txt + tt1;
 
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
 
@@ -46,7 +52,7 @@ public class SmsPage extends AppCompatActivity {
                 }
 
                 SmsManager sms= SmsManager.getDefault();
-                sms.sendTextMessage(Phn,null,Txt,null,null);
+                sms.sendTextMessage(Phn,null,total,null,null);
 
 
             }

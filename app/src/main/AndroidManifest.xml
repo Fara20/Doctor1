@@ -29,7 +29,9 @@
         <activity android:name=".PatientServices" />
         <activity android:name=".ClinicLoaction" />
         <activity android:name=".SmsPage" />
-        <activity android:name=".HealthTips"></activity>
+        <activity android:name=".HealthTips" />
+        <activity android:name=".BookAppointment" />
+        <activity android:name=".BookingConfirmation"></activity>
     </application>
 
 </manifest>

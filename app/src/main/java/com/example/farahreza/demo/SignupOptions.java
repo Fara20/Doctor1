@@ -17,6 +17,8 @@ public class SignupOptions extends AppCompatActivity  {
 
     Spinner spinner;
     Button btnSubmit;
+    String a="Signed up";
+    String bb="Congrats!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,7 @@ public class SignupOptions extends AppCompatActivity  {
                 else  if(String.valueOf(spinner.getSelectedItem())=="Clinic")
                     Toast.makeText(getApplicationContext(),"For clinic", Toast.LENGTH_LONG).show();
                 else   if(String.valueOf(spinner.getSelectedItem())=="Vet")
-                    Toast.makeText(getApplicationContext(),"For Vet", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),a + bb, Toast.LENGTH_LONG).show();
                    // startActivity(c);
                 else
                     Toast.makeText(getApplicationContext(),"Please Select an Option", Toast.LENGTH_LONG).show();
