@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/doctor"
-    tools:context=".MainActivity">
+        tools:context=".MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -62,7 +62,7 @@ android:layout_marginBottom="35dp"
 
 
             android:gravity="right"
-            android:text=" Hello Doctor!"
+            android:text=" Greetings!"
 
             android:textColor="#0a0a0a"
             android:textSize="30dp"
@@ -163,6 +163,7 @@ android:layout_marginBottom="35dp"
         android:layout_marginTop="20dp"
         android:text="Log in"
         android:textStyle="bold"
+        
         android:textColor="#0909e4"/>
     <TextView
         android:id="@+id/SignUp"
