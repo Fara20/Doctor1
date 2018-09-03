@@ -10,17 +10,7 @@
 
 
 
-    <TextView
-        android:layout_marginTop="200dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Appontment has been booked"
-        android:textSize="45dp"
-        android:fontFamily="casual"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="#090de4"/>
+
 
 
 </LinearLayout>
