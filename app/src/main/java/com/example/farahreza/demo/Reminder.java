@@ -19,6 +19,7 @@ public class Reminder extends AppCompatActivity {
     DatePicker pickerDate;
     TimePicker pickerTime;
     Button buttonSetAlarm;
+    String medicine;
 
 
     final static int RQS_1 = 1;
@@ -27,6 +28,7 @@ public class Reminder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder);
+        medicine =findViewById(R.id.searchEditText).toString();
         pickerDate = (DatePicker)findViewById(R.id.pickerdate);
         pickerTime = (TimePicker)findViewById(R.id.pickertime);
 

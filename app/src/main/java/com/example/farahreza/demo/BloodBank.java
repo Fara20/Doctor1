@@ -12,7 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookAppointment extends AppCompatActivity {
+public class BloodBank extends AppCompatActivity {
 
     Button BookConfirm;
     Spinner spinner;
@@ -32,15 +32,14 @@ public class BookAppointment extends AppCompatActivity {
         spinner = (Spinner) findViewById(R.id.spinner2);
         List<String> list = new ArrayList<String>();
         list.add("Select an Option");
-        list.add("Dhaka");
-        list.add("Chittagong");
-        list.add("Rajshahi");
-        list.add("Sylhet");
-        list.add("Commilla");
-        list.add("Barishal");
-        list.add("Khulna");
-        list.add("Mymensingh");
-        list.add("Rangpur");
+        list.add("A+");
+        list.add("B+");
+        list.add("AB+");
+        list.add("O+");
+        list.add("A-");
+        list.add("B-");
+        list.add("AB-");
+        list.add("O-");
 
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,R.layout.my_spinner, list);
@@ -49,10 +48,10 @@ public class BookAppointment extends AppCompatActivity {
     }
 
     public void addListenerOnButton(){
-        spinner = (Spinner) findViewById(R.id.spinner2);
+        spinner = (Spinner) findViewById(R.id.spinnerbg);
         BookConfirm = (Button) findViewById(R.id.btnSubmit);
 
-        final Intent g =new Intent(getApplicationContext(),BookDocArea.class);
+        final Intent g =new Intent(getApplicationContext(),BloodFound.class);
 
 
 
@@ -61,23 +60,21 @@ public class BookAppointment extends AppCompatActivity {
         BookConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(String.valueOf(spinner.getSelectedItem())=="Dhaka")
+                if(String.valueOf(spinner.getSelectedItem())=="A+")
                     startActivity(g);
-                else  if(String.valueOf(spinner.getSelectedItem())=="Chittagong")
+                else  if(String.valueOf(spinner.getSelectedItem())=="B+")
                     startActivity(g);
-                else   if(String.valueOf(spinner.getSelectedItem())=="Comilla")
-                     startActivity(g);
-                else   if(String.valueOf(spinner.getSelectedItem())=="Rangpur")
+                else   if(String.valueOf(spinner.getSelectedItem())=="AB+")
                     startActivity(g);
-                else   if(String.valueOf(spinner.getSelectedItem())=="Rajshahi")
+                else   if(String.valueOf(spinner.getSelectedItem())=="O+")
                     startActivity(g);
-                else   if(String.valueOf(spinner.getSelectedItem())=="Sylhet")
+                else   if(String.valueOf(spinner.getSelectedItem())=="A-")
                     startActivity(g);
-                else   if(String.valueOf(spinner.getSelectedItem())=="Mymensingh")
+                else   if(String.valueOf(spinner.getSelectedItem())=="B-")
                     startActivity(g);
-                else   if(String.valueOf(spinner.getSelectedItem())=="Barishal")
+                else   if(String.valueOf(spinner.getSelectedItem())=="AB-")
                     startActivity(g);
-                else   if(String.valueOf(spinner.getSelectedItem())=="Khulna")
+                else   if(String.valueOf(spinner.getSelectedItem())=="O-")
                     startActivity(g);
 
                 else
