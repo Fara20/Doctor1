@@ -28,7 +28,7 @@ public class SIgnup extends AppCompatActivity {
             public void onClick(View v) {
 
                 final  Intent c=new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(c);
+                startActivity(c);//raisa
 
             }
         });
