@@ -13,10 +13,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class PatientServices extends AppCompatActivity {
-Button reminder;
-Button tips;
-Button sms;
-Button book;
+    Button reminder;
+    Button tips;
+    Button sms;
+    Button book;
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;

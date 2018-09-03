@@ -40,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
 
 
-       loginbtn.setOnClickListener(new View.OnClickListener() {
+        loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-      SignIn();
-                  //startActivity(c);
+                SignIn();
+                //startActivity(c);
 
             }
         });
