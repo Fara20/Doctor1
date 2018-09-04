@@ -13,23 +13,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DoctorSpeciality extends AppCompatActivity {
-
-    Button BookConfirm;
-    Spinner spinner;
-
+    private Spinner spinner;
+    private Button submitbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_appointment);
-
+        setContentView(R.layout.activity_doctor_speciality);
+        Intent i = getIntent();
         addItemsOnSpinner2();
         addListenerOnButton();
 
-    }
-    public void addItemsOnSpinner2(){
 
-        spinner = (Spinner) findViewById(R.id.spinner2);
+    }
+
+    public void addItemsOnSpinner2() {
+
+        spinner = (Spinner) findViewById(R.id.spinbg);
         List<String> list = new ArrayList<String>();
         list.add("Select an Option");
         list.add("Cardiology");
@@ -43,25 +43,21 @@ public class DoctorSpeciality extends AppCompatActivity {
         list.add("Nephrology");
         list.add("Dental");
 
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,R.layout.my_spinner, list);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
     }
 
-    public void addListenerOnButton(){
-        spinner = (Spinner) findViewById(R.id.spinner2);
-        BookConfirm = (Button) findViewById(R.id.btnSubmit);
+    public void addListenerOnButton() {
 
-        final Intent g =new Intent(getApplicationContext(),ChooseDoctor.class);
+        spinner = (Spinner) findViewById(R.id.spinbg);
+        submitbtn = (Button) findViewById(R.id.btnsubmit);
 
-
-
-
-
-        BookConfirm.setOnClickListener(new View.OnClickListener() {
+        submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                Intent g = new Intent(getApplicationContext(),DocProfile.class);
                 if(String.valueOf(spinner.getSelectedItem())=="Cardiology")
                     startActivity(g);
                 else   if(String.valueOf(spinner.getSelectedItem())=="Neurology")
@@ -90,11 +86,7 @@ public class DoctorSpeciality extends AppCompatActivity {
 
 
 
-
-
             }
         });
-
     }
-
 }

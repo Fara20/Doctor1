@@ -13,23 +13,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BloodBank extends AppCompatActivity {
-
-    Button BookConfirm;
-    Spinner spinner;
-
+    private Spinner spinner1;
+    private Button submitbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_appointment);
-
+        setContentView(R.layout.activity_blood_bank);
+        Intent i = getIntent();
         addItemsOnSpinner2();
         addListenerOnButton();
 
-    }
-    public void addItemsOnSpinner2(){
 
-        spinner = (Spinner) findViewById(R.id.spinner2);
+    }
+
+    public void addItemsOnSpinner2() {
+
+        spinner1 = (Spinner) findViewById(R.id.spinbg);
         List<String> list = new ArrayList<String>();
         list.add("Select an Option");
         list.add("A+");
@@ -41,54 +41,43 @@ public class BloodBank extends AppCompatActivity {
         list.add("AB-");
         list.add("O-");
 
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,R.layout.my_spinner, list);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
+        spinner1.setAdapter(dataAdapter);
     }
 
-    public void addListenerOnButton(){
-        spinner = (Spinner) findViewById(R.id.spinnerbg);
-        BookConfirm = (Button) findViewById(R.id.btnSubmit);
+    public void addListenerOnButton() {
 
-        final Intent g =new Intent(getApplicationContext(),BloodFound.class);
+        spinner1 = (Spinner) findViewById(R.id.spinbg);
+        submitbtn = (Button) findViewById(R.id.btnsubmit);
 
-
-
-
-
-        BookConfirm.setOnClickListener(new View.OnClickListener() {
+        submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if(String.valueOf(spinner.getSelectedItem())=="A+")
-                    startActivity(g);
-                else  if(String.valueOf(spinner.getSelectedItem())=="B+")
-                    startActivity(g);
-                else   if(String.valueOf(spinner.getSelectedItem())=="AB+")
-                    startActivity(g);
-                else   if(String.valueOf(spinner.getSelectedItem())=="O+")
-                    startActivity(g);
-                else   if(String.valueOf(spinner.getSelectedItem())=="A-")
-                    startActivity(g);
-                else   if(String.valueOf(spinner.getSelectedItem())=="B-")
-                    startActivity(g);
-                else   if(String.valueOf(spinner.getSelectedItem())=="AB-")
-                    startActivity(g);
-                else   if(String.valueOf(spinner.getSelectedItem())=="O-")
-                    startActivity(g);
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),BloodFound.class);
+                if(String.valueOf(spinner1.getSelectedItem())=="A+")
+                    startActivity(i);
+                else  if(String.valueOf(spinner1.getSelectedItem())=="B+")
+                    startActivity(i);
+                else   if(String.valueOf(spinner1.getSelectedItem())=="AB+")
+                    startActivity(i);
+                else   if(String.valueOf(spinner1.getSelectedItem())=="O+")
+                    startActivity(i);
+                else   if(String.valueOf(spinner1.getSelectedItem())=="A-")
+                    startActivity(i);
+                else   if(String.valueOf(spinner1.getSelectedItem())=="B-")
+                    startActivity(i);
+                else   if(String.valueOf(spinner1.getSelectedItem())=="AB-")
+                    startActivity(i);
+                else   if(String.valueOf(spinner1.getSelectedItem())=="O-")
+                    startActivity(i);
 
                 else
                     Toast.makeText(getApplicationContext(),"Please Select an Option", Toast.LENGTH_LONG).show();
 
 
-
-
-
-
-
             }
         });
-
     }
-
 }
