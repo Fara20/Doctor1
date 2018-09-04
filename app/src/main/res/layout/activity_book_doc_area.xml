@@ -28,6 +28,7 @@
                 android:layout_gravity="center"
                 android:drawableLeft="@android:drawable/ic_menu_search"
                 android:hint="Choose an Area"
+                android:inputType="text"
                 android:textColorHint="@android:color/black" />
 
         </LinearLayout>
