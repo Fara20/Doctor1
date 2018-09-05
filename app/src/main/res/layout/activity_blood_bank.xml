@@ -3,22 +3,28 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@drawable/bloodbank">
+    android:background="@drawable/docspeciality">
+
+
+
 
     <Spinner
-        android:id="@+id/spinbg"
+        android:id="@+id/spinner2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:textSize="50dp"/>
+        android:layout_height="wrap_content"
+        android:textSize="50dp"
+        />
 
     <Button
-        android:id="@+id/btnsubmit"
+        android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
+        android:layout_marginTop="150dp"
         android:layout_height="wrap_content"
-        android:text="Submit"
-        android:textSize="20sp"
         android:layout_gravity="center"
-        android:gravity="center"/>
+        android:text="Submit" />
+
+
+
 
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ public class Reminder extends AppCompatActivity {
     DatePicker pickerDate;
     TimePicker pickerTime;
     Button buttonSetAlarm;
+    EditText medicine;
 
 
     final static int RQS_1 = 1;
@@ -27,6 +29,7 @@ public class Reminder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder);
+        medicine =findViewById(R.id.searchEditText);
         pickerDate = (DatePicker)findViewById(R.id.pickerdate);
         pickerTime = (TimePicker)findViewById(R.id.pickertime);
 
@@ -46,8 +49,14 @@ public class Reminder extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Calendar current = Calendar.getInstance();
-
                 Calendar cal = Calendar.getInstance();
+                if((medicine.getText().toString()).equals(""))
+                    Toast.makeText(getApplicationContext(),"please set a medicine first!",Toast.LENGTH_LONG).show();
+                else
+
+
+
+
                 cal.set(pickerDate.getYear(),
                         pickerDate.getMonth(),
                         pickerDate.getDayOfMonth(),
