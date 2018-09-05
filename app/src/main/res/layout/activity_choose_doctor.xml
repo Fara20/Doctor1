@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/choosedoc"
+    android:background="@drawable/searchdoc"
     tools:context=".ChooseDoctor">
 
     <LinearLayout
@@ -26,8 +26,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:inputType="text"
                 android:drawableLeft="@android:drawable/ic_menu_search"
-                android:hint="Choose the required speciality"
+                android:hint="Choose your doctor now"
                 android:textColorHint="@android:color/black" />
 
         </LinearLayout>

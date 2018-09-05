@@ -32,6 +32,7 @@ public class SignupOptions extends AppCompatActivity  {
 
         public void addItemsOnSpinner2(){
 
+
             spinner = (Spinner) findViewById(R.id.spinner2);
             List<String> list = new ArrayList<String>();
             list.add("Select an Option");
@@ -48,7 +49,7 @@ public class SignupOptions extends AppCompatActivity  {
 
       final  Intent b=new Intent(getApplicationContext(),SIgnup.class);
 
-       // final  Intent c=new Intent(getApplicationContext(),Reminder.class);
+        final  Intent c=new Intent(getApplicationContext(),DocProfile.class);
 
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +61,8 @@ public class SignupOptions extends AppCompatActivity  {
                     Toast.makeText(getApplicationContext(),"For clinic", Toast.LENGTH_LONG).show();
                 else   if(String.valueOf(spinner.getSelectedItem())=="Vet")
                     Toast.makeText(getApplicationContext(),a + bb, Toast.LENGTH_LONG).show();
-                   // startActivity(c);
+
+                   //startActivity(c);
                 else
                     Toast.makeText(getApplicationContext(),"Please Select an Option", Toast.LENGTH_LONG).show();
 

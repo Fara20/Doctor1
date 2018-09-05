@@ -68,32 +68,40 @@ public class MainActivity extends AppCompatActivity {
     {
         email=Email.getText().toString().trim();
         password=Password.getText().toString().trim();
-        progressDialog.setMessage("Please Wait!!");
-        progressDialog.show();
+        if(!email.isEmpty()&&!password.isEmpty()) {
+            progressDialog.setMessage("Please Wait!!");
+            progressDialog.show();
 
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                FirebaseUser user = mAuth.getCurrentUser();
 
-                            Intent c=new Intent(getApplicationContext(),PatientServices.class);
+                                Intent c = new Intent(getApplicationContext(), PatientServices.class);
 
-                            //Toast.makeText(getApplicationContext(),"LogInSuccess", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(),"LogInSuccess", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                                startActivity(c);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Toast.makeText(MainActivity.this, "Auth failed", Toast.LENGTH_SHORT).show();
+                            }
+
                             progressDialog.dismiss();
-                            startActivity(c);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(MainActivity.this,"Auth failed",Toast.LENGTH_SHORT).show();
+
+                            // ...
                         }
+                    });
 
-                        progressDialog.dismiss();
+        }
 
-                        // ...
-                    }
-                });
+        else
+        {
+            Toast.makeText(MainActivity.this, "Field Empty", Toast.LENGTH_SHORT).show();
+        }
 
 
 

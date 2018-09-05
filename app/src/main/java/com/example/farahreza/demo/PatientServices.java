@@ -7,16 +7,22 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 public class PatientServices extends AppCompatActivity {
-    Button reminder;
+    Button reminder1;
     Button tips;
-    Button sms;
-    Button book;
+    Button Sms1;
+ CardView book;
+    Button blood;
+    CardView Ambb;
+    CardView emer;
+    CardView Blood;
+
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
@@ -25,11 +31,18 @@ public class PatientServices extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_services);
         dl=findViewById(R.id.activity_patient_service);
-        reminder=findViewById(R.id.button7);
+        book=findViewById(R.id.Book);
+        Sms1=findViewById(R.id.sms);
+        reminder1=findViewById(R.id.reminder);
+        Ambb=findViewById(R.id.ambb);
+        emer=findViewById(R.id.emerr);
+        Blood=findViewById(R.id.blood);
+      /*  reminder=findViewById(R.id.button7);
         tips=findViewById(R.id.button6);
         sms=findViewById(R.id.button8);
         book = findViewById(R.id.button1);
-
+        blood=findViewById(R.id.button4);
+        */
         t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
 
         dl.addDrawerListener(t);
@@ -53,26 +66,69 @@ public class PatientServices extends AppCompatActivity {
                         Toast.makeText(PatientServices.this, "Settings", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.Sign_Out:
-                        Toast.makeText(PatientServices.this, "My Cart", Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
+                        final  Intent ec=new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(ec);
 
                 }
                 return true;
             }
         });
 
-
-        reminder.setOnClickListener(new View.OnClickListener() {
+        book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                final  Intent c=new Intent(getApplicationContext(),Reminder.class);
+                final  Intent c=new Intent(getApplicationContext(),BookAppointment.class);
                 startActivity(c);
+
             }
         });
 
+        Sms1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final  Intent ss=new Intent(getApplicationContext(),SmsPage.class);
+                startActivity(ss);
+            }
+        });
+
+
+        reminder1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final  Intent rr=new Intent(getApplicationContext(),Reminder.class);
+                startActivity(rr);
+            }
+        });
+        Ambb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final  Intent abb=new Intent(getApplicationContext(),AmbulenceService.class);
+                startActivity(abb);
+            }
+        });
+        emer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final  Intent emm=new Intent(getApplicationContext(),EmergecyUnit.class);
+                startActivity(emm);
+            }
+        });
+        Blood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final  Intent emm=new Intent(getApplicationContext(),BloodBank.class);
+                startActivity(emm);
+            }
+        });
+
+        /*
+
         tips.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 final  Intent d=new Intent(getApplicationContext(),HealthTips.class);
@@ -94,6 +150,9 @@ public class PatientServices extends AppCompatActivity {
                 startActivity(g);
             }
         });
+
+        */
+
     }
 
     @Override
