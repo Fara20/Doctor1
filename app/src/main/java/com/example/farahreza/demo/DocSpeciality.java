@@ -55,7 +55,7 @@ public class DocSpeciality extends AppCompatActivity {
         submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent g = new Intent(getApplicationContext(),BookingConfirmation.class);
+                Intent g = new Intent(getApplicationContext(),ChooseDoctor.class);
                 if(String.valueOf(spinner.getSelectedItem())=="Cardiology")
                     startActivity(g);
                 else   if(String.valueOf(spinner.getSelectedItem())=="Neurology")

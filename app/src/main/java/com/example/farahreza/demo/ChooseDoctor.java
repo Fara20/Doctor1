@@ -21,7 +21,7 @@ public class ChooseDoctor extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent c=new Intent(getApplicationContext(),BookingConfirmation.class);
+                Intent c=new Intent(getApplicationContext(),DocProfile.class);
                 startActivity(c);
             }
         });
