@@ -1,11 +1,15 @@
 package com.example.farahreza.demo;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     String email,password;
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
+    Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +41,28 @@ public class MainActivity extends AppCompatActivity {
         Email=findViewById(R.id.email);
         Password=findViewById(R.id.pass);
 
+        session=new Session(this);
+        if(!session.getusename().isEmpty())
+        {
+            Intent n = new Intent(getApplicationContext(), PatientServices.class);
+            startActivity(n);
+        }
+
         mAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
+
+        Email.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int  actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+
+                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    return true;
+                }
+                return false;
+            }
+        });
 
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 //Toast.makeText(getApplicationContext(),"LogInSuccess", Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
+                                session.setusename(email);
                                 startActivity(c);
                             } else {
                                 // If sign in fails, display a message to the user.

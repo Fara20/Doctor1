@@ -1,13 +1,16 @@
 package com.example.farahreza.demo;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +25,7 @@ public class PatientServices extends AppCompatActivity {
     CardView Ambb;
     CardView emer;
     CardView Blood;
+    Session session;
 
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
@@ -34,6 +38,7 @@ public class PatientServices extends AppCompatActivity {
         book=findViewById(R.id.Book);
         Sms1=findViewById(R.id.sms);
         reminder1=findViewById(R.id.reminder);
+        session=new Session(this);
         Ambb=findViewById(R.id.ambb);
         emer=findViewById(R.id.emerr);
         Blood=findViewById(R.id.blood);
@@ -66,8 +71,21 @@ public class PatientServices extends AppCompatActivity {
                         Toast.makeText(PatientServices.this, "Settings", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.Sign_Out:
-                        final  Intent ec=new Intent(getApplicationContext(),MainActivity.class);
-                        startActivity(ec);
+                        AlertDialog.Builder builder=new AlertDialog.Builder(PatientServices.this);
+                        builder.setMessage("Are you sure?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                session.clearAll();
+                                final  Intent ec=new Intent(getApplicationContext(),MainActivity.class);
+                                startActivity(ec);
+                            }
+                        }).setNegativeButton("No",null);
+
+                        AlertDialog alert=builder.create();
+                        alert.show();
+
+                        //final  Intent ec=new Intent(getApplicationContext(),MainActivity.class);
+                        //startActivity(ec);
 
                 }
                 return true;
@@ -162,5 +180,19 @@ public class PatientServices extends AppCompatActivity {
             return true;
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        switch(keyCode)
+        {
+            case KeyEvent.KEYCODE_BACK:
+
+                moveTaskToBack(true);
+
+                return true;
+        }
+        return false;
     }
 }
