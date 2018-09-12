@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -17,68 +19,69 @@ public class SignupOptions extends AppCompatActivity  {
 
     Spinner spinner;
     Button btnSubmit;
-    String a="Signed up";
-    String bb="Congrats!";
+   CheckBox Patient,Clinic;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_options);
 
-        addItemsOnSpinner2();
-        addListenerOnButton();
-
-    }
-
-        public void addItemsOnSpinner2(){
-
-
-            spinner = (Spinner) findViewById(R.id.spinner2);
-            List<String> list = new ArrayList<String>();
-            list.add("Select an Option");
-            list.add("Clinic");
-            list.add("Patient");
-            list.add("Vet");
-            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,R.layout.my_spinner, list);
-            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(dataAdapter);
-        }
-    public void addListenerOnButton(){
-        spinner = (Spinner) findViewById(R.id.spinner2);
+        Patient=findViewById(R.id.cb1);
+        Clinic=findViewById(R.id.cb2);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
-      final  Intent b=new Intent(getApplicationContext(),SIgnup.class);
-
-        final  Intent c=new Intent(getApplicationContext(),DocProfile.class);
-
-
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
+        Patient.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                if(String.valueOf(spinner.getSelectedItem())=="Patient")
-                    startActivity(b);
-                else  if(String.valueOf(spinner.getSelectedItem())=="Clinic")
-                    Toast.makeText(getApplicationContext(),"For clinic", Toast.LENGTH_LONG).show();
-                else   if(String.valueOf(spinner.getSelectedItem())=="Vet")
-                    Toast.makeText(getApplicationContext(),a + bb, Toast.LENGTH_LONG).show();
-
-                   //startActivity(c);
-                else
-                    Toast.makeText(getApplicationContext(),"Please Select an Option", Toast.LENGTH_LONG).show();
-
-
-
-
-
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Clinic.setChecked(false);
 
 
             }
         });
 
+        Clinic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Patient.setChecked(false);
+
+
+            }
+        });
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Patient.isChecked())
+                {
+
+
+                    final  Intent b=new Intent(getApplicationContext(),SIgnup.class);
+                    startActivity(b);
+                }
+                else if(Clinic.isChecked())
+                {
+                    Toast.makeText(getApplicationContext(),"For clinic", Toast.LENGTH_LONG).show();
+                }
+
+               else
+                {
+                    Toast.makeText(getApplicationContext(),"Please select an option", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+
+
+    }
+
+
+
     }
 
 
 
 
 
-}
+

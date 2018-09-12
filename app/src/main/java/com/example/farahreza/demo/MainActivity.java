@@ -104,12 +104,13 @@ public class MainActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                String userid=user.getUid();
 
                                 Intent c = new Intent(getApplicationContext(), PatientServices.class);
 
                                 //Toast.makeText(getApplicationContext(),"LogInSuccess", Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
-                                session.setusename(email);
+                                session.setusename(userid);
                                 startActivity(c);
                             } else {
                                 // If sign in fails, display a message to the user.

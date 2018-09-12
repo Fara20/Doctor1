@@ -16,6 +16,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 public class PatientServices extends AppCompatActivity {
     Button reminder1;
     Button tips;
@@ -26,6 +33,10 @@ public class PatientServices extends AppCompatActivity {
     CardView emer;
     CardView Blood;
     Session session;
+    DatabaseReference  reference;
+    Query usrqry;
+    String name,mobile,email;
+    PatientUsers user;
 
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
@@ -48,6 +59,7 @@ public class PatientServices extends AppCompatActivity {
         book = findViewById(R.id.button1);
         blood=findViewById(R.id.button4);
         */
+
         t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
 
         dl.addDrawerListener(t);
@@ -58,6 +70,25 @@ public class PatientServices extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nv = (NavigationView) findViewById(R.id.nv);
+       reference= FirebaseDatabase.getInstance().getReference().child("PatientUsers");
+        usrqry=reference.orderByChild("uid").equalTo(session.getusename());
+        usrqry.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
+                {
+                    user=dataSnapshot1.getValue(PatientUsers.class);
+                }
+                name=user.getName();
+                email=user.getEmail();
+                mobile=user.getPhone();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -65,7 +96,7 @@ public class PatientServices extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.profile:
-                        Toast.makeText(PatientServices.this, "My Account", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PatientServices.this, session.getusename()+name+" "+email+" "+mobile, Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.notifications:
                         Toast.makeText(PatientServices.this, "Settings", Toast.LENGTH_SHORT).show();

@@ -29,6 +29,8 @@
                     android:layout_height="160dp"
 
                     android:layout_margin="10dp"
+                   android:layout_gravity="center"
+                    android:foregroundGravity="center"
 
 
                     android:clickable="true"

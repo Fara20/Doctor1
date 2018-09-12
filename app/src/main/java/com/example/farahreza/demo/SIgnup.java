@@ -19,13 +19,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SIgnup extends AppCompatActivity {
-  EditText Email,Password,RePass;
+  EditText Email,Password,RePass,name,mobile;
     Button SignUpbtn;
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
-    String email,password,repass;
+    String email,password,repass,nameF,mobileF;
+    DatabaseReference reference;
 
 
 
@@ -35,12 +38,15 @@ public class SIgnup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        name=findViewById(R.id.SignupName);
+        mobile=findViewById(R.id.signupPhoneNumber);
         SignUpbtn=findViewById(R.id.SignUpButton);
         Email=findViewById(R.id.SignupEmail);
         Password=findViewById(R.id.signupPass);
         RePass=findViewById(R.id.pass);
         mAuth=FirebaseAuth.getInstance();
         progressDialog=new ProgressDialog(this);
+        reference= FirebaseDatabase.getInstance().getReference("PatientUsers");
 
 
 password=Password.getText().toString().trim();
@@ -69,7 +75,8 @@ repass=RePass.getText().toString().trim();
     void createAccount()
     {
         email=Email.getText().toString().trim();
-
+        nameF=name.getText().toString();
+        mobileF=mobile.getText().toString();
         password=Password.getText().toString().trim();
         repass=RePass.getText().toString().trim();
         if(!email.isEmpty()&&!password.isEmpty()) {
@@ -83,7 +90,12 @@ repass=RePass.getText().toString().trim();
                                 // Sign in success, update UI with the signed-in user's information
 
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                String userid=user.getUid();
                                // Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_SHORT).show();
+
+                                PatientUsers newuser=new PatientUsers(nameF,mobileF,email,password,userid);
+                                reference.child(userid).setValue(newuser);
+
 
                                 Intent c=new Intent(getApplicationContext(),MainActivity.class);
                                 progressDialog.dismiss();

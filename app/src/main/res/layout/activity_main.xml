@@ -86,7 +86,7 @@
                     android:drawableTint="#FF4081"
                     android:textColor="#C2185B"
                     android:hint="Password"
-                    android:inputType="numberPassword" />
+                    android:inputType="textPassword" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
