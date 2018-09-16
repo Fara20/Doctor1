@@ -44,8 +44,7 @@
         <activity android:name=".AmbulenceService" />
         <activity android:name=".EmergecyUnit" />
         <activity android:name=".BloodBank" />
-        <activity android:name=".BloodFound" />
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".BloodFound"></activity>
     </application>
 
 </manifest>
