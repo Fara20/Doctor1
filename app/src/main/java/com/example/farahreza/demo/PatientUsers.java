@@ -5,18 +5,20 @@ public class PatientUsers {
     String phone;
     String email;
     String password;
-    String uid;
+   // String uid;
+
 
 
     public PatientUsers() {
     }
 
-    public PatientUsers(String name, String phone, String email, String password, String uid) {
+    public PatientUsers(String name, String phone, String email, String password) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.password = password;
-        this.uid = uid;
+
+
     }
 
     public String getName() {
@@ -35,7 +37,5 @@ public class PatientUsers {
         return password;
     }
 
-    public String getUid() {
-        return uid;
-    }
+
 }

@@ -20,6 +20,8 @@ public class SignupOptions extends AppCompatActivity  {
     Spinner spinner;
     Button btnSubmit;
    CheckBox Patient,Clinic;
+   String P="Patient";
+   String C="Clinic";
 
 
 
@@ -58,6 +60,7 @@ public class SignupOptions extends AppCompatActivity  {
 
 
                     final  Intent b=new Intent(getApplicationContext(),SIgnup.class);
+                    b.putExtra("patient",P);
                     startActivity(b);
                 }
                 else if(Clinic.isChecked())

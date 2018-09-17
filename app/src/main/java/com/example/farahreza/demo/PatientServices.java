@@ -70,7 +70,7 @@ public class PatientServices extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nv = (NavigationView) findViewById(R.id.nv);
-       reference= FirebaseDatabase.getInstance().getReference().child("PatientUsers");
+      /* reference= FirebaseDatabase.getInstance().getReference().child("PatientUsers");
         usrqry=reference.orderByChild("uid").equalTo(session.getusename());
         usrqry.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -88,7 +88,7 @@ public class PatientServices extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -96,7 +96,8 @@ public class PatientServices extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.profile:
-                        Toast.makeText(PatientServices.this, session.getusename()+name+" "+email+" "+mobile, Toast.LENGTH_SHORT).show();
+                        final  Intent pf=new Intent(getApplicationContext(),Profile.class);
+                        startActivity(pf);
                         break;
                     case R.id.notifications:
                         Toast.makeText(PatientServices.this, "Settings", Toast.LENGTH_SHORT).show();

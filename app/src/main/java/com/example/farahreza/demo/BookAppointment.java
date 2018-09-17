@@ -62,7 +62,7 @@ public class BookAppointment extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                final Intent g =new Intent(getApplicationContext(),BookDocArea.class);
+                final Intent g =new Intent(getApplicationContext(),ClinicLoaction.class);
                 if(String.valueOf(spinner.getSelectedItem())=="Dhaka")
                     startActivity(g);
                 else if(String.valueOf(spinner.getSelectedItem())=="Rajshahi")

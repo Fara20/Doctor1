@@ -28,7 +28,7 @@ public class SIgnup extends AppCompatActivity {
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
     String email,password,repass,nameF,mobileF;
-    DatabaseReference reference;
+    DatabaseReference reference,reff;
 
 
 
@@ -47,6 +47,7 @@ public class SIgnup extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         progressDialog=new ProgressDialog(this);
         reference= FirebaseDatabase.getInstance().getReference("PatientUsers");
+        reff=FirebaseDatabase.getInstance().getReference("Users");
 
 
 password=Password.getText().toString().trim();
@@ -79,6 +80,8 @@ repass=RePass.getText().toString().trim();
         mobileF=mobile.getText().toString();
         password=Password.getText().toString().trim();
         repass=RePass.getText().toString().trim();
+        Intent i=getIntent();
+        final String P=i.getStringExtra("patient");
         if(!email.isEmpty()&&!password.isEmpty()) {
             progressDialog.setMessage("Please Wait!!");
             progressDialog.show();
@@ -89,12 +92,16 @@ repass=RePass.getText().toString().trim();
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
 
+
+
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 String userid=user.getUid();
                                // Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_SHORT).show();
 
-                                PatientUsers newuser=new PatientUsers(nameF,mobileF,email,password,userid);
+                                PatientUsers newuser=new PatientUsers(nameF,mobileF,email,password);
+                                Users usr= new Users(P,userid);
                                 reference.child(userid).setValue(newuser);
+                                reff.child(userid).setValue(usr);
 
 
                                 Intent c=new Intent(getApplicationContext(),MainActivity.class);

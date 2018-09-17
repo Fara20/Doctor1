@@ -20,6 +20,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
     Session session;
+    DatabaseReference ref;
+    Query qry;
+    PatientUsers user1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         loginbtn=findViewById(R.id.button);
         Email=findViewById(R.id.email);
         Password=findViewById(R.id.pass);
+        ref= FirebaseDatabase.getInstance().getReference().child("PatientUsers");
 
         session=new Session(this);
         if(!session.getusename().isEmpty())
@@ -105,7 +115,31 @@ public class MainActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 String userid=user.getUid();
+                                qry=ref.orderByKey().equalTo(userid);
 
+                            /*    qry.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        for(DataSnapshot value:dataSnapshot.getChildren())
+                                        {
+                                            user1=value.getValue(PatientUsers.class);
+                                        }
+                                        if(user1.getType=="Patient")
+                                        {
+
+                                        }
+                                        else if()
+                                        {
+
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+                                */
                                 Intent c = new Intent(getApplicationContext(), PatientServices.class);
 
                                 //Toast.makeText(getApplicationContext(),"LogInSuccess", Toast.LENGTH_SHORT).show();

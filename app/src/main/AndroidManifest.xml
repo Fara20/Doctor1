@@ -45,7 +45,11 @@
         <activity android:name=".EmergecyUnit" />
         <activity android:name=".BloodBank" />
         <activity android:name=".BloodFound" />
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".Profile" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC6EM_9cCwKCaDrC8b6lNP5SYXeoWALuUA"/>
+
     </application>
 
 </manifest>
