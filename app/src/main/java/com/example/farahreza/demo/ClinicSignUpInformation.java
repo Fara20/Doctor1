@@ -1,38 +1,36 @@
 package com.example.farahreza.demo;
 
 public class ClinicSignUpInformation {
-    String name,email,phoneNo;
+    String name,email,phoneNo,location,password;
 
     public ClinicSignUpInformation() {
+    }
+
+    public ClinicSignUpInformation(String name, String email, String phoneNo, String location, String password) {
+        this.name = name;
+        this.email = email;
+        this.phoneNo = phoneNo;
+        this.location = location;
+        this.password = password;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPhoneNo() {
         return phoneNo;
     }
 
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
+    public String getLocation() {
+        return location;
     }
 
-    public ClinicSignUpInformation(String name, String email, String phoneNo) {
-        this.name = name;
-        this.email = email;
-        this.phoneNo = phoneNo;
+    public String getPassword() {
+        return password;
     }
 }

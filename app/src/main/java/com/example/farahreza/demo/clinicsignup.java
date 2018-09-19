@@ -1,6 +1,7 @@
 package com.example.farahreza.demo;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,82 +20,101 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class clinicsignup extends AppCompatActivity {
-    EditText cn;
-    EditText ce;
-    EditText pass;
-    EditText repass;
-    EditText cc;
-    EditText spn;
-    Button su;
-
-    DatabaseReference refDatabase;
+    EditText Email,Password,RePass,name,mobile;
+    Button SignUpbtn;
     FirebaseAuth mAuth;
-    ClinicSignUpInformation clinicInfo;
-    String sName;
-    String sEmail,sPhoneNo,sPass;
-    ProgressDialog pd;
+    ProgressDialog progressDialog;
+    String email,password,repass,nameF,mobileF,location;
+    DatabaseReference reference,reff;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cn=findViewById(R.id.ClinicName);
-        ce=findViewById(R.id.ClinicEmail);
-        pass=findViewById(R.id.Password);
-        repass=findViewById(R.id.Repassword);
-        cc=findViewById(R.id.CountryCode);
-        spn=findViewById(R.id.SignupPhoneNumber);
-        su=findViewById(R.id.SignUpButton);
-        setContentView(R.layout.activity_clinicsignup);
-
+                setContentView(R.layout.activity_clinicsignup);
+        name=findViewById(R.id.SignupName);
+        mobile=findViewById(R.id.signupPhoneNumber);
+        SignUpbtn=findViewById(R.id.SignUpButton);
+        Email=findViewById(R.id.SignupEmail);
+        Password=findViewById(R.id.signupPass);
+        RePass=findViewById(R.id.pass);
         mAuth=FirebaseAuth.getInstance();
-        refDatabase= FirebaseDatabase.getInstance().getReference();
-        pd = new ProgressDialog(this);
+        progressDialog=new ProgressDialog(this);
+        reference= FirebaseDatabase.getInstance().getReference("ClinicSignUpInformation");
+        reff=FirebaseDatabase.getInstance().getReference("Users");
 
-        su.setOnClickListener(new View.OnClickListener() {
+        password=Password.getText().toString().trim();
+        repass=RePass.getText().toString().trim();
+
+        SignUpbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getAllInputData();
-                createClinic();
-                createAccountAndSaveInfo();
+
+                if(!password.equals(repass))
+                {
+                    Toast.makeText(getApplicationContext(),"Passwords doesn't Match",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    createAccount();
+                }
+
             }
         });
+
+
+
     }
 
-    void getAllInputData(){
-        sName=cn.getText().toString();
-        sPhoneNo= spn.getText().toString();
-        sEmail=ce.getText().toString();
-        sPass=pass.getText().toString();
-    }
-    void createClinic(){
-        clinicInfo=new ClinicSignUpInformation(sName,sPhoneNo,sEmail);
-    }
+    void createAccount()
+    {
+        email=Email.getText().toString().trim();
+        nameF=name.getText().toString();
+        mobileF=mobile.getText().toString();
+        password=Password.getText().toString().trim();
+        repass=RePass.getText().toString().trim();
+        Intent i=getIntent();
+        final String P=i.getStringExtra("clinic");
+        final String L=i.getStringExtra("place");
+        if(!email.isEmpty()&&!password.isEmpty()) {
+            progressDialog.setMessage("Please Wait!!");
+            progressDialog.show();
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
 
-    void createAccountAndSaveInfo(){
-        pd.setMessage("please wait");
-        pd.show();
-        mAuth.createUserWithEmailAndPassword(sEmail, sPass)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("MainActivity", "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            refDatabase=FirebaseDatabase.getInstance().getReference();
-                            refDatabase.child(user.getUid()).setValue(clinicInfo);
-                            // updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("MainActivity", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(clinicsignup.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            // updateUI(null);
+
+
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                String userid=user.getUid();
+                                // Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_SHORT).show();
+
+                               ClinicSignUpInformation newuser=new ClinicSignUpInformation(nameF,email,mobileF,L,password);
+                                Users usr= new Users(P,userid);
+                                reference.child(userid).setValue(newuser);
+                                reff.child(userid).setValue(usr);
+
+
+                                Intent c=new Intent(getApplicationContext(),MainActivity.class);
+                                progressDialog.dismiss();
+                                startActivity(c);
+
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Toast.makeText(getApplicationContext(),"Failed to create an account",Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                            }
+                            progressDialog.dismiss();
+
+                            // ...
                         }
-                        pd.dismiss();
+                    });
+        }
 
-                        // ...
-                    }
-                });
     }
+
+
 }

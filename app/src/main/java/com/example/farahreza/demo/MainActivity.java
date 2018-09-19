@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
     Session session;
     DatabaseReference ref;
     Query qry;
-    PatientUsers user1;
+    Users user1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +50,37 @@ public class MainActivity extends AppCompatActivity {
         loginbtn=findViewById(R.id.button);
         Email=findViewById(R.id.email);
         Password=findViewById(R.id.pass);
-        ref= FirebaseDatabase.getInstance().getReference().child("PatientUsers");
+        ref= FirebaseDatabase.getInstance().getReference().child("Users");
 
         session=new Session(this);
         if(!session.getusename().isEmpty())
         {
-            Intent n = new Intent(getApplicationContext(), PatientServices.class);
-            startActivity(n);
+          Query qry=ref.orderByChild("uid").equalTo(session.getusename());
+          qry.addListenerForSingleValueEvent(new ValueEventListener() {
+              @Override
+              public void onDataChange(DataSnapshot dataSnapshot) {
+                  for(DataSnapshot value:dataSnapshot.getChildren()) {
+                      user1 = value.getValue(Users.class);
+                  }
+                  String type=user1.getType();
+                  if(type.compareTo("Patient")==0)
+                  {
+                      Intent c=new Intent(getApplicationContext(),PatientServices.class);
+                      startActivity(c);
+                  }
+                  else if(type.compareTo("Clinic")==0)
+                  {
+                      Toast.makeText(getApplicationContext(),"Clinic",Toast.LENGTH_LONG).show();
+                  }
+
+
+              }
+
+              @Override
+              public void onCancelled(DatabaseError databaseError) {
+
+              }
+          });
         }
 
         mAuth = FirebaseAuth.getInstance();
@@ -114,24 +139,27 @@ public class MainActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                String userid=user.getUid();
+                                final String userid=user.getUid();
                                 qry=ref.orderByKey().equalTo(userid);
 
-                            /*    qry.addListenerForSingleValueEvent(new ValueEventListener() {
+                             qry.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
-                                        for(DataSnapshot value:dataSnapshot.getChildren())
-                                        {
-                                            user1=value.getValue(PatientUsers.class);
+                                        for(DataSnapshot value:dataSnapshot.getChildren()) {
+                                            user1 = value.getValue(Users.class);
                                         }
-                                        if(user1.getType=="Patient")
+                                        String type=user1.getType();
+                                        if(type.compareTo("Patient")==0)
                                         {
+                                            Intent c=new Intent(getApplicationContext(),PatientServices.class);
+                                            session.setusename(userid);
+                                            startActivity(c);
+                                        }
+                                        else if(type.compareTo("Clinic")==0)
+                                        {
+                                            Toast.makeText(getApplicationContext(),"Clinic",Toast.LENGTH_LONG).show();
+                                        }
 
-                                        }
-                                        else if()
-                                        {
-
-                                        }
                                     }
 
                                     @Override
@@ -139,13 +167,13 @@ public class MainActivity extends AppCompatActivity {
 
                                     }
                                 });
-                                */
-                                Intent c = new Intent(getApplicationContext(), PatientServices.class);
+
+                              //  Intent c = new Intent(getApplicationContext(), PatientServices.class);
 
                                 //Toast.makeText(getApplicationContext(),"LogInSuccess", Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
-                                session.setusename(userid);
-                                startActivity(c);
+
+                               // startActivity(c);
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Toast.makeText(MainActivity.this, "Auth failed", Toast.LENGTH_SHORT).show();

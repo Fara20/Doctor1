@@ -65,7 +65,11 @@ public class SignupOptions extends AppCompatActivity  {
                 }
                 else if(Clinic.isChecked())
                 {
-                    Toast.makeText(getApplicationContext(),"For clinic", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),"For clinic", Toast.LENGTH_LONG).show();
+
+                    final  Intent c=new Intent(getApplicationContext(),ClinicSignUpLocation.class);
+                    c.putExtra("clinic",C);
+                    startActivity(c);
                 }
 
                else

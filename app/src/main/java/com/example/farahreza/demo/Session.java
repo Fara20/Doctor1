@@ -21,6 +21,7 @@ public class Session {
         String usename = prefs.getString("usename","");
         return usename;
     }
+
     public void clearAll()
     {
         SharedPreferences.Editor editor=prefs.edit();
