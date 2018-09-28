@@ -55,17 +55,28 @@ public class ClinicSignUpLocation extends AppCompatActivity {
             }
         });
 
+
+
         sbmt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=getIntent();
-                final String C=i.getStringExtra("clinic");
 
-                final  Intent c=new Intent(getApplicationContext(),clinicsignup.class);
-                c.putExtra("clinic",C);
-                c.putExtra("place",Placename);
-                startActivity(c);
-            }
+                if(!Placename.isEmpty())
+                {
+                    Intent i=getIntent();
+                    final String C=i.getStringExtra("clinic");
+
+                    final  Intent c=new Intent(getApplicationContext(),clinicsignup.class);
+                    c.putExtra("clinic",C);
+                    c.putExtra("place",Placename);
+                    startActivity(c);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Please Select a Location",Toast.LENGTH_LONG).show();
+                }
+                }
+
         });
 
 

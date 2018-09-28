@@ -62,7 +62,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/stethoscope"
-                    android:drawableTint="#FF4081"
+                    android:drawableTint="#C2185B"
                     android:hint="Email"
                     android:drawablePadding="10dp"
                     android:inputType="textEmailAddress"
@@ -83,7 +83,7 @@
                     android:singleLine="true"
                     android:drawableLeft="@drawable/first"
                     android:drawablePadding="10dp"
-                    android:drawableTint="#FF4081"
+                    android:drawableTint="#C2185B"
                     android:textColor="#C2185B"
                     android:hint="Password"
                     android:inputType="textPassword" />

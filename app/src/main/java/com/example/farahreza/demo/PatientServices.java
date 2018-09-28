@@ -65,7 +65,7 @@ public class PatientServices extends AppCompatActivity {
         dl.addDrawerListener(t);
         t.syncState();
 
-        getSupportActionBar().setTitle("Dashboard");
+        getSupportActionBar().setTitle("Patient");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

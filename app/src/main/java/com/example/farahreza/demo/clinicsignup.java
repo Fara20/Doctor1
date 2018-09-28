@@ -76,7 +76,7 @@ public class clinicsignup extends AppCompatActivity {
         Intent i=getIntent();
         final String P=i.getStringExtra("clinic");
         final String L=i.getStringExtra("place");
-        if(!email.isEmpty()&&!password.isEmpty()) {
+        if(!email.isEmpty()&&!password.isEmpty()&&!mobileF.isEmpty()&&!repass.isEmpty()&&!nameF.isEmpty()) {
             progressDialog.setMessage("Please Wait!!");
             progressDialog.show();
             mAuth.createUserWithEmailAndPassword(email, password)
@@ -112,6 +112,10 @@ public class clinicsignup extends AppCompatActivity {
                             // ...
                         }
                     });
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),"Field Empty",Toast.LENGTH_SHORT).show();
         }
 
     }

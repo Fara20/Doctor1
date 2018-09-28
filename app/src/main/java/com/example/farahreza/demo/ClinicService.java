@@ -67,7 +67,7 @@ public class ClinicService extends AppCompatActivity {
         dl.addDrawerListener(t);
         t.syncState();
 
-        getSupportActionBar().setTitle("Clinic Dashboard");
+        getSupportActionBar().setTitle("Clinic");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -98,11 +98,12 @@ public class ClinicService extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.profile:
-                        final  Intent pf=new Intent(getApplicationContext(),Profile.class);
+                        final  Intent pf=new Intent(getApplicationContext(),ClinicProfile.class);
                         startActivity(pf);
                         break;
                     case R.id.notifications:
-                        Toast.makeText(ClinicService.this, "Edit Info", Toast.LENGTH_SHORT).show();
+                        final  Intent pp=new Intent(getApplicationContext(),EditInfo.class);
+                        startActivity(pp);
                         break;
                     case R.id.Sign_Out:
                         AlertDialog.Builder builder=new AlertDialog.Builder(ClinicService.this);

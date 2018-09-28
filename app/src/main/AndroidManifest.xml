@@ -46,20 +46,18 @@
         <activity android:name=".BloodBank" />
         <activity android:name=".BloodFound" />
         <activity android:name=".Profile" />
-        <activity android:name=".clinicsignup"/>
-        <activity android:name=".ClinicSignUpLocation"/>
-
+        <activity android:name=".clinicsignup" />
+        <activity android:name=".ClinicSignUpLocation" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC6EM_9cCwKCaDrC8b6lNP5SYXeoWALuUA" />
 
-        <activity android:name=".ClinicService"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
-
-    </activity>
-
-
+        <activity
+            android:name=".ClinicService"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+        <activity android:name=".ClinicProfile" />
+        <activity android:name=".EditInfo"></activity>
     </application>
 
 </manifest>

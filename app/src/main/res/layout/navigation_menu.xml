@@ -5,14 +5,14 @@
     >
 
     <item android:id="@+id/profile"
-        android:icon="@drawable/doctor"
+        android:icon="@drawable/users"
         android:title="Profile"
         />
     <item android:id="@+id/notifications"
-        android:icon="@drawable/doctor1"
-        android:title="Notifications"/>
+        android:icon="@drawable/resume"
+        android:title="Edit Account"/>
     <item android:id="@+id/Sign_Out"
-        android:icon="@drawable/doctor"
+        android:icon="@drawable/signout"
         android:title="Sign Out"/>
 
 </menu>

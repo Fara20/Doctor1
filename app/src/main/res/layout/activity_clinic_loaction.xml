@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
         tools:context=".ClinicLoaction"
-    android:background="@drawable/profile"
+    android:background="@drawable/drd"
     android:weightSum="1">
 
     <fragment
