@@ -70,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
                   }
                   else if(type.compareTo("Clinic")==0)
                   {
-                      Toast.makeText(getApplicationContext(),"Clinic",Toast.LENGTH_LONG).show();
+                      //Toast.makeText(getApplicationContext(),"Clinic",Toast.LENGTH_LONG).show();
+                      Intent d=new Intent(getApplicationContext(),ClinicService.class);
+                      startActivity(d);
                   }
 
 
@@ -157,7 +159,11 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                         else if(type.compareTo("Clinic")==0)
                                         {
-                                            Toast.makeText(getApplicationContext(),"Clinic",Toast.LENGTH_LONG).show();
+                                            //Toast.makeText(getApplicationContext(),"Clinic",Toast.LENGTH_LONG).show();
+
+                                            Intent d=new Intent(getApplicationContext(),ClinicService.class);
+                                            session.setusename(userid);
+                                            startActivity(d);
                                         }
 
                                     }
