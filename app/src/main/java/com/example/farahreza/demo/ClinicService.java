@@ -54,7 +54,7 @@ public class ClinicService extends AppCompatActivity {
         session=new Session(this);
         Ambb=findViewById(R.id.ambb);
         emer=findViewById(R.id.emerr);
-        Blood=findViewById(R.id.blood);
+        Blood=findViewById(R.id.edit);
       /*  reminder=findViewById(R.id.button7);
         tips=findViewById(R.id.button6);
         sms=findViewById(R.id.button8);
@@ -67,7 +67,7 @@ public class ClinicService extends AppCompatActivity {
         dl.addDrawerListener(t);
         t.syncState();
 
-        getSupportActionBar().setTitle("Clinic");
+        getSupportActionBar().setTitle("Clinic Dashboard");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -98,12 +98,11 @@ public class ClinicService extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.profile:
-                        final  Intent pf=new Intent(getApplicationContext(),ClinicProfile.class);
+                        final  Intent pf=new Intent(getApplicationContext(),Profile.class);
                         startActivity(pf);
                         break;
-                    case R.id.notifications:
-                        final  Intent pp=new Intent(getApplicationContext(),EditInfo.class);
-                        startActivity(pp);
+                    case R.id.editInfo:
+                        Toast.makeText(ClinicService.this, "Edit Info", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.Sign_Out:
                         AlertDialog.Builder builder=new AlertDialog.Builder(ClinicService.this);
@@ -127,6 +126,15 @@ public class ClinicService extends AppCompatActivity {
             }
         });
 
+
+            InsertDoc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent c=new Intent(getApplicationContext(),InsertDoctor.class);
+                    startActivity(c);
+
+                }
+            });
      //   InsertDoc.setOnClickListener(new View.OnClickListener() {
      //       @Override
       //      public void onClick(View view) {
@@ -136,7 +144,14 @@ public class ClinicService extends AppCompatActivity {
 //            }
   //      });
 
+            Blood.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent d=new Intent(getApplicationContext(),ClinicBlood.class);
+                    startActivity(d);
 
+                }
+            });
 
 
 
