@@ -46,7 +46,7 @@
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/surgeon"
+                            android:src="@drawable/doctor"
 
 
                             />
@@ -86,7 +86,7 @@
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/edit"
+                            android:src="@drawable/ic_edit_black_24dp"
 
 
                             />
@@ -140,7 +140,7 @@
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/defribillator"
+                            android:src="@drawable/emergency"
 
 
                             />
@@ -180,7 +180,7 @@
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/amb1"
+                            android:src="@drawable/ambulence"
 
 
                             />
@@ -232,7 +232,7 @@
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/bb"
+                            android:src="@drawable/ic_add_location_black_24dp"
 
 
                             />
@@ -272,7 +272,7 @@
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/cancel2"
+                            android:src="@drawable/ic_cancel_black_24dp"
                             android:text="Health"
 
                             />
@@ -312,7 +312,7 @@
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/list"
+                            android:src="@drawable/doctorlist"
 
 
                             />
@@ -386,12 +386,21 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:background="@drawable/circle"
-                    android:drawableTop="@drawable/phone"
+                    android:drawableTop="@android:drawable/ic_dialog_email"
                     android:paddingTop="20dp"
                     android:text="Contact"
                     android:textColor="#fff" />
 
-
+                <Button
+                    android:id="@+id/reminder"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/circle"
+                    android:drawableTop="@android:drawable/ic_lock_idle_alarm"
+                    android:paddingTop="20dp"
+                    android:text="Reminder"
+                    android:textColor="#fff" />
 
                 <Button
                     android:id="@+id/info"
@@ -399,7 +408,7 @@
                     android:layout_height="100dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/circle"
-                    android:drawableTop="@drawable/contact"
+                    android:drawableTop="@drawable/ic_chat"
                     android:paddingTop="20dp"
                     android:text="Info"
                     android:textColor="#fff" />
