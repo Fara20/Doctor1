@@ -14,6 +14,7 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class ClinicService extends AppCompatActivity {
     Button reminder1;
@@ -33,11 +36,13 @@ public class ClinicService extends AppCompatActivity {
     CardView Ambb;
     CardView emer;
     CardView Blood;
+    CardView Doclist;
     Session session;
     DatabaseReference  reference;
     Query usrqry;
     String name,mobile,email;
     PatientUsers user;
+
 
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
@@ -55,6 +60,7 @@ public class ClinicService extends AppCompatActivity {
         Ambb=findViewById(R.id.ambb);
         emer=findViewById(R.id.emerr);
         Blood=findViewById(R.id.edit);
+        Doclist=findViewById(R.id.doclist);
       /*  reminder=findViewById(R.id.button7);
         tips=findViewById(R.id.button6);
         sms=findViewById(R.id.button8);
@@ -67,11 +73,15 @@ public class ClinicService extends AppCompatActivity {
         dl.addDrawerListener(t);
         t.syncState();
 
+
+
         getSupportActionBar().setTitle("Clinic Dashboard");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nv = (NavigationView) findViewById(R.id.nv);
+
+
       /* reference= FirebaseDatabase.getInstance().getReference().child("PatientUsers");
         usrqry=reference.orderByChild("uid").equalTo(session.getusename());
         usrqry.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -153,6 +163,14 @@ public class ClinicService extends AppCompatActivity {
                 }
             });
 
+            Doclist.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent e=new Intent(getApplicationContext(),DoctorList.class);
+                    startActivity(e);
+                }
+            });
 
 
 
