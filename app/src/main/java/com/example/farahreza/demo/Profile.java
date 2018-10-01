@@ -1,10 +1,13 @@
 package com.example.farahreza.demo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,12 +18,14 @@ import com.google.firebase.database.ValueEventListener;
 public class Profile extends AppCompatActivity {
 
     DatabaseReference reference,reff;
+    FirebaseAuth mAuth;
     Query usrqry,qry;
     String name,mobile,email,type;
     PatientUsers user;
     Users usr;
     Session session;
     TextView name1,email1,phoneNumber1,type1;
+    String Name,Phone,Email,P;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +36,12 @@ public class Profile extends AppCompatActivity {
         phoneNumber1=findViewById(R.id.Phone);
         type1=findViewById(R.id.type);
         session=new Session(this);
+        mAuth=FirebaseAuth.getInstance();
 
-        reference= FirebaseDatabase.getInstance().getReference().child("PatientUsers");
+        Intent i=getIntent();
+      P=i.getStringExtra("Pass");
+
+        reference= FirebaseDatabase.getInstance().getReference("PatientUsers");
         usrqry=reference.orderByKey().equalTo(session.getusename());
 
         usrqry.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -43,10 +52,21 @@ public class Profile extends AppCompatActivity {
                     user=value.getValue(PatientUsers.class);
                 }
 
+                    Name=user.getName();
+                Phone=user.getPhone();
+                email=user.getEmail();
+                    name1.setText(Name);
+                    email1.setText(email);
+                   phoneNumber1.setText(Phone);
 
-                    name1.setText(user.getName());
-                    email1.setText(user.getEmail());
-                    phoneNumber1.setText(user.getPhone());
+                //FirebaseUser user = mAuth.getCurrentUser();
+              //  String userid=user.getUid();
+                //Toast.makeText(getApplicationContext()," "+userid,Toast.LENGTH_SHORT).show();
+
+                //PatientUsers newuser=new PatientUsers(Name,Phone,email,P);
+
+
+                //reference.child(userid).setValue(newuser);
 
             }
 
@@ -76,6 +96,9 @@ public class Profile extends AppCompatActivity {
 
            }
        });
+
+
+
 
 
 

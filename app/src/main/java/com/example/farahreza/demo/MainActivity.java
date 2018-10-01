@@ -29,17 +29,19 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView SignUpbtn;
+    TextView SignUpbtn,ForgetPass;
     Button loginbtn;
     EditText Email;
     EditText Password;
-    String email,password;
+    String email,password,Name,Phone,L;
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
     Session session;
-    DatabaseReference ref;
-    Query qry;
+    DatabaseReference  ref,reference,reff;
+    Query qry,usrqry,usrqry1;
     Users user1;
+    PatientUsers user2;
+    ClinicSignUpInformation user3;
 
 
     @Override
@@ -50,9 +52,16 @@ public class MainActivity extends AppCompatActivity {
         loginbtn=findViewById(R.id.button);
         Email=findViewById(R.id.email);
         Password=findViewById(R.id.pass);
-        ref= FirebaseDatabase.getInstance().getReference().child("Users");
-
+        ForgetPass=findViewById(R.id.forgotPassword);
         session=new Session(this);
+        ref= FirebaseDatabase.getInstance().getReference().child("Users");
+        reference= FirebaseDatabase.getInstance().getReference("PatientUsers");
+        reff= FirebaseDatabase.getInstance().getReference("ClinicSignUpInformation");
+
+        mAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
+
+
         if(!session.getusename().isEmpty())
         {
           Query qry=ref.orderByChild("uid").equalTo(session.getusename());
@@ -124,6 +133,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        ForgetPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent pp=new Intent(getApplicationContext(),ForgetPassword.class);
+                startActivity(pp);
+
+            }
+        });
     }
 
     void SignIn()
@@ -150,10 +168,49 @@ public class MainActivity extends AppCompatActivity {
                                         for(DataSnapshot value:dataSnapshot.getChildren()) {
                                             user1 = value.getValue(Users.class);
                                         }
+
                                         String type=user1.getType();
                                         if(type.compareTo("Patient")==0)
                                         {
+                                            usrqry=reference.orderByKey().equalTo(userid);
+                                            usrqry.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                                    for(DataSnapshot value:dataSnapshot.getChildren())
+                                                    {
+                                                        user2=value.getValue(PatientUsers.class);
+                                                    }
+
+                                                    Name=user2.getName();
+                                                    Phone=user2.getPhone();
+                                                    //email=user.getEmail();
+                                                    //Intent i=getIntent();
+                                                   // P=i.getStringExtra("Pass");
+
+                                                    FirebaseUser user = mAuth.getCurrentUser();
+                                                    String userid=user.getUid();
+                                                    //Toast.makeText(getApplicationContext()," "+Phone,Toast.LENGTH_LONG).show();
+
+                                                    PatientUsers newuser=new PatientUsers(Name,Phone,email,password);
+
+
+                                                    reference.child(userid).setValue(newuser);
+
+                                                }
+
+                                                @Override
+                                                public void onCancelled(DatabaseError databaseError) {
+                                                    Toast.makeText(getApplicationContext(),"Error", Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+
+
+
+
+
+
                                             Intent c=new Intent(getApplicationContext(),PatientServices.class);
+                                            c.putExtra("Pass",password);
                                             session.setusename(userid);
                                             startActivity(c);
                                         }
@@ -161,7 +218,42 @@ public class MainActivity extends AppCompatActivity {
                                         {
                                             //Toast.makeText(getApplicationContext(),"Clinic",Toast.LENGTH_LONG).show();
 
+                                            usrqry1=reff.orderByKey().equalTo(userid);
+                                            usrqry1.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                                    for(DataSnapshot value:dataSnapshot.getChildren())
+                                                    {
+                                                        user3=value.getValue(ClinicSignUpInformation.class);
+                                                    }
+
+                                                    Name=user3.getName();
+                                                    Phone=user3.getPhoneNo();
+                                                    L=user3.getLocation();
+                                                    //email=user.getEmail();
+                                                    //Intent i=getIntent();
+                                                    // P=i.getStringExtra("Pass");
+
+                                                    FirebaseUser user = mAuth.getCurrentUser();
+                                                    String userid=user.getUid();
+                                                    //Toast.makeText(getApplicationContext()," "+Phone,Toast.LENGTH_LONG).show();
+
+                                                   ClinicSignUpInformation newuser=new ClinicSignUpInformation(Name,Phone,email,L,password);
+
+
+                                                    reff.child(userid).setValue(newuser);
+
+                                                }
+
+                                                @Override
+                                                public void onCancelled(DatabaseError databaseError) {
+                                                    Toast.makeText(getApplicationContext(),"Error", Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+
+
                                             Intent d=new Intent(getApplicationContext(),ClinicService.class);
+                                            d.putExtra("Pass",password);
                                             session.setusename(userid);
                                             startActivity(d);
                                         }

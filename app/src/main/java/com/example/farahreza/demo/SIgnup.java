@@ -99,8 +99,10 @@ repass=RePass.getText().toString().trim();
                                // Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_SHORT).show();
 
                                 PatientUsers newuser=new PatientUsers(nameF,mobileF,email,password);
+                               // PatientUsers newuser1=new PatientUsers(nameF,mobileF,email,password);
                                 Users usr= new Users(P,userid);
                                 reference.child(userid).setValue(newuser);
+
                                 reff.child(userid).setValue(usr);
 
 

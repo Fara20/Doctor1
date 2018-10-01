@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,11 +34,14 @@ public class PatientServices extends AppCompatActivity {
     CardView Ambb;
     CardView emer;
     CardView Blood;
-    Session session;
+
     DatabaseReference  reference;
-    Query usrqry;
-    String name,mobile,email;
+    Session session;
+    String Name,Phone,email,P;
     PatientUsers user;
+
+    FirebaseAuth mAuth;
+    Query usrqry;
 
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
@@ -53,6 +58,9 @@ public class PatientServices extends AppCompatActivity {
         Ambb=findViewById(R.id.ambb);
         emer=findViewById(R.id.emerr);
         Blood=findViewById(R.id.blood);
+        mAuth=FirebaseAuth.getInstance();
+        reference= FirebaseDatabase.getInstance().getReference("PatientUsers");
+        usrqry=reference.orderByKey().equalTo(session.getusename());
       /*  reminder=findViewById(R.id.button7);
         tips=findViewById(R.id.button6);
         sms=findViewById(R.id.button8);
@@ -90,18 +98,62 @@ public class PatientServices extends AppCompatActivity {
             }
         });*/
 
+
+/*
+        usrqry.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot value:dataSnapshot.getChildren())
+                {
+                    user=value.getValue(PatientUsers.class);
+                }
+
+                Name=user.getName();
+                Phone=user.getPhone();
+                email=user.getEmail();
+                //Intent i=getIntent();
+                //P=i.getStringExtra("Pass");
+
+                FirebaseUser user = mAuth.getCurrentUser();
+                String userid=user.getUid();
+                //Toast.makeText(getApplicationContext()," "+P,Toast.LENGTH_LONG).show();
+
+               // PatientUsers newuser=new PatientUsers(Name,Phone,email,P);
+
+
+               // reference.child(userid).setValue(newuser);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(),"Error", Toast.LENGTH_LONG).show();
+            }
+        });*/
+
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.profile:
+                        Intent i=getIntent();
+                        final String P=i.getStringExtra("Pass");
                         final  Intent pf=new Intent(getApplicationContext(),Profile.class);
+                       // pf.putExtra("Pass",P);
                         startActivity(pf);
                         break;
                     case R.id.notifications:
-                        Toast.makeText(PatientServices.this, "Settings", Toast.LENGTH_SHORT).show();
+                        final  Intent pp=new Intent(getApplicationContext(),PatientEditInfo.class);
+                        startActivity(pp);
+
                         break;
+                    case R.id.Change:
+                       // Toast.makeText(getApplicationContext(),"lalala",Toast.LENGTH_SHORT).show();
+                        final  Intent cp=new Intent(getApplicationContext(),ChangePass.class);
+                        startActivity(cp);
+
+                            break;
                     case R.id.Sign_Out:
                         AlertDialog.Builder builder=new AlertDialog.Builder(PatientServices.this);
                         builder.setMessage("Are you sure?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {

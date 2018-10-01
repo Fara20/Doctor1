@@ -106,7 +106,7 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="139dp"
+                                android:layout_width="129dp"
                                 android:layout_height="50dp"
                                 android:drawableLeft="@drawable/syring"
                                 android:gravity="left"

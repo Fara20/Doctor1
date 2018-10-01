@@ -95,7 +95,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:paddingTop="5dp"
-                android:text="Forgot Password?" />
+                android:text="Forgot Password?"
+                android:clickable="true"/>
 
 
             <Button

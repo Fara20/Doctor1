@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,8 +38,10 @@ public class ClinicService extends AppCompatActivity {
     Session session;
     DatabaseReference  reference;
     Query usrqry;
-    String name,mobile,email;
-    PatientUsers user;
+    String Name,Phone,email,P,L;
+    ClinicSignUpInformation user;
+    FirebaseAuth mAuth;
+
 
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
@@ -48,7 +52,7 @@ public class ClinicService extends AppCompatActivity {
         setContentView(R.layout.activity_clinic_service);
         dl=findViewById(R.id.activity_clinic_service);
         InsertDoc=findViewById(R.id.insertdoc);
-        Edit=findViewById(R.id.edit);
+       // Edit=findViewById(R.id.edit);
         Sms1=findViewById(R.id.sms);
         reminder1=findViewById(R.id.reminder);
         session=new Session(this);
@@ -60,7 +64,11 @@ public class ClinicService extends AppCompatActivity {
         sms=findViewById(R.id.button8);
         book = findViewById(R.id.button1);
         blood=findViewById(R.id.button4);
+
         */
+        mAuth=FirebaseAuth.getInstance();
+        reference= FirebaseDatabase.getInstance().getReference("ClinicSignUpInformation");
+        usrqry=reference.orderByKey().equalTo(session.getusename());
 
         t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
 
@@ -92,6 +100,38 @@ public class ClinicService extends AppCompatActivity {
             }
         });*/
 
+        //Intent i=getIntent();
+       // P=i.getStringExtra("Pass");
+
+      /*  usrqry.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot value:dataSnapshot.getChildren())
+                {
+                    user=value.getValue(ClinicSignUpInformation.class);
+                }
+
+                Name=user.getName();
+                Phone=user.getPhoneNo();
+                email=user.getEmail();
+                L=user.getLocation();
+
+                FirebaseUser user = mAuth.getCurrentUser();
+                String userid=user.getUid();
+                Toast.makeText(getApplicationContext()," "+userid,Toast.LENGTH_SHORT).show();
+
+                ClinicSignUpInformation newuser=new ClinicSignUpInformation(Name,email,Phone,L,P);
+
+                reference.child(userid).setValue(newuser);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(),"Error", Toast.LENGTH_LONG).show();
+            }
+        });*/
+
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -104,6 +144,12 @@ public class ClinicService extends AppCompatActivity {
                     case R.id.notifications:
                         final  Intent pp=new Intent(getApplicationContext(),EditInfo.class);
                         startActivity(pp);
+                        break;
+                    case R.id.Change:
+                       //Toast.makeText(getApplicationContext(),"lalala",Toast.LENGTH_SHORT).show();
+                        final  Intent cc=new Intent(getApplicationContext(),ClinicPassChange.class);
+                        startActivity(cc);
+
                         break;
                     case R.id.Sign_Out:
                         AlertDialog.Builder builder=new AlertDialog.Builder(ClinicService.this);
