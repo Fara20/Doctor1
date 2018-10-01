@@ -14,6 +14,7 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class ClinicService extends AppCompatActivity {
     Button reminder1;
     Button tips;
@@ -35,12 +38,14 @@ public class ClinicService extends AppCompatActivity {
     CardView Ambb;
     CardView emer;
     CardView Blood;
+    CardView Doclist;
     Session session;
     DatabaseReference  reference;
     Query usrqry;
     String Name,Phone,email,P,L;
     ClinicSignUpInformation user;
     FirebaseAuth mAuth;
+
 
 
     private DrawerLayout dl;
@@ -58,7 +63,8 @@ public class ClinicService extends AppCompatActivity {
         session=new Session(this);
         Ambb=findViewById(R.id.ambb);
         emer=findViewById(R.id.emerr);
-        Blood=findViewById(R.id.blood);
+        Blood=findViewById(R.id.edit);
+        Doclist=findViewById(R.id.doclist);
       /*  reminder=findViewById(R.id.button7);
         tips=findViewById(R.id.button6);
         sms=findViewById(R.id.button8);
@@ -75,11 +81,15 @@ public class ClinicService extends AppCompatActivity {
         dl.addDrawerListener(t);
         t.syncState();
 
-        getSupportActionBar().setTitle("Clinic");
+
+
+        getSupportActionBar().setTitle("Clinic Dashboard");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nv = (NavigationView) findViewById(R.id.nv);
+
+
       /* reference= FirebaseDatabase.getInstance().getReference().child("PatientUsers");
         usrqry=reference.orderByChild("uid").equalTo(session.getusename());
         usrqry.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -138,12 +148,11 @@ public class ClinicService extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.profile:
-                        final  Intent pf=new Intent(getApplicationContext(),ClinicProfile.class);
+                        final  Intent pf=new Intent(getApplicationContext(),Profile.class);
                         startActivity(pf);
                         break;
-                    case R.id.notifications:
-                        final  Intent pp=new Intent(getApplicationContext(),EditInfo.class);
-                        startActivity(pp);
+                    case R.id.editInfo:
+                        Toast.makeText(ClinicService.this, "Edit Info", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.Change:
                        //Toast.makeText(getApplicationContext(),"lalala",Toast.LENGTH_SHORT).show();
@@ -173,6 +182,15 @@ public class ClinicService extends AppCompatActivity {
             }
         });
 
+
+            InsertDoc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent c=new Intent(getApplicationContext(),InsertDoctor.class);
+                    startActivity(c);
+
+                }
+            });
      //   InsertDoc.setOnClickListener(new View.OnClickListener() {
      //       @Override
       //      public void onClick(View view) {
@@ -182,8 +200,23 @@ public class ClinicService extends AppCompatActivity {
 //            }
   //      });
 
+            Blood.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent d=new Intent(getApplicationContext(),ClinicBlood.class);
+                    startActivity(d);
 
+                }
+            });
 
+            Doclist.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent e=new Intent(getApplicationContext(),DoctorList.class);
+                    startActivity(e);
+                }
+            });
 
 
 
