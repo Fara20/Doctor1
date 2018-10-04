@@ -59,7 +59,7 @@
                     android:gravity="center"
                     android:hint="Enter Old Password"
                     android:inputType="textPassword"
-                    android:textColorHint="#b71c1c"
+                    android:textColorHint="#baabab"
                     android:textColor="#b71c1c"
                     android:textSize="25dp"
                     android:textStyle="bold" />
@@ -87,7 +87,7 @@
                     android:gravity="center"
                     android:hint="Enter New Password"
                     android:inputType="textPassword"
-                    android:textColorHint="#b71c1c"
+                    android:textColorHint="#baabab"
                     android:textSize="25dp"
                     android:textColor="#b71c1c"
                     android:textStyle="bold" />
@@ -115,7 +115,7 @@
                     android:gravity="center"
                     android:hint="Confirm New Password"
                     android:inputType="textPassword"
-                    android:textColorHint="#b71c1c"
+                    android:textColorHint="#baabab"
                     android:textSize="25dp"
                     android:textColor="#b71c1c"
                     android:textStyle="bold" />

@@ -52,10 +52,10 @@ public class Profile extends AppCompatActivity {
                     user=value.getValue(PatientUsers.class);
                 }
 
-                    Name=user.getName();
+                  //  Name=user.getName();
                 Phone=user.getPhone();
                 email=user.getEmail();
-                    name1.setText(Name);
+                    name1.setText("Farah");
                     email1.setText(email);
                    phoneNumber1.setText(Phone);
 

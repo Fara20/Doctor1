@@ -14,246 +14,264 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_docinsert_24dp"
-            android:layout_gravity="center"
-            />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
+            android:orientation="vertical">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/surgeon"
+                android:layout_gravity="center"
+                android:background="@drawable/profileshape"
+                />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Doctor's Name:"
+                android:text="Doctor's Profile"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:textStyle="bold"
                 android:textColor="#b71c1c"
-                android:textSize="19dp"
-                android:drawableLeft=""
-                />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter name"
-                android:inputType="text"
-                android:id="@+id/docname"/>
-
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gender:"
-            android:textStyle="bold"
-            android:textColor="#b71c1c"
-            android:textSize="19dp"/>
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/grpgender">
-
-            <RadioButton
-                android:id="@+id/male"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#b71c1c"
-                android:textSize="14dp"
-                android:text="Male"
-                />
-            <RadioButton
-                android:id="@+id/female"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#b71c1c"
-                android:textSize="14dp"
-                android:text="Female"
+                android:textSize="23dp"
                 />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        </RadioGroup>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Doctor's Speciality:"
-            android:textStyle="bold"
-            android:textColor="#b71c1c"
-            android:textSize="19dp"/>
-        <RadioGroup
-            android:id="@+id/grpspec"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Doctor's Name:"
+                    android:textStyle="bold"
+                    android:drawableStart="@drawable/ic_account_circle_black_24dp"
+                    android:textColor="#b71c1c"
+                    android:textSize="19dp"
 
-            <RadioButton
-                android:id="@+id/cardiology"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cardiology"
-                android:textColor="#b71c1c"
-                android:textSize="13dp"
-                />
+                    />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter name"
+                    android:gravity="center"
+                    android:inputType="text"
+                    android:id="@+id/docname"/>
 
-            <RadioButton
-                android:id="@+id/neurology"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Neurology"
-                android:textColor="#b71c1c"
-                android:textSize="13dp"/>
-            <RadioButton
-                android:id="@+id/surgery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Surgery"
-                android:textColor="#b71c1c"
-                android:textSize="13dp"
-                />
-
-            <RadioButton
-                android:id="@+id/gynaecology"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Gynaecology"
-                android:textColor="#b71c1c"
-                android:textSize="13dp"/>
-            <RadioButton
-                android:id="@+id/pathology"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pathology"
-                android:textColor="#b71c1c"
-                android:textSize="13dp"
-                />
-
-            <RadioButton
-                android:id="@+id/neurosurgery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Neurosurgery"
-                android:textColor="#b71c1c"
-                android:textSize="13dp"/>
-            <RadioButton
-                android:id="@+id/pediatrics"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pediatrics"
-                android:textColor="#b71c1c"
-                android:textSize="13dp"
-                />
-
-            <RadioButton
-                android:id="@+id/psychiatry"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Psychiatry"
-                android:textColor="#b71c1c"
-                android:textSize="13dp"/>
-            <RadioButton
-                android:id="@+id/nephrology"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nephrology"
-                android:textColor="#b71c1c"
-                android:textSize="13dp"
-                />
-
-            <RadioButton
-                android:id="@+id/dental"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Dental"
-                android:textColor="#b71c1c"
-                android:textSize="13dp"/>
-
-        </RadioGroup>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Available Time Slots:"
-            android:textColor="#b71c1c"
-            android:textSize="19dp"
-            android:textStyle="bold"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Switch
+            </LinearLayout>
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/switch1"/>
+                android:text=" Gender:"
+                android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                android:textStyle="bold"
+                android:textColor="#b71c1c"
+                android:textSize="19dp"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/grpgender">
+
+                <RadioButton
+                    android:id="@+id/male"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#b71c1c"
+                    android:textSize="14dp"
+                    android:text="Male"
+                    />
+                <RadioButton
+                    android:id="@+id/female"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#b71c1c"
+                    android:textSize="14dp"
+                    android:text="Female"
+                    />
+
+
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Doctor's Speciality:"
+                android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                android:textStyle="bold"
+                android:textColor="#b71c1c"
+                android:textSize="19dp"/>
+            <RadioGroup
+                android:id="@+id/grpspec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/cardiology"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cardiology"
+                    android:textColor="#b71c1c"
+                    android:textSize="13dp"
+                    />
+
+                <RadioButton
+                    android:id="@+id/neurology"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Neurology"
+                    android:textColor="#b71c1c"
+                    android:textSize="13dp"/>
+                <RadioButton
+                    android:id="@+id/surgery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Surgery"
+                    android:textColor="#b71c1c"
+                    android:textSize="13dp"
+                    />
+
+                <RadioButton
+                    android:id="@+id/gynaecology"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gynaecology"
+                    android:textColor="#b71c1c"
+                    android:textSize="13dp"/>
+                <RadioButton
+                    android:id="@+id/pathology"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pathology"
+                    android:textColor="#b71c1c"
+                    android:textSize="13dp"
+                    />
+
+                <RadioButton
+                    android:id="@+id/neurosurgery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Neurosurgery"
+                    android:textColor="#b71c1c"
+                    android:textSize="13dp"/>
+                <RadioButton
+                    android:id="@+id/pediatrics"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pediatrics"
+                    android:textColor="#b71c1c"
+                    android:textSize="13dp"
+                    />
+
+                <RadioButton
+                    android:id="@+id/psychiatry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Psychiatry"
+                    android:textColor="#b71c1c"
+                    android:textSize="13dp"/>
+                <RadioButton
+                    android:id="@+id/nephrology"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nephrology"
+                    android:textColor="#b71c1c"
+                    android:textSize="13dp"
+                    />
+
+                <RadioButton
+                    android:id="@+id/dental"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dental"
+                    android:textColor="#b71c1c"
+                    android:textSize="13dp"/>
+
+            </RadioGroup>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="8am-2pm"
-                android:textColor="#b71c1c"
-                android:textSize="13dp"/>
-            <Switch
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/switch2"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4pm-8pm"
-                android:textColor="#b71c1c"
-                android:textSize="13dp"/>
-            <Switch
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/switch3"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="9pm-12am"
-                android:textColor="#b71c1c"
-                android:textSize="13dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total capacity:"
+                android:text=" Available Time Slots:"
+                android:drawableLeft="@drawable/ic_account_circle_black_24dp"
                 android:textColor="#b71c1c"
                 android:textSize="19dp"
-                android:textStyle="bold" />
-            <EditText
+                android:textStyle="bold"/>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter capacity"
-                android:inputType="number"
-                android:id="@+id/capacity"/>
+                android:orientation="horizontal">
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/switch1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8am-2pm"
+                    android:textColor="#b71c1c"
+                    android:textSize="13dp"/>
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/switch2"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4pm-8pm"
+                    android:textColor="#b71c1c"
+                    android:textSize="13dp"/>
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/switch3"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9pm-12am"
+                    android:textColor="#b71c1c"
+                    android:textSize="13dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Total capacity:"
+                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                    android:textColor="#b71c1c"
+                    android:textSize="19dp"
+                    android:textStyle="bold" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter capacity"
+                    android:inputType="number"
+                    android:id="@+id/capacity"/>
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Insert"
+                android:textColor="#fff"
+                android:background="#b71c1c"
+                android:textSize="13dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+
 
         </LinearLayout>
-
-
-        <Button
-            android:id="@+id/btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Insert"
-            android:textColor="#b71c1c"
-            android:textSize="13dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            />
-
-
-    </LinearLayout>
     </ScrollView>
 
 

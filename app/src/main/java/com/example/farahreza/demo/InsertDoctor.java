@@ -169,7 +169,7 @@ public class InsertDoctor extends AppCompatActivity {
 
                   int id1 = grpgender.getCheckedRadioButtonId();
                   genderbtn = findViewById(id1);
-                String gender = "female";//genderbtn.getText().toString();
+                String gender = genderbtn.getText().toString();
 
                 int id2 = grpspec.getCheckedRadioButtonId();
                 specbtn = findViewById(id2);

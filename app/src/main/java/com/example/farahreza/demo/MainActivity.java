@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
                                                     String userid=user.getUid();
                                                     //Toast.makeText(getApplicationContext()," "+Phone,Toast.LENGTH_LONG).show();
 
-                                                   ClinicSignUpInformation newuser=new ClinicSignUpInformation(Name,Phone,email,L,password);
+                                                   ClinicSignUpInformation newuser=new ClinicSignUpInformation(Name,email,Phone,L,password);
 
 
                                                     reff.child(userid).setValue(newuser);

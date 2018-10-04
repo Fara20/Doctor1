@@ -63,8 +63,8 @@ public class ClinicService extends AppCompatActivity {
         session=new Session(this);
         Ambb=findViewById(R.id.ambb);
         emer=findViewById(R.id.emerr);
-        Blood=findViewById(R.id.edit);
-        Doclist=findViewById(R.id.doclist);
+        Blood=findViewById(R.id.bloodbank);
+       Doclist=findViewById(R.id.docList);
       /*  reminder=findViewById(R.id.button7);
         tips=findViewById(R.id.button6);
         sms=findViewById(R.id.button8);
@@ -148,11 +148,12 @@ public class ClinicService extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.profile:
-                        final  Intent pf=new Intent(getApplicationContext(),Profile.class);
+                        final  Intent pf=new Intent(getApplicationContext(),ClinicProfile.class);
                         startActivity(pf);
                         break;
-                    case R.id.editInfo:
-                        Toast.makeText(ClinicService.this, "Edit Info", Toast.LENGTH_SHORT).show();
+                    case R.id.notifications:
+                        final  Intent pp=new Intent(getApplicationContext(),EditInfo.class);
+                        startActivity(pp);
                         break;
                     case R.id.Change:
                        //Toast.makeText(getApplicationContext(),"lalala",Toast.LENGTH_SHORT).show();
@@ -219,7 +220,23 @@ public class ClinicService extends AppCompatActivity {
             });
 
 
+       Ambb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent e=new Intent(getApplicationContext(),AmbulanceService.class);
+                startActivity(e);
+            }
+        });
+
+        emer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent e=new Intent(getApplicationContext(),ClinicEmergency.class);
+                startActivity(e);
+            }
+        });
 
 
         /*

@@ -57,6 +57,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="Book Appointment"
+                            android:textColor="#fff"
                             android:textStyle="bold" />
 
 
@@ -97,6 +98,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="Blood Bank"
+                            android:textColor="#fff"
                             android:textStyle="bold" />
 
 
@@ -151,6 +153,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="Emergency Unit"
+                            android:textColor="#fff"
                             android:textStyle="bold" />
 
 
@@ -190,7 +193,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Ambulence Service"
+                            android:text="Ambulance Service"
+                            android:textColor="#fff"
                             android:textStyle="bold" />
 
 
@@ -243,6 +247,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="Cancel Appointment"
+                            android:textColor="#fff"
                             android:textStyle="bold" />
 
 
@@ -283,6 +288,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="Other Services"
+                            android:textColor="#fff"
                             android:textStyle="bold" />
 
 

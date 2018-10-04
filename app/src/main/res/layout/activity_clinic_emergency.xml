@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#faf8f8"
-    tools:context=".PatientEditInfo">
+    tools:context=".ClinicEmergency">
 
 
     <ScrollView
@@ -30,7 +30,7 @@
                 android:layout_marginTop="28dp"
                 android:background="@drawable/profileshape"
                 android:elevation="4dp"
-                android:src="@drawable/pt" />
+                android:src="@drawable/aid" />
 
 
             <LinearLayout
@@ -49,18 +49,19 @@
 
 
                 <EditText
-                    android:id="@+id/Name"
+                    android:id="@+id/vecname"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
                     android:layout_weight="3"
                     android:width="150dp"
                     android:height="40dp"
+                    android:hint="Enter Name"
                     android:drawableLeft="@drawable/dropp"
                     android:gravity="center"
                     android:inputType="textPersonName"
                     android:textColor="#b71c1c"
-                    android:textColorHint="#a69f9f"
+                    android:textColorHint="#a58d8d"
                     android:textSize="25dp"
                     android:textStyle="bold" />
 
@@ -75,18 +76,19 @@
 
 
                 <EditText
-                    android:id="@+id/SignupEmail"
+                    android:id="@+id/contact"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
                     android:layout_weight="3"
                     android:width="150dp"
+                    android:hint="Mobile Number"
                     android:height="40dp"
                     android:drawableLeft="@drawable/md"
                     android:gravity="center"
 
                     android:inputType="textEmailAddress"
-                    android:textColorHint="#a69f9f"
+                    android:textColorHint="#a58d8d"
                     android:textColor="#b71c1c"
                     android:textSize="25dp"
                     android:textStyle="bold" />
@@ -103,28 +105,16 @@
                 android:orientation="horizontal">
 
 
-                <EditText
-                    android:id="@+id/signupPhoneNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="7"
-                    android:width="150dp"
-                    android:height="40dp"
-                    android:drawableLeft="@drawable/mdc"
-                    android:gravity="center"
 
-                    android:inputType="number"
-                    android:textColorHint="#a69f9f"
-                    android:textSize="25dp"
-                    android:textColor="#b71c1c"
-                    android:textStyle="bold" />
+                <fragment
+                    android:id="@+id/place_autocomplete_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+                    />
 
 
             </LinearLayout>
-
-
-
 
 
             <Button
@@ -132,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="70dp"
                 android:background="#b71c1c"
                 android:gravity="center"
                 android:text="Save"

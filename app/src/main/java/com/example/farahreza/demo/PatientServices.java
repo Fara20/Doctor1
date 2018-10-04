@@ -206,15 +206,15 @@ public class PatientServices extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                final  Intent abb=new Intent(getApplicationContext(),AmbulenceService.class);
-                startActivity(abb);
+               // final  Intent abb=new Intent(getApplicationContext(),AmbulanceServices.class);
+              //  startActivity(abb);
             }
         });
         emer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                final  Intent emm=new Intent(getApplicationContext(),EmergecyUnit.class);
+                final  Intent emm=new Intent(getApplicationContext(),EmergencyService.class);
                 startActivity(emm);
             }
         });
@@ -222,8 +222,8 @@ public class PatientServices extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                final  Intent emm=new Intent(getApplicationContext(),BloodBank.class);
-                startActivity(emm);
+             //   final  Intent emm=new Intent(getApplicationContext(),BloodBank.class);
+            //    startActivity(emm);
             }
         });
 

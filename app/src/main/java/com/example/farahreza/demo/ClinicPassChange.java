@@ -111,7 +111,7 @@ public class ClinicPassChange extends AppCompatActivity {
                                                                     public void onComplete(@NonNull Task<Void> task) {
                                                                         if (task.isSuccessful()) {
 
-                                                                            ClinicSignUpInformation newuser = new ClinicSignUpInformation(Name, Phone, Email,L, pass1);
+                                                                            ClinicSignUpInformation newuser = new ClinicSignUpInformation(Name, Email, Phone,L, pass1);
 
 
                                                                             reference.child(userid).setValue(newuser);
