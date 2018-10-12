@@ -13,6 +13,10 @@ public class ClinicSignUpInformation {
         this.location = location;
         this.password = password;
     }
+    @Override
+    public String toString() {
+        return  name;
+    }
 
     public String getName() {
         return name;

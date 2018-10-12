@@ -126,11 +126,12 @@ public class EditInfo extends AppCompatActivity {
 
 
 
-
+        autocompleteFragment.setHint("Search Location");
 
         AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
                 .setCountry("BD")
                 .build();
+
 
         autocompleteFragment.setFilter(typeFilter);
 

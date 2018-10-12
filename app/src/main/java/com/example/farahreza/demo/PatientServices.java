@@ -206,8 +206,8 @@ public class PatientServices extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-               // final  Intent abb=new Intent(getApplicationContext(),AmbulanceServices.class);
-              //  startActivity(abb);
+               final  Intent abb=new Intent(getApplicationContext(),AmbulanceServices.class);
+                startActivity(abb);
             }
         });
         emer.setOnClickListener(new View.OnClickListener() {

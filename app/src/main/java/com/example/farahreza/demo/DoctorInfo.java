@@ -21,6 +21,13 @@ public class DoctorInfo {
         this.timeslot3 = timeslot3;
     }
 
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+
     public String getType() {
         return type;
     }

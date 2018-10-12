@@ -4,13 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#eeebeb"
     tools:context=".EmergencyService">
 
-    <ListView
-        android:id="@+id/RetriveInfo"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView6" android:fillViewport="true">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </ListView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageButton
+                    android:id="@+id/login_title"
+                    android:layout_width="88dp"
+                    android:layout_height="86dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="26dp"
+                    android:background="@drawable/profileshape"
+                    android:elevation="4dp"
+                    android:fontFamily="cursive"
+                    android:gravity="center_horizontal"
+                    android:src="@drawable/str" />
+            </RelativeLayout>
+
+
+
+            <AutoCompleteTextView
+                android:id="@+id/List"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:layout_marginBottom="20dp"
+                android:drawableLeft="@drawable/places_ic_search"
+                android:hint="Search"
+                android:textColor="#b71c1c"
+                android:textSize="20dp" />
+
+            <ListView
+                android:id="@+id/RetriveInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#b71c1c">
+
+            </ListView>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
 
 </LinearLayout>

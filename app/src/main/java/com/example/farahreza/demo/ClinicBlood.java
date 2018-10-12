@@ -25,7 +25,7 @@ String straplus, strbplus,strabplus,stroplus,straminus,strbminus,strabminus,stro
     FirebaseAuth mAuth;
     DatabaseReference dRef, dRef1;
     String clinicname;
-    Query usrqry;
+    Query usrqry,qry;
     Session session;
     String type="Blood Bank";
 
@@ -59,10 +59,47 @@ String straplus, strbplus,strabplus,stroplus,straminus,strbminus,strabminus,stro
                 for(DataSnapshot value:dataSnapshot.getChildren())
                 {
                     user=value.getValue(ClinicSignUpInformation.class);
+                    clinicname=user.getName();
                 }
 
+                dRef= FirebaseDatabase.getInstance().getReference("BloodBankInfo");
+                qry=dRef.orderByKey().equalTo(clinicname);
+                qry.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot value:dataSnapshot.getChildren())
+                        {
+                           BloodBankInfo user1=value.getValue(BloodBankInfo.class);
+                           aplus.setText(user1.getAplus());
+                           bplus.setText(user1.getBplus());
+                           abplus.setText(user1.getAbplus());
+                           abminus.setText(user1.getAbminus());
+                        }
 
-                clinicname=user.getName();
+                        //  Name=user.getName();
+
+
+                        //FirebaseUser user = mAuth.getCurrentUser();
+                        //  String userid=user.getUid();
+                        //Toast.makeText(getApplicationContext()," "+userid,Toast.LENGTH_SHORT).show();
+
+                        //PatientUsers newuser=new PatientUsers(Name,Phone,email,P);
+
+
+                        //reference.child(userid).setValue(newuser);
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Toast.makeText(getApplicationContext(),"Error", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
+
+
+
 
             }
 

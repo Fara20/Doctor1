@@ -2,25 +2,23 @@ package com.example.farahreza.demo;
 
 public class Ambulance {
 
-    String name,contact,type,email;
+    String name,contact;
 
     public Ambulance() {
     }
 
-    public Ambulance(String name, String contact,String email,String type) {
+    public Ambulance(String name, String contact) {
         this.name = name;
         this.contact = contact;
-        this.email=email;
-        this.type=type;
+
     }
 
-    public String getType() {
-        return type;
+    @Override
+    public String toString() {
+        return  name;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+
 
     public String getName() {
         return name;

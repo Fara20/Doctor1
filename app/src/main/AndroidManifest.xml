@@ -41,6 +41,7 @@
         <activity android:name=".DocProfile" />
         <activity android:name=".ChooseDoctor" />
         <activity android:name=".BookingConfirmation" />
+        <activity android:name=".AmbulanceServices" />
         <activity android:name=".EmergencyService" />
         <activity android:name=".BloodBank" />
         <activity android:name=".BloodFound" />
@@ -65,7 +66,17 @@
         <activity android:name=".DoctorList" />
         <activity android:name=".ClinicPassChange" />
         <activity android:name=".AmbulanceService" />
-        <activity android:name=".ClinicEmergency"></activity>
+        <activity android:name=".ClinicEmergency" />
+        <activity android:name=".DocLocList">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".PatientDocList" />
+        <activity android:name=".DocAppointmentSelect" />
+        <activity android:name=".BloodRetrieve"></activity>
     </application>
 
 </manifest>

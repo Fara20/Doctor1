@@ -58,6 +58,7 @@ public class SignupOptions extends AppCompatActivity  {
                 if(Patient.isChecked())
                 {
 
+                    Clinic.setChecked(false);
 
                     final  Intent b=new Intent(getApplicationContext(),SIgnup.class);
                     b.putExtra("patient",P);
@@ -66,7 +67,7 @@ public class SignupOptions extends AppCompatActivity  {
                 else if(Clinic.isChecked())
                 {
                     //Toast.makeText(getApplicationContext(),"For clinic", Toast.LENGTH_LONG).show();
-
+                    Patient.setChecked(false);
                     final  Intent c=new Intent(getApplicationContext(),ClinicSignUpLocation.class);
                     c.putExtra("clinic",C);
                     startActivity(c);

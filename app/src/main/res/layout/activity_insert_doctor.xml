@@ -39,166 +39,141 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" Doctor's Name:"
-                    android:textStyle="bold"
-                    android:drawableStart="@drawable/ic_account_circle_black_24dp"
+                    android:id="@+id/Name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.2"
+                    android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                    android:gravity="left"
+                    android:text=" Name"
                     android:textColor="#b71c1c"
-                    android:textSize="19dp"
+                    android:textSize="23dp"
+                    android:textStyle="bold" />
 
-                    />
                 <EditText
+                    android:id="@+id/namee"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:hint="Enter Name"
+                    android:textSize="23dp"
+                    android:layout_gravity="center"
+                    android:gravity="left"
+                    android:textColorHint="#5b4848" />
+            </LinearLayout>
+
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <Spinner
+                    android:id="@+id/spinner2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter name"
+                    android:layout_gravity="center"
+
                     android:gravity="center"
-                    android:inputType="text"
-                    android:id="@+id/docname"/>
+                   />
+
 
             </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Gender:"
-                android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                android:textStyle="bold"
-                android:textColor="#b71c1c"
-                android:textSize="19dp"/>
-            <RadioGroup
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/grpgender">
-
-                <RadioButton
-                    android:id="@+id/male"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#b71c1c"
-                    android:textSize="14dp"
-                    android:text="Male"
-                    />
-                <RadioButton
-                    android:id="@+id/female"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#b71c1c"
-                    android:textSize="14dp"
-                    android:text="Female"
-                    />
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
 
 
-            </RadioGroup>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Doctor's Speciality:"
-                android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-                android:textStyle="bold"
-                android:textColor="#b71c1c"
-                android:textSize="19dp"/>
-            <RadioGroup
-                android:id="@+id/grpspec"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
 
-                <RadioButton
-                    android:id="@+id/cardiology"
-                    android:layout_width="match_parent"
+                <RadioGroup
+                    android:id="@+id/radiogroup"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cardiology"
-                    android:textColor="#b71c1c"
-                    android:textSize="13dp"
-                    />
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginEnd="36dp"
+                    android:orientation="horizontal">
 
-                <RadioButton
-                    android:id="@+id/neurology"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Neurology"
+                    <TextView
+                        android:id="@+id/Gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                        android:layout_marginTop="7dp"
                     android:textColor="#b71c1c"
-                    android:textSize="13dp"/>
-                <RadioButton
-                    android:id="@+id/surgery"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Surgery"
-                    android:textColor="#b71c1c"
-                    android:textSize="13dp"
-                    />
+                        android:text="Gender"
+                        android:textStyle="bold"
+                        android:textSize="23dp" />
 
-                <RadioButton
-                    android:id="@+id/gynaecology"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Gynaecology"
-                    android:textColor="#b71c1c"
-                    android:textSize="13dp"/>
-                <RadioButton
-                    android:id="@+id/pathology"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Pathology"
-                    android:textColor="#b71c1c"
-                    android:textSize="13dp"
-                    />
+                    <RadioButton
+                        android:id="@+id/Male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="5dp"
+                        android:scaleX="1.2"
+                        android:scaleY="1.2"
+                        android:textColor="#b71c1c"
+                        android:outlineSpotShadowColor="#b71c1c"
+                        android:text="Male" />
 
-                <RadioButton
-                    android:id="@+id/neurosurgery"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Neurosurgery"
-                    android:textColor="#b71c1c"
-                    android:textSize="13dp"/>
-                <RadioButton
-                    android:id="@+id/pediatrics"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Pediatrics"
-                    android:textColor="#b71c1c"
-                    android:textSize="13dp"
-                    />
+                    <RadioButton
+                        android:id="@+id/Female"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:scaleX="1.2"
+                        android:scaleY="1.2"
+                        android:layout_marginTop="5dp"
 
-                <RadioButton
-                    android:id="@+id/psychiatry"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Psychiatry"
-                    android:textColor="#b71c1c"
-                    android:textSize="13dp"/>
-                <RadioButton
-                    android:id="@+id/nephrology"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Nephrology"
-                    android:textColor="#b71c1c"
-                    android:textSize="13dp"
-                    />
 
-                <RadioButton
-                    android:id="@+id/dental"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Dental"
-                    android:textColor="#b71c1c"
-                    android:textSize="13dp"/>
+                        android:textColor="#b71c1c"
+                        android:text="Female" />
+                </RadioGroup>
+            </LinearLayout>
 
-            </RadioGroup>
+
+
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" Available Time Slots:"
                 android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+                android:layout_marginBottom="10dp"
                 android:textColor="#b71c1c"
+                android:layout_marginLeft="10dp"
                 android:textSize="19dp"
                 android:textStyle="bold"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
                 <Switch
                     android:layout_width="wrap_content"
@@ -210,7 +185,8 @@
                     android:layout_height="wrap_content"
                     android:text="8am-2pm"
                     android:textColor="#b71c1c"
-                    android:textSize="13dp"/>
+                    android:layout_marginRight="10dp"
+                    android:textSize="15dp"/>
                 <Switch
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -220,8 +196,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4pm-8pm"
+                    android:layout_marginRight="10dp"
                     android:textColor="#b71c1c"
-                    android:textSize="13dp"/>
+                    android:textSize="15dp"/>
                 <Switch
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -231,8 +208,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="9pm-12am"
+
                     android:textColor="#b71c1c"
-                    android:textSize="13dp"/>
+                    android:textSize="15dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -244,6 +222,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" Total capacity:"
+                    android:layout_marginLeft="10dp"
                     android:drawableLeft="@drawable/ic_account_circle_black_24dp"
                     android:textColor="#b71c1c"
                     android:textSize="19dp"
@@ -252,6 +231,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter capacity"
+                    android:gravity="center"
                     android:inputType="number"
                     android:id="@+id/capacity"/>
 
@@ -262,6 +242,7 @@
                 android:id="@+id/btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Insert"
                 android:textColor="#fff"
                 android:background="#b71c1c"
@@ -269,6 +250,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 />
+
+
 
 
         </LinearLayout>

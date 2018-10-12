@@ -26,6 +26,7 @@ public class ClinicSignUpLocation extends AppCompatActivity {
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
+        autocompleteFragment.setHint("Search  Location");
         AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
                 .setCountry("BD")
                 .build();

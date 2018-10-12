@@ -13,6 +13,11 @@ public class EmergencyJava {
         this.location = location;
     }
 
+    @Override
+    public String toString() {
+        return  name;
+    }
+
     public String getName() {
         return name;
     }
