@@ -4,32 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#faf8f8"
-    tools:context=".PatientServices"
-    android:id="@+id/activity_patient_service">
+    android:background="#eeebeb"
+    tools:context=".HealthTipsServices"
+    android:id="@+id/activity_health_tips_services">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <TextView
 
+                android:text="What type of tips do you want?"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textColor="#b71c1c"
+                android:textSize="25dp"
+                android:layout_marginTop="40sp"
+                android:layout_marginLeft="25sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textStyle="bold"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clipToPadding="true"
+                android:layout_marginTop="45sp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/Book"
+                    android:id="@+id/firstaid"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
-
                     android:layout_margin="10dp"
-                   android:layout_gravity="center"
+                    android:layout_gravity="center"
                     android:foregroundGravity="center"
 
 
@@ -46,7 +58,7 @@
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/doctor"
+                            android:src="@drawable/firstaid"
                             android:text="Health"
 
                             />
@@ -56,7 +68,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Book Appointment"
+                            android:text="First Aid"
                             android:textColor="#fff"
                             android:textStyle="bold" />
 
@@ -69,10 +81,9 @@
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
-                    android:id="@+id/blood"
+                    android:id="@+id/skintips"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
-
                     android:layout_margin="10dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground">
@@ -87,7 +98,7 @@
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/bld"
+                            android:src="@drawable/face"
                             android:text="Health"
 
                             />
@@ -97,7 +108,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Blood Bank"
+                            android:text="Skin Tips"
                             android:textColor="#fff"
                             android:textStyle="bold" />
 
@@ -122,7 +133,7 @@
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/emerr"
+                    android:id="@+id/hair"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
 
@@ -142,7 +153,7 @@
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/aid"
+                            android:src="@drawable/dye"
                             android:text="Health"
 
                             />
@@ -152,7 +163,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Emergency Unit"
+                            android:text="Hair Tips"
                             android:textColor="#fff"
                             android:textStyle="bold" />
 
@@ -165,7 +176,7 @@
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
-                    android:id="@+id/ambb"
+                    android:id="@+id/fitness"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
 
@@ -183,7 +194,7 @@
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/amb"
+                            android:src="@drawable/strong"
                             android:text="Health"
 
                             />
@@ -193,7 +204,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Ambulance Service"
+                            android:text="Fitness Tips"
                             android:textColor="#fff"
                             android:textStyle="bold" />
 
@@ -215,40 +226,8 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <android.support.v7.widget.CardView
-                    android:id="@+id/mess31"
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
 
-                    android:layout_margin="10dp"
-
-
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:background="#990202">
-
-
-                        <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            android:src="@drawable/cancel"
-                            android:text="Health"
-
-                            />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="Cancel Appointment"
-                            android:textColor="#fff"
-                            android:textStyle="bold" />
+                 </LinearLayout>
 
 
 
@@ -256,89 +235,7 @@
 
 
 
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
-                    android:id="@+id/tips"
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
 
-                    android:layout_margin="10dp"
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:background="#990202">
-
-
-                        <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            android:src="@drawable/tips"
-                            android:text="Health"
-
-                            />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="Health Tips"
-                            android:textColor="#fff"
-                            android:textStyle="bold" />
-
-
-
-
-
-
-
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center">
-
-                <Button
-                    android:id="@+id/sms"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/circle"
-                    android:drawableTop="@drawable/phone"
-                    android:paddingTop="20dp"
-                    android:text="Contact"
-                    android:textColor="#fff" />
-
-                <Button
-                    android:id="@+id/reminder"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/circle"
-                    android:drawableTop="@drawable/rem"
-                    android:paddingTop="20dp"
-                    android:text="Reminder"
-                    android:textColor="#fff" />
-
-                <Button
-                    android:id="@+id/info"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/circle"
-                    android:drawableTop="@drawable/contact"
-                    android:paddingTop="20dp"
-                    android:text="Info"
-                    android:textColor="#fff" />
-            </LinearLayout>
 
 
 
@@ -349,16 +246,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <android.support.design.widget.NavigationView
-        android:background="#f2f1f1"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:menu="@layout/navigation_menu"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
-        android:id="@+id/nv">
 
-    </android.support.design.widget.NavigationView>
 
 
 
