@@ -34,6 +34,7 @@ public class PatientServices extends AppCompatActivity {
     CardView Ambb;
     CardView emer;
     CardView Blood;
+    CardView tipscard;
 
     DatabaseReference  reference;
     Session session;
@@ -58,6 +59,7 @@ public class PatientServices extends AppCompatActivity {
         Ambb=findViewById(R.id.ambb);
         emer=findViewById(R.id.emerr);
         Blood=findViewById(R.id.blood);
+        tipscard=findViewById(R.id.tips);
         mAuth=FirebaseAuth.getInstance();
         reference= FirebaseDatabase.getInstance().getReference("PatientUsers");
         usrqry=reference.orderByKey().equalTo(session.getusename());
@@ -73,7 +75,7 @@ public class PatientServices extends AppCompatActivity {
         dl.addDrawerListener(t);
         t.syncState();
 
-        getSupportActionBar().setTitle("Patient");
+        getSupportActionBar().setTitle("Patient Dashboard");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -206,8 +208,8 @@ public class PatientServices extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-               final  Intent abb=new Intent(getApplicationContext(),AmbulanceServices.class);
-                startActivity(abb);
+               // final  Intent abb=new Intent(getApplicationContext(),AmbulanceServices.class);
+              //  startActivity(abb);
             }
         });
         emer.setOnClickListener(new View.OnClickListener() {
@@ -224,6 +226,14 @@ public class PatientServices extends AppCompatActivity {
 
              //   final  Intent emm=new Intent(getApplicationContext(),BloodBank.class);
             //    startActivity(emm);
+            }
+        });
+        tipscard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final  Intent ti=new Intent(getApplicationContext(),HealthTipsServices.class);
+                startActivity(ti);
             }
         });
 
