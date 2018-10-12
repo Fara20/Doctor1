@@ -35,6 +35,11 @@
         <activity android:name=".ClinicLoaction" />
         <activity android:name=".SmsPage" />
         <activity android:name=".HealthTips" />
+        <activity android:name=".HealthTipsServices" />
+        <activity android:name=".HairtipsPage" />
+        <activity android:name=".SkintipsPage" />
+        <activity android:name=".FirstaidPage" />
+        <activity android:name=".FitnessPage" />
         <activity android:name=".BookAppointment" />
         <activity android:name=".BookDocArea" />
         <activity android:name=".DocSpeciality" />
@@ -76,7 +81,8 @@
         </activity>
         <activity android:name=".PatientDocList" />
         <activity android:name=".DocAppointmentSelect" />
-        <activity android:name=".BloodRetrieve"></activity>
+        <activity android:name=".BloodRetrieve" />
+        <activity android:name=".ClinicPatientList"></activity>
     </application>
 
 </manifest>

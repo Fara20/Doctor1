@@ -70,6 +70,8 @@ public class DoctorList extends AppCompatActivity  {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot value:dataSnapshot.getChildren())
+
+                
                 {
                     user=value.getValue(ClinicSignUpInformation.class);
                 }

@@ -223,7 +223,7 @@ public class DocAppointmentSelect extends AppCompatActivity {
                 String mix=clinic+"-"+uid+"-"+date;
                 AppointmentInfo info=new AppointmentInfo(pname,clinic,location,date,time,doc,uid);
                 DatabaseReference dr=FirebaseDatabase.getInstance().getReference("Capacity");
-                
+
                 reff.child(mix).setValue(info);
                 Toast.makeText(getApplicationContext(), "Appointment Scheduled Successfully!", Toast.LENGTH_LONG).show();
 
