@@ -206,7 +206,7 @@ public class ClinicService extends AppCompatActivity {
             Blood.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent d=new Intent(getApplicationContext(),ClinicBlood.class);
+                    Intent d=new Intent(getApplicationContext(),ClinicBloodd.class);
                     startActivity(d);
 
                 }

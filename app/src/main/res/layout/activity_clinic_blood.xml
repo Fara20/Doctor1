@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#eeebeb"
-    tools:context=".ClinicBlood">
+    tools:context=".ClinicBloodd">
     <ImageView
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/bb"
         android:layout_gravity="center"
-        android:layout_marginTop="15sp"
+        android:layout_marginTop="30sp"
 
 
 
@@ -34,6 +34,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="22sp"
+        android:layout_marginBottom="10sp"
         android:layout_gravity="center"
         android:gravity="center"
         >
@@ -44,6 +46,17 @@
             android:drawableLeft="@drawable/ic_add_location_black_24dp"
             android:textColor="#b71c1c"
             android:textSize="19dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/aplusadd"
+            android:drawableLeft="@drawable/ic_add_circle"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
+
+
 
 
 
@@ -53,8 +66,20 @@
             android:layout_height="wrap_content"
             android:hint="enter"
             android:textSize="13dp"
+            android:editable="false"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:id="@+id/aplus"
             android:inputType="number" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/aplussub"
+            android:drawableLeft="@drawable/ic_minus"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,6 +95,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginBottom="10sp"
         android:layout_gravity="center"
         android:gravity="center">
 
@@ -81,13 +107,33 @@
             android:drawableLeft="@drawable/ic_add_location_black_24dp"
             android:textColor="#b71c1c"
             android:textSize="19dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/bplusadd"
+            android:drawableLeft="@drawable/ic_add_circle"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="enter"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:textSize="13dp"
             android:id="@+id/bplus"
             android:inputType="number" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/bplussub"
+            android:drawableLeft="@drawable/ic_minus"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -104,6 +150,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginBottom="10sp"
         android:gravity="center">
 
         <TextView
@@ -113,14 +160,34 @@
             android:drawableLeft="@drawable/ic_add_location_black_24dp"
             android:textColor="#b71c1c"
             android:textSize="19dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/abplusadd"
+            android:drawableLeft="@drawable/ic_add_circle"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="enter"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:textSize="13dp"
             android:id="@+id/abplus"
             android:inputType="number" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/abplussub"
+            android:drawableLeft="@drawable/ic_minus"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -137,6 +204,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginBottom="10sp"
         android:gravity="center">
 
 
@@ -147,14 +215,34 @@
             android:drawableLeft="@drawable/ic_add_location_black_24dp"
             android:textColor="#b71c1c"
             android:textSize="19dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/oplusadd"
+            android:drawableLeft="@drawable/ic_add_circle"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="enter"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:textSize="13dp"
             android:id="@+id/oplus"
             android:inputType="number" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/oplussub"
+            android:drawableLeft="@drawable/ic_minus"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -171,23 +259,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginBottom="10sp"
         android:gravity="center">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="A-     :"
+            android:text="A-   :"
             android:drawableLeft="@drawable/ic_add_location_black_24dp"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/aminusadd"
+            android:drawableLeft="@drawable/ic_add_circle"
             android:textColor="#b71c1c"
             android:textSize="19dp"/>
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="enter"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:textSize="13dp"
             android:id="@+id/aminus"
             android:inputType="number" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/aminussub"
+            android:drawableLeft="@drawable/ic_minus"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -204,14 +313,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginBottom="10sp"
         android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="B-      :"
+            android:text="B-   :"
             android:drawableLeft="@drawable/ic_add_location_black_24dp"
             android:textColor="#b71c1c"
             android:textSize="19dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/bminusadd"
+            android:drawableLeft="@drawable/ic_add_circle"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
+
 
 
 
@@ -219,9 +339,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="enter"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:textSize="13dp"
             android:id="@+id/bminus"
             android:inputType="number" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/bminussub"
+            android:drawableLeft="@drawable/ic_minus"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -237,14 +368,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginBottom="10sp"
         android:gravity="center">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AB-   :"
+            android:text="AB-  :"
             android:drawableLeft="@drawable/ic_add_location_black_24dp"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/abminusadd"
+            android:drawableLeft="@drawable/ic_add_circle"
             android:textColor="#b71c1c"
             android:textSize="19dp"/>
 
@@ -252,9 +393,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="enter"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:textSize="13dp"
             android:id="@+id/abminus"
             android:inputType="number" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/abminussub"
+            android:drawableLeft="@drawable/ic_minus"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -276,8 +428,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="O-      :"
+            android:text="O-    :"
             android:drawableLeft="@drawable/ic_add_location_black_24dp"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/ominusadd"
+            android:drawableLeft="@drawable/ic_add_circle"
             android:textColor="#b71c1c"
             android:textSize="19dp"/>
 
@@ -286,9 +447,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="enter"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:textSize="13dp"
             android:id="@+id/ominus"
             android:inputType="number" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:id="@+id/ominussub"
+            android:drawableLeft="@drawable/ic_minus"
+            android:textColor="#b71c1c"
+            android:textSize="19dp"/>
 
         <TextView
             android:layout_width="wrap_content"
