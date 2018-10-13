@@ -3,6 +3,7 @@ package com.example.farahreza.demo;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
@@ -27,6 +28,7 @@ public class DocLocList extends AppCompatActivity {
      AutoCompleteTextView autoCompleteTextView;
      String loc;
      Button btn;
+     int flag=0;
 
     DatabaseReference dr;
     Query usrqry;
@@ -43,6 +45,28 @@ public class DocLocList extends AppCompatActivity {
         dctrlst=new ArrayList<ClinicSignUpInformation>();
         dr= FirebaseDatabase.getInstance().getReference("ClinicSignUpInformation");
         btn=findViewById(R.id.btnSubmit1);
+
+        lv.setOnTouchListener(new ListView.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        // Disallow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        // Allow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+
+                // Handle ListView touch events.
+                v.onTouchEvent(event);
+                return true;
+            }
+        });
 
         Intent i=getIntent();
         final String L=i.getStringExtra("place");
@@ -109,6 +133,7 @@ public class DocLocList extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                         loc=autoCompleteTextView.getText().toString();
+                        flag=1;
 
                         //autoCompleteTextView.setText("hello");
                         //Toast.makeText(DocLocList.this,loc,Toast.LENGTH_LONG).show();
@@ -131,6 +156,7 @@ public class DocLocList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 loc=lv.getItemAtPosition(i).toString();
+                flag=1;
                 autoCompleteTextView.setText(loc);
                 //Toast.makeText(DocLocList.this,loc,Toast.LENGTH_LONG).show();
             }
@@ -140,11 +166,19 @@ public class DocLocList extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                final  Intent c=new Intent(getApplicationContext(),PatientDocList.class);
-                //c.putExtra("clinic",C);
-                c.putExtra("hos",loc);
-                c.putExtra("loca",L);
-                startActivity(c);
+                if(flag==0)
+                {
+                    Toast.makeText(DocLocList.this,"Please Select a Hospital ",Toast.LENGTH_LONG).show();
+                }
+
+                else {
+
+                    final Intent c = new Intent(getApplicationContext(), PatientDocList.class);
+                    //c.putExtra("clinic",C);
+                    c.putExtra("hos", loc);
+                    c.putExtra("loca", L);
+                    startActivity(c);
+                }
             }
         });
 

@@ -17,6 +17,7 @@ public class ClinicSignUpLocation extends AppCompatActivity {
 
     String Placename,type;
     Button sbmt;
+    int flag=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class ClinicSignUpLocation extends AppCompatActivity {
                 // TODO: Get info about the selected place.
                 // Log.i(TAG, "Place: " + place.getName());
              Placename=place.getName().toString();
+             flag=1;
 
 
                 //Toast.makeText(getApplicationContext()," "+Placename,Toast.LENGTH_LONG).show();
@@ -62,7 +64,7 @@ public class ClinicSignUpLocation extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(!Placename.isEmpty())
+                if(flag!=0)
                 {
                     Intent i=getIntent();
                     final String C=i.getStringExtra("clinic");

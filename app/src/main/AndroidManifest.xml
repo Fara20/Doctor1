@@ -28,7 +28,11 @@
         <receiver
             android:name=".AlarmReceiver"
             android:process=":remote" />
-
+        <receiver
+            android:name=".PushReceiver"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":remote" />
         <activity
             android:name=".PatientServices"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
@@ -82,7 +86,8 @@
         <activity android:name=".PatientDocList" />
         <activity android:name=".DocAppointmentSelect" />
         <activity android:name=".BloodRetrieve" />
-        <activity android:name=".ClinicPatientList"></activity>
+        <activity android:name=".ClinicPatientList" />
+        <activity android:name=".PatientCancelAppointment"></activity>
     </application>
 
 </manifest>

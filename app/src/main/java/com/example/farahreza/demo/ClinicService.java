@@ -39,6 +39,7 @@ public class ClinicService extends AppCompatActivity {
     CardView emer;
     CardView Blood;
     CardView Doclist;
+    CardView Plist;
     Session session;
     DatabaseReference  reference;
     Query usrqry;
@@ -64,6 +65,7 @@ public class ClinicService extends AppCompatActivity {
         Ambb=findViewById(R.id.ambb);
         emer=findViewById(R.id.emerr);
         Blood=findViewById(R.id.bloodbank);
+        Plist=findViewById(R.id.plist);
        Doclist=findViewById(R.id.docList);
       /*  reminder=findViewById(R.id.button7);
         tips=findViewById(R.id.button6);
@@ -234,6 +236,14 @@ public class ClinicService extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent e=new Intent(getApplicationContext(),ClinicEmergency.class);
+                startActivity(e);
+            }
+        });
+        Plist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent e=new Intent(getApplicationContext(),ClinicPatientList.class);
                 startActivity(e);
             }
         });

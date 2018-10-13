@@ -216,7 +216,7 @@
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/mess31"
+                    android:id="@+id/cancel1"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
 

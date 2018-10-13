@@ -1,25 +1,12 @@
 package com.example.farahreza.demo;
 
-public class AppointmentInfo {
+public class AppointmentCancel {
+    String name,hospital,location,date,time,docname,uid;
 
-    String name,hospital,location,date,time,docname,uid,phone;
-
-    public AppointmentInfo() {
+    public AppointmentCancel() {
     }
 
-    public AppointmentInfo(String name, String hospital, String location, String date, String time, String docname, String uid,String phone) {
-        this.name = name;
-        this.hospital = hospital;
-        this.location = location;
-        this.date = date;
-        this.time = time;
-        this.docname = docname;
-        this.uid = uid;
-        this.phone = phone;
-
-    }
-
-    public AppointmentInfo(String name, String hospital, String location, String date, String time, String docname, String uid) {
+    public AppointmentCancel(String name, String hospital, String location, String date, String time, String docname, String uid) {
         this.name = name;
         this.hospital = hospital;
         this.location = location;
@@ -31,24 +18,8 @@ public class AppointmentInfo {
 
     @Override
     public String toString() {
-        return name;
+        return docname;
 
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
     }
 
     public String getName() {
@@ -97,5 +68,13 @@ public class AppointmentInfo {
 
     public void setDocname(String docname) {
         this.docname = docname;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

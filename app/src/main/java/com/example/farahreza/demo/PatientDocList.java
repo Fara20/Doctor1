@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
@@ -29,9 +30,10 @@ public class PatientDocList extends AppCompatActivity {
 
     AutoCompleteTextView autoCompleteTextView;
     Button btn;
+    int flag=0;
 
     DatabaseReference dr;
-    String clinicname,location,docname;
+    String clinicname,location,docname,capacity;
 
      ClinicSignUpInformation user;
     @Override
@@ -44,6 +46,28 @@ public class PatientDocList extends AppCompatActivity {
 
         lv=findViewById(R.id.RetriveInfo);
         dctrlst=new ArrayList<DoctorInfo>();
+
+        lv.setOnTouchListener(new ListView.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        // Disallow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        // Allow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+
+                // Handle ListView touch events.
+                v.onTouchEvent(event);
+                return true;
+            }
+        });
 
 
 
@@ -110,14 +134,7 @@ public class PatientDocList extends AppCompatActivity {
                             }
                         });*/
 
-                autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                       docname=autoCompleteTextView.getText().toString();
-                        //Toast.makeText(getApplicationContext(),txt,Toast.LENGTH_LONG).show();
-                    }
-                });
 
 
 
@@ -131,10 +148,66 @@ public class PatientDocList extends AppCompatActivity {
             }
         });
 
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                docname=autoCompleteTextView.getText().toString();
+                flag=1;
+                dr.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds:dataSnapshot.getChildren())
+                        {
+                            DoctorInfo user=ds.getValue(DoctorInfo.class);
+                            if(user.getName().compareTo(docname)==0)
+                            {
+                                capacity=user.getCapacity();
+                            }
+                            // dctrlst.add(user);
+                            //dctname.add(user.getName());
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                //Toast.makeText(getApplicationContext(),txt,Toast.LENGTH_LONG).show();
+            }
+        });
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
               docname=lv.getItemAtPosition(i).toString();
+              flag=1;
+              dr.addValueEventListener(new ValueEventListener() {
+                  @Override
+                  public void onDataChange(DataSnapshot dataSnapshot) {
+                      for (DataSnapshot ds:dataSnapshot.getChildren())
+                      {
+                          DoctorInfo user=ds.getValue(DoctorInfo.class);
+                          if(user.getName().compareTo(docname)==0)
+                          {
+                              capacity=user.getCapacity();
+                          }
+                          // dctrlst.add(user);
+                          //dctname.add(user.getName());
+
+                      }
+                  }
+
+                  @Override
+                  public void onCancelled(DatabaseError databaseError) {
+
+                  }
+              });
+
               autoCompleteTextView.setText(docname);
                 //Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
             }
@@ -143,12 +216,21 @@ public class PatientDocList extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final  Intent c=new Intent(getApplicationContext(),DocAppointmentSelect.class);
-                //c.putExtra("clinic",C);
-                c.putExtra("hos",clinicname);
-                c.putExtra("loca",location);
-                c.putExtra("doc",docname);
-                startActivity(c);
+
+                if(flag==0)
+                {
+                    Toast.makeText(getApplicationContext(),"Please Select a Doctor",Toast.LENGTH_LONG).show();
+                }
+
+                else {
+                    final Intent c = new Intent(getApplicationContext(), DocAppointmentSelect.class);
+                    //c.putExtra("clinic",C);
+                    c.putExtra("hos", clinicname);
+                    c.putExtra("loca", location);
+                    c.putExtra("doc", docname);
+                    c.putExtra("capa",capacity);
+                    startActivity(c);
+                }
             }
         });
 

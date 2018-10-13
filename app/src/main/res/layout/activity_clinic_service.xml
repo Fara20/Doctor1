@@ -219,7 +219,7 @@
 
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/mess32"
+                    android:id="@+id/plist"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
 

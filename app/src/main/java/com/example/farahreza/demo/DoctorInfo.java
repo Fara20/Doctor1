@@ -25,6 +25,7 @@ public class DoctorInfo {
     @Override
     public String toString() {
         return name;
+
     }
 
 

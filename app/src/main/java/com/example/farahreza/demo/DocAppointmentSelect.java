@@ -1,6 +1,9 @@
 package com.example.farahreza.demo;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,17 +25,27 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+
 public class DocAppointmentSelect extends AppCompatActivity {
 
     TextView t1,t2,t3;
     Button btn1;
     DatePicker dob;
     DatabaseReference dr,reference,reff;
-    String date,time,clinic,location,doc,pname,uid;
+    String date,time,clinic,location,doc,pname,uid,num;
     Switch switch1, switch2, switch3;
     Query usrqry,qry;
     Session session;
     FirebaseAuth mAuth;
+    int flg1=0;
+    int flg2=0;
+    int flag;
+    int check=0;
+    CapacityDoc newcap;
+    String capacity,datcap,cap,key,fixcap;
+
+    final static int RQS_1 = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +62,6 @@ public class DocAppointmentSelect extends AppCompatActivity {
         session=new Session(this);
         mAuth=FirebaseAuth.getInstance();
 
-        int year=dob.getYear();
-        int month=dob.getMonth()+1;
-        int day=dob.getDayOfMonth();
 
         uid=session.getusename();
 
@@ -59,9 +69,6 @@ public class DocAppointmentSelect extends AppCompatActivity {
 
 
 
-        date=new StringBuilder().append(year).append("-")
-                .append(month).append("-")
-                .append(day).append("").toString();
 
 
 
@@ -71,6 +78,7 @@ public class DocAppointmentSelect extends AppCompatActivity {
         clinic=i.getStringExtra("hos");
         location=i.getStringExtra("loca");
         doc=i.getStringExtra("doc");
+        fixcap=i.getStringExtra("capa");
         reff= FirebaseDatabase.getInstance().getReference("AppointmentInfo");
         dr= FirebaseDatabase.getInstance().getReference("DoctorInfo").child(clinic);
         usrqry=dr.orderByChild("name").equalTo(doc);
@@ -127,6 +135,7 @@ public class DocAppointmentSelect extends AppCompatActivity {
                 {
                     PatientUsers user1=value.getValue(PatientUsers.class);
                     pname=user1.getName();
+                    num=user1.getPhone();
                 }
 
                 //  Name=user.getName();
@@ -208,7 +217,7 @@ public class DocAppointmentSelect extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 switch2.setChecked(false);
-                switch3.setChecked(false);
+                switch1.setChecked(false);
                 time="9pm-12am";
 
             }
@@ -217,19 +226,112 @@ public class DocAppointmentSelect extends AppCompatActivity {
 
 
 
+
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String mix=clinic+"-"+uid+"-"+date;
-                AppointmentInfo info=new AppointmentInfo(pname,clinic,location,date,time,doc,uid);
-                DatabaseReference dr=FirebaseDatabase.getInstance().getReference("Capacity");
+                int year=dob.getYear();
+                int month=dob.getMonth()+1;
+                int day=dob.getDayOfMonth();
 
-                reff.child(mix).setValue(info);
+                date=new StringBuilder().append(year).append("-")
+                        .append(month).append("-")
+                        .append(day).append("").toString();
+
+
+                final String mix=clinic+"-"+uid+"-"+date+"-"+doc;
+                flag=0;
+                final   AppointmentInfo info=new AppointmentInfo(pname,clinic,location,date,time,doc,uid);
+                DatabaseReference dr=FirebaseDatabase.getInstance().getReference("Capacity").child(doc);
+                DatabaseReference newdr=FirebaseDatabase.getInstance().getReference("AppointmentInfo");
+                Query nwqry=newdr.orderByKey().equalTo(mix);
+                nwqry.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot dd:dataSnapshot.getChildren())
+                        {
+                            check=1;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                Query qry=dr.orderByChild("date").equalTo(date);
+                qry.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot val:dataSnapshot.getChildren())
+                        {
+                            capacity=val.getValue(CapacityDoc.class).getCurcapacity();
+                            datcap=val.getValue(CapacityDoc.class).getDate();
+                            cap=val.getValue(CapacityDoc.class).getCapacity();
+                            key=val.getKey();
+                            flag=1;
+                        }
+
+
+                        DatabaseReference cref=FirebaseDatabase.getInstance().getReference("Capacity");
+                        if(flag==0)
+                        {
+                            newcap=new CapacityDoc(doc,date,Integer.toString(Integer.parseInt(fixcap)-1),Integer.toString(1));
+                            cref.child(doc).push().setValue(newcap);
+
+                        }
+                        else if(check==0)
+                        {
+                            if(Integer.parseInt(cap)==0)
+                            {
+                                Toast.makeText(getApplicationContext(),"No Vacancy",Toast.LENGTH_LONG).show();
+                            }
+                            else
+                            {
+                                newcap=new CapacityDoc(doc,date,Integer.toString(Integer.parseInt(cap)-1),Integer.toString(Integer.parseInt(capacity)+1));
+                                cref.child(doc).child(key).setValue(newcap);
+                            }
+                        }
+                        // CapacityDoc newcap=new CapacityDoc(doc,date,Integer.toString(Integer.parseInt(cap)-1),Integer.toString(Integer.parseInt(capacity)+1));
+
+                        reff.child(mix).setValue(info);
+
+
+                        Calendar cal = Calendar.getInstance();
+                        cal.set(dob.getYear(),
+                                dob.getMonth(),
+                                dob.getDayOfMonth()-2,
+                                12,
+                                30,
+                                00);
+
+                        Intent intent = new Intent(getBaseContext(), PushReceiver.class);
+                        intent.setAction("Farah");
+                        PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(), RQS_1, intent, 0);
+                        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+
+                        cal.set(dob.getYear(),
+                                dob.getMonth(),
+                                dob.getDayOfMonth()-2,
+                                14,
+                                30,
+                                00);
+
+                        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
                 Toast.makeText(getApplicationContext(), "Appointment Scheduled Successfully!", Toast.LENGTH_LONG).show();
 
             }
         });
-
 
     }
 }

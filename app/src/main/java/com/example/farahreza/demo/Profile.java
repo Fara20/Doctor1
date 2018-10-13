@@ -50,12 +50,13 @@ public class Profile extends AppCompatActivity {
                 for(DataSnapshot value:dataSnapshot.getChildren())
                 {
                     user=value.getValue(PatientUsers.class);
+                    name1.setText(user.getName());
                 }
 
                   //  Name=user.getName();
                 Phone=user.getPhone();
                 email=user.getEmail();
-                    name1.setText("Farah");
+
                     email1.setText(email);
                    phoneNumber1.setText(Phone);
 

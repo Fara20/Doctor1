@@ -1,25 +1,16 @@
 package com.example.farahreza.demo;
 
-import android.content.pm.ApplicationInfo;
-import android.graphics.Color;
-import android.support.v4.view.MenuItemCompat;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,37 +18,33 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.Collator;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
-public class DoctorList extends AppCompatActivity  {
+public class PatientCancelAppointment extends AppCompatActivity {
 
     ListView lv;
 
-    ArrayList<DoctorInfo> dctrlst;
-    ArrayList<String>dctname;
+    ArrayList<AppointmentCancel> dctrlst;
     AutoCompleteTextView autoCompleteTextView;
-
-    DatabaseReference dr;
-    String clinicname;
-    DatabaseReference dRef, dRef1;
+    DatabaseReference dr,dreff;
+    Query usrqry,qry;
+    String name;
+    Button btn;
     Session session;
-    Query usrqry;
-    FirebaseAuth mAuth;
-    ClinicSignUpInformation user;
-
+    String dname;
+    String date;
+    String capacity,datcap,cap,key,fixcap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctor_list);
+        setContentView(R.layout.activity_patient_cancel_appointment);
 
         autoCompleteTextView=findViewById(R.id.List);
-
         lv=findViewById(R.id.RetriveInfo);
-        dctrlst=new ArrayList<DoctorInfo>();
-        dctname=new ArrayList<String>();
+        dctrlst=new ArrayList<AppointmentCancel>();
+        session=new Session(this);
+
+        btn=findViewById(R.id.btnSubmit1);
 
         lv.setOnTouchListener(new ListView.OnTouchListener() {
             @Override
@@ -80,38 +67,31 @@ public class DoctorList extends AppCompatActivity  {
                 return true;
             }
         });
+        dr= FirebaseDatabase.getInstance().getReference("AppointmentInfo");
 
-        mAuth=FirebaseAuth.getInstance();
-        dRef= FirebaseDatabase.getInstance().getReference("DoctorInfo");
-        dRef1=FirebaseDatabase.getInstance().getReference("ClinicSignUpInformation");
-        session=new Session(this);
-
-        dRef1= FirebaseDatabase.getInstance().getReference().child("ClinicSignUpInformation");
-        usrqry=dRef1.orderByKey().equalTo(session.getusename());
-
+        dreff=FirebaseDatabase.getInstance().getReference("PatientUsers");
+        usrqry=dreff.orderByKey().equalTo(session.getusename());
         usrqry.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot value:dataSnapshot.getChildren())
-
-
                 {
-                    user=value.getValue(ClinicSignUpInformation.class);
+                    PatientUsers users=value.getValue(PatientUsers.class);
+
+                    name= users.getName();
                 }
-
-
-                clinicname=user.getName();
-
-                dr=FirebaseDatabase.getInstance().getReference("DoctorInfo").child(clinicname);
 
                 dr.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot ds:dataSnapshot.getChildren())
                         {
-                            DoctorInfo user=ds.getValue(DoctorInfo.class);
-                            dctrlst.add(user);
-                            dctname.add(user.getName());
+                            AppointmentCancel user1=ds.getValue(AppointmentCancel.class);
+                            if(name.compareTo(user1.getName())==0) {
+                                dctrlst.add(user1);
+                            }
+                            //dctrlst.add(user);
+
 
                         }
 
@@ -134,7 +114,7 @@ public class DoctorList extends AppCompatActivity  {
 
                         //sort();
 
-                        studentAdapter adapter=new studentAdapter(DoctorList.this,dctrlst);
+                        CancelAdapter adapter=new CancelAdapter(PatientCancelAppointment.this,dctrlst);
                         //  lv.setAdapter(adapter);
 
                         //  ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(DoctorList.this,android.R.layout.simple_list_item_1,dctname);
@@ -160,8 +140,8 @@ public class DoctorList extends AppCompatActivity  {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                                String txt=autoCompleteTextView.getText().toString();
-                                Toast.makeText(DoctorList.this,txt,Toast.LENGTH_LONG).show();
+                               dname=autoCompleteTextView.getText().toString();
+                                //Toast.makeText(PatientCancelAppointment.this,txt,Toast.LENGTH_LONG).show();
                             }
                         });
 
@@ -173,18 +153,34 @@ public class DoctorList extends AppCompatActivity  {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-
+                        Toast.makeText(getApplicationContext(),"Error", Toast.LENGTH_LONG).show();
                     }
                 });
 
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        String text=lv.getItemAtPosition(i).toString();
-                        Toast.makeText(DoctorList.this,text,Toast.LENGTH_LONG).show();
+
+                       dname=lv.getItemAtPosition(i).toString();
+                        autoCompleteTextView.setText(dname);
+
+                        //Toast.makeText(PatientCancelAppointment.this,text,Toast.LENGTH_LONG).show();
                     }
                 });
 
+
+
+                //  Name=user.getName();
+
+
+                //FirebaseUser user = mAuth.getCurrentUser();
+                //  String userid=user.getUid();
+                //Toast.makeText(getApplicationContext()," "+userid,Toast.LENGTH_SHORT).show();
+
+                //PatientUsers newuser=new PatientUsers(Name,Phone,email,P);
+
+
+                //reference.child(userid).setValue(newuser);
 
             }
 
@@ -194,23 +190,70 @@ public class DoctorList extends AppCompatActivity  {
             }
         });
 
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                qry=dr.orderByChild("docname").equalTo(dname);
+                qry.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot value:dataSnapshot.getChildren())
+                        {
+                           date=value.getValue(AppointmentInfo.class).getDate();
+                            value.getRef().removeValue();
+                        }
+
+                  final   DatabaseReference nwdr=FirebaseDatabase.getInstance().getReference("Capacity").child(dname);
+                        Query qry1=nwdr.orderByChild("date").equalTo(date);
+                        qry1.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for(DataSnapshot val:dataSnapshot.getChildren())
+                                {
+                                    capacity=val.getValue(CapacityDoc.class).getCurcapacity();
+                                    datcap=val.getValue(CapacityDoc.class).getDate();
+                                    cap=val.getValue(CapacityDoc.class).getCapacity();
+                                    key=val.getKey();
+                                  //  flag=1;
+                                }
+                              CapacityDoc  newcap=new CapacityDoc(dname,date,Integer.toString(Integer.parseInt(cap)+1),Integer.toString(Integer.parseInt(capacity)-1));
+                                nwdr.child(key).setValue(newcap);
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Toast.makeText(getApplicationContext(),"Error", Toast.LENGTH_LONG).show();
+
+                    }
+                });
+
+
+
+                Toast.makeText(getApplicationContext(),"Appointment Cancelled Sucessfully!", Toast.LENGTH_LONG).show();
+
+                final Intent c=new Intent(getApplicationContext(),PatientCancelAppointment.class);
+                //c.putExtra("clinic",C);
+
+                startActivity(c);
+
+
+
+
+            }
+        });
 
 
 
     }
-
-    public void sort()
-    {
-
-
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // getMenuInflater().inflate(R.menu.menu,menu);
-        return true;
-    }
-
-
 }

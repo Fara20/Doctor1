@@ -35,6 +35,7 @@ public class PatientServices extends AppCompatActivity {
     CardView emer;
     CardView Blood;
     CardView tipscard;
+    CardView cancel;
 
     DatabaseReference  reference;
     Session session;
@@ -60,6 +61,7 @@ public class PatientServices extends AppCompatActivity {
         emer=findViewById(R.id.emerr);
         Blood=findViewById(R.id.blood);
         tipscard=findViewById(R.id.tips);
+        cancel=findViewById(R.id.cancel1);
         mAuth=FirebaseAuth.getInstance();
         reference= FirebaseDatabase.getInstance().getReference("PatientUsers");
         usrqry=reference.orderByKey().equalTo(session.getusename());
@@ -208,8 +210,8 @@ public class PatientServices extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-               // final  Intent abb=new Intent(getApplicationContext(),AmbulanceServices.class);
-              //  startActivity(abb);
+                final  Intent abb=new Intent(getApplicationContext(),AmbulanceServices.class);
+               startActivity(abb);
             }
         });
         emer.setOnClickListener(new View.OnClickListener() {
@@ -233,6 +235,15 @@ public class PatientServices extends AppCompatActivity {
             public void onClick(View view) {
 
                 final  Intent ti=new Intent(getApplicationContext(),HealthTipsServices.class);
+                startActivity(ti);
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final  Intent ti=new Intent(getApplicationContext(),PatientCancelAppointment.class);
                 startActivity(ti);
             }
         });

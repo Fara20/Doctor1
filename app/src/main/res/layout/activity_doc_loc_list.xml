@@ -8,14 +8,7 @@
     android:background="#eeebeb"
     tools:context=".DocLocList">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scrollView6" android:fillViewport="true">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -45,7 +38,7 @@
                 android:layout_height="67dp"
                 android:layout_marginBottom="20dp"
                 android:drawableLeft="@drawable/places_ic_search"
-                android:hint="Select A Hospital"
+                android:hint="Search A Hospital"
                 android:textColor="#b71c1c"
                 android:textSize="20dp" />
 
@@ -66,15 +59,13 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="200dp"
-                android:layout_marginBottom="143dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:background="#980214"
                 android:text="Submit"
                 android:textColor="#fff"
                 android:textSize="22dp" />
 
-        </LinearLayout>
-    </ScrollView>
 
 
 
