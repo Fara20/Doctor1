@@ -230,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
                                                     Name=user3.getName();
                                                     Phone=user3.getPhoneNo();
                                                     L=user3.getLocation();
+                                                    session.sethospital(user3.getName());
                                                     //email=user.getEmail();
                                                     //Intent i=getIntent();
                                                     // P=i.getStringExtra("Pass");

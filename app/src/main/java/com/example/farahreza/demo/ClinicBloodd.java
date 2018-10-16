@@ -25,6 +25,7 @@ public class ClinicBloodd extends AppCompatActivity {
     TextView aplussub, bplussub,abplussub,oplussub,aminussub,bminussub,abminussub,ominussub;
     int c1, c2,c3,c4,c5,c6,c7,c8;
     int a,b,c,d,e,f,g,h;
+    int f1=0,f2=0,f3=0,f4=0,f5=0,f6=0,f7=0,f8=0;
     ClinicSignUpInformation user;
     BloodBankInfo bloodBankInfouser;
     FirebaseAuth mAuth;
@@ -32,6 +33,7 @@ public class ClinicBloodd extends AppCompatActivity {
     String clinicname;
     Query usrqry,qry;
     Session session;
+    int bflag=0;
     String type="Blood Bank";
 
     @Override
@@ -95,6 +97,7 @@ public class ClinicBloodd extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for(DataSnapshot value:dataSnapshot.getChildren())
                         {
+                            bflag=1;
                             BloodBankInfo user1=value.getValue(BloodBankInfo.class);
                             aplus.setText(user1.getAplus());
                             bplus.setText(user1.getBplus());
@@ -110,6 +113,7 @@ public class ClinicBloodd extends AppCompatActivity {
 
 
                             ominus.setText(user1.getOminus());
+
                         }
 
                         //  Name=user.getName();
@@ -147,659 +151,820 @@ public class ClinicBloodd extends AppCompatActivity {
 
 
 
-        aplusadd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                c1++;
-                String test=   Integer.toString(c1);
+            aplusadd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
 
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
-
-                Toast.makeText(getApplicationContext(), test+"++" , Toast.LENGTH_SHORT).show();
-
-                straplus=aplus.getText().toString().trim(); //prev val nisi
-                a= Integer.parseInt(straplus);   //int a te rakhsi
-                a=c1+a;                           // koybar plus chapse add korsi
-                straplus=Integer.toString(a);//then converting to string
-                strbplus=bplus.getText().toString().trim();
-                strabplus=abplus.getText().toString().trim();
-                stroplus=oplus.getText().toString().trim();
-                straminus=aminus.getText().toString().trim();
-                strbminus=bminus.getText().toString().trim();
-                strabminus=abminus.getText().toString().trim();
-                strominus=ominus.getText().toString().trim();
-
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);
+                        c1++;
+                        String test = Integer.toString(c1);
 
 
+                        //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                        //dRef.child(clinicname).setValue(newuser);
 
-            }
-        });
+                        // Toast.makeText(getApplicationContext(), test+"++" , Toast.LENGTH_SHORT).show();
 
-        aplussub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                        straplus = aplus.getText().toString().trim();
+                        if(straplus.isEmpty())
+                        {
+                            a=1;
+                            straplus = Integer.toString(a);
+                        }
+                        else {
+                            a = Integer.parseInt(straplus);   //int a te rakhsi
+                            a = 1 + a;                           // koybar plus chapse add korsi
+                            straplus = Integer.toString(a);//then converting to string
+                        }
 
-                c1--;
-                String test=   Integer.toString(c1);
+                            aplus.setText(straplus);
 
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
+                            strbplus = bplus.getText().toString().trim();
+                            strabplus = abplus.getText().toString().trim();
+                            stroplus = oplus.getText().toString().trim();
+                            straminus = aminus.getText().toString().trim();
+                            strbminus = bminus.getText().toString().trim();
+                            strabminus = abminus.getText().toString().trim();
+                            strominus = ominus.getText().toString().trim();
 
-                Toast.makeText(getApplicationContext(), test , Toast.LENGTH_SHORT).show();
 
-                straplus=aplus.getText().toString().trim(); //prev val nisi
-                a= Integer.parseInt(straplus);   //int a te rakhsi
-                a=a+c1;                           // koybar plus chapse add korsi
-                if (a<0){
-                    Toast.makeText(ClinicBloodd.this, "Already empty!", Toast.LENGTH_SHORT).show();
-                    return;
+                        //BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                       // dRef.child(clinicname).setValue(newuser);
+
+
                 }
-                else{ straplus=Integer.toString(a);    //then converting to string
-                strbplus=bplus.getText().toString().trim();
-                strabplus=abplus.getText().toString().trim();
-                stroplus=oplus.getText().toString().trim();
-                straminus=aminus.getText().toString().trim();
-                strbminus=bminus.getText().toString().trim();
-                strabminus=abminus.getText().toString().trim();
-                strominus=ominus.getText().toString().trim();
+            });
 
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);}
-
-
-            }
-        });
-
-        bplusadd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                c2++;
-                String testt=   Integer.toString(c2);
+            aplussub.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
 
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
+                        c1--;
+                        String test = Integer.toString(c1);
 
-                Toast.makeText(getApplicationContext(), testt+"++" , Toast.LENGTH_SHORT).show();
+                        //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                        //dRef.child(clinicname).setValue(newuser);
 
-                strbplus=bplus.getText().toString().trim(); //prev val nisi
-                b= Integer.parseInt(strbplus);   //int a te rakhsi
-                b=b+c2;                           // koybar plus chapse add korsi
-                strbplus=Integer.toString(b);    //then converting to string
+                        //Toast.makeText(getApplicationContext(), test , Toast.LENGTH_SHORT).show();
+
+                        straplus = aplus.getText().toString().trim();
+                        if(straplus.isEmpty())
+                        {
+                            Toast.makeText(getApplicationContext(), "Not Possible" , Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                        a = Integer.parseInt(straplus);   //int a te rakhsi
+                        a = a - 1;                           // koybar plus chapse add korsi
+                        if (a < 0) {
+                            Toast.makeText(ClinicBloodd.this, "Already empty!", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else {
+                            straplus = Integer.toString(a); //then converting to string
+                            aplus.setText(straplus);
+                            strbplus = bplus.getText().toString().trim();
+                            strabplus = abplus.getText().toString().trim();
+                            stroplus = oplus.getText().toString().trim();
+                            straminus = aminus.getText().toString().trim();
+                            strbminus = bminus.getText().toString().trim();
+                            strabminus = abminus.getText().toString().trim();
+                            strominus = ominus.getText().toString().trim();
+                        }
+
+                            //BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                           // dRef.child(clinicname).setValue(newuser);
+                        }
 
 
-                straplus=aplus.getText().toString().trim();
-               // strbplus=bplus.getText().toString().trim();
-                strabplus=abplus.getText().toString().trim();
-                stroplus=oplus.getText().toString().trim();
-                straminus=aminus.getText().toString().trim();
-                strbminus=bminus.getText().toString().trim();
-                strabminus=abminus.getText().toString().trim();
-                strominus=ominus.getText().toString().trim();
 
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);
-
-            }
-        });
-
-        bplussub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                c2--;
-                String test=   Integer.toString(c2);
-
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
-
-                Toast.makeText(getApplicationContext(), test , Toast.LENGTH_SHORT).show();
-
-                strbplus=bplus.getText().toString().trim(); //prev val nisi
-                b= Integer.parseInt(strbplus);   //int b te rakhsi
-                b=b+c2;                           // koybar plus chapse add korsi
-
-                if (b<0){
-                    Toast.makeText(ClinicBloodd.this, "Already Empty!", Toast.LENGTH_SHORT).show();
-                    return;
                 }
-                else {
-                strbplus=Integer.toString(b);    //then converting to string
+            });
 
 
-                straplus=aplus.getText().toString().trim();
-                // strbplus=bplus.getText().toString().trim();
-                strabplus=abplus.getText().toString().trim();
-                stroplus=oplus.getText().toString().trim();
-                straminus=aminus.getText().toString().trim();
-                strbminus=bminus.getText().toString().trim();
-                strabminus=abminus.getText().toString().trim();
-                strominus=ominus.getText().toString().trim();
-
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);}
+            bplusadd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
 
-            }
-        });
+                        c2++;
+                        String testt = Integer.toString(c2);
 
 
+                        //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                        //dRef.child(clinicname).setValue(newuser);
 
-        abplusadd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                        // Toast.makeText(getApplicationContext(), testt+"++" , Toast.LENGTH_SHORT).show();
 
+                        strbplus = bplus.getText().toString().trim();
+                        if(strbplus.isEmpty())//prev val nisi
+                        {
+                            b=1;
+                            strbplus = Integer.toString(b);
+                        }
+                        else {
+                            b = Integer.parseInt(strbplus);   //int a te rakhsi
+                            b = b + 1;                           // koybar plus chapse add korsi
+                            strbplus = Integer.toString(b);
+                        }//then converting to string
 
-                c3++;
-                String testt=   Integer.toString(c3);
+                        bplus.setText(strbplus);
+                        straplus = aplus.getText().toString().trim();
+                        // strbplus=bplus.getText().toString().trim();
+                        strabplus = abplus.getText().toString().trim();
+                        stroplus = oplus.getText().toString().trim();
+                        straminus = aminus.getText().toString().trim();
+                        strbminus = bminus.getText().toString().trim();
+                        strabminus = abminus.getText().toString().trim();
+                        strominus = ominus.getText().toString().trim();
 
-
-
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
-
-                Toast.makeText(getApplicationContext(), testt+"++" , Toast.LENGTH_SHORT).show();
-
-                strabplus=abplus.getText().toString().trim(); //prev val nisi
-                c= Integer.parseInt(strabplus);   //int a te rakhsi
-                c=c+c3;                           // koybar plus chapse add korsi
-                strabplus=Integer.toString(c);    //then converting to string
-
-
-                straplus=aplus.getText().toString().trim();
-                strbplus=bplus.getText().toString().trim();
-                //strabplus=abplus.getText().toString().trim();
-                stroplus=oplus.getText().toString().trim();
-                straminus=aminus.getText().toString().trim();
-                strbminus=bminus.getText().toString().trim();
-                strabminus=abminus.getText().toString().trim();
-                strominus=ominus.getText().toString().trim();
-
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);
-
-            }
-        });
-
-        abplussub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                        //BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                      //  dRef.child(clinicname).setValue(newuser);
 
 
-                c3--;
-                String testt=   Integer.toString(c3);
-
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
-
-                Toast.makeText(getApplicationContext(), testt , Toast.LENGTH_SHORT).show();
-
-                strabplus=abplus.getText().toString().trim(); //prev val nisi
-                c= Integer.parseInt(strabplus);   //int b te rakhsi
-                c=c+c3;                           // koybar plus chapse add korsi
-
-                if (c<0){
-                    Toast.makeText(ClinicBloodd.this, "Already Empty!", Toast.LENGTH_SHORT).show();
-                    return;
                 }
-                else {
-                strabplus=Integer.toString(c);    //then converting to string
+            });
 
-
-                straplus=aplus.getText().toString().trim();
-                strbplus=bplus.getText().toString().trim();
-                //strabplus=abplus.getText().toString().trim();
-                stroplus=oplus.getText().toString().trim();
-                straminus=aminus.getText().toString().trim();
-                strbminus=bminus.getText().toString().trim();
-                strabminus=abminus.getText().toString().trim();
-                strominus=ominus.getText().toString().trim();
-
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);}
+            bplussub.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
 
-            }
-        });
+                        c2--;
+                        String test = Integer.toString(c2);
+
+                        //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                        //dRef.child(clinicname).setValue(newuser);
+
+                        //Toast.makeText(getApplicationContext(), test , Toast.LENGTH_SHORT).show();
+
+                        strbplus = bplus.getText().toString().trim(); //prev val nisi
+
+                    if(strbplus.isEmpty())
+                    {
+                        Toast.makeText(getApplicationContext(), "Not Poosible" , Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        b = Integer.parseInt(strbplus);   //int b te rakhsi
+                        b = b - 1;                           // koybar plus chapse add korsi
+
+                        if (b < 0) {
+                            Toast.makeText(ClinicBloodd.this, "Already Empty!", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else {
+                            strbplus = Integer.toString(b);    //then converting to string
+                            bplus.setText(strbplus);
 
 
+                            straplus = aplus.getText().toString().trim();
+                            // strbplus=bplus.getText().toString().trim();
+                            strabplus = abplus.getText().toString().trim();
+                            stroplus = oplus.getText().toString().trim();
+                            straminus = aminus.getText().toString().trim();
+                            strbminus = bminus.getText().toString().trim();
+                            strabminus = abminus.getText().toString().trim();
+                            strominus = ominus.getText().toString().trim();
 
-        oplusadd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                c4++;
-                String testt=   Integer.toString(c4);
-
-
-
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
-
-                Toast.makeText(getApplicationContext(), testt+"++" , Toast.LENGTH_SHORT).show();
-
-                stroplus=oplus.getText().toString().trim(); //prev val nisi
-                d= Integer.parseInt(stroplus);   //int a te rakhsi
-                d=d+c4;                           // koybar plus chapse add korsi
-                stroplus=Integer.toString(d);    //then converting to string
+                            // BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                            // dRef.child(clinicname).setValue(newuser);
+                        }
+                    }
 
 
-                straplus=aplus.getText().toString().trim();
-                strbplus=bplus.getText().toString().trim();
-                strabplus=abplus.getText().toString().trim();
-               // stroplus=oplus.getText().toString().trim();
-                straminus=aminus.getText().toString().trim();
-                strbminus=bminus.getText().toString().trim();
-                strabminus=abminus.getText().toString().trim();
-                strominus=ominus.getText().toString().trim();
-
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);
-
-            }
-        });
-
-
-        oplussub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                c4--;
-                String testt=   Integer.toString(c4);
-
-
-
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
-
-                Toast.makeText(getApplicationContext(), testt , Toast.LENGTH_SHORT).show();
-
-                stroplus=oplus.getText().toString().trim(); //prev val nisi
-                d= Integer.parseInt(stroplus);   //int a te rakhsi
-                d=d+c4;                           // koybar plus chapse add korsi
-
-                if (d<0){
-                    Toast.makeText(ClinicBloodd.this, "Already Empty!", Toast.LENGTH_SHORT).show();
-                    return;
                 }
-                else {
-                stroplus=Integer.toString(d);    //then converting to string
+            });
 
 
-                straplus=aplus.getText().toString().trim();
-                strbplus=bplus.getText().toString().trim();
-                strabplus=abplus.getText().toString().trim();
-               // stroplus=oplus.getText().toString().trim();
-                straminus=aminus.getText().toString().trim();
-                strbminus=bminus.getText().toString().trim();
-                strabminus=abminus.getText().toString().trim();
-                strominus=ominus.getText().toString().trim();
-
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);}
-
-            }
-        });
+            abplusadd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
-
-        aminusadd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                       c3++;
+                       String testt = Integer.toString(c3);
 
 
-                c5++;
-                String testt=   Integer.toString(c5);
+                       //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                       //dRef.child(clinicname).setValue(newuser);
+
+                       // Toast.makeText(getApplicationContext(), testt+"++" , Toast.LENGTH_SHORT).show();
+
+                       strabplus = abplus.getText().toString().trim(); //prev val nisi
+                    if(strabplus.isEmpty())
+                    {
+                        c=1;
+                        strabplus = Integer.toString(c);
+
+                    }
+                    else
+
+                    {
+                        c = Integer.parseInt(strabplus);   //int a te rakhsi
+                        c = c + 1;                           // koybar plus chapse add korsi
+                        strabplus = Integer.toString(c);
+                    }//then converting to string
+
+                       abplus.setText(strabplus);
+                       straplus = aplus.getText().toString().trim();
+                       strbplus = bplus.getText().toString().trim();
+                       //strabplus=abplus.getText().toString().trim();
+                       stroplus = oplus.getText().toString().trim();
+                       straminus = aminus.getText().toString().trim();
+                       strbminus = bminus.getText().toString().trim();
+                       strabminus = abminus.getText().toString().trim();
+                       strominus = ominus.getText().toString().trim();
+
+                       //BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
 
 
-
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
-
-                Toast.makeText(getApplicationContext(), testt+"++" , Toast.LENGTH_SHORT).show();
-
-                straminus=aminus.getText().toString().trim(); //prev val nisi
-                e= Integer.parseInt(straminus);   //int a te rakhsi
-                e=e+c5;                           // koybar plus chapse add korsi
-                straminus=Integer.toString(e);    //then converting to string
-
-
-                straplus=aplus.getText().toString().trim();
-                strbplus=bplus.getText().toString().trim();
-                strabplus=abplus.getText().toString().trim();
-                stroplus=oplus.getText().toString().trim();
-               // straminus=aminus.getText().toString().trim();
-                strbminus=bminus.getText().toString().trim();
-                strabminus=abminus.getText().toString().trim();
-                strominus=ominus.getText().toString().trim();
-
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);
-
-            }
-        });
-
-
-
-        aminussub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                c5--;
-                String testt=   Integer.toString(c5);
-
-
-
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
-
-                Toast.makeText(getApplicationContext(), testt , Toast.LENGTH_SHORT).show();
-
-                straminus=aminus.getText().toString().trim(); //prev val nisi
-                e= Integer.parseInt(straminus);   //int a te rakhsi
-                e=e+c5;                           // koybar plus chapse add korsi
-
-                if (e<0){
-                    Toast.makeText(ClinicBloodd.this, "Already Empty!", Toast.LENGTH_SHORT).show();
-                    return;
                 }
-                else {
-                straminus=Integer.toString(e);    //then converting to string
+            });
 
-
-                straplus=aplus.getText().toString().trim();
-                strbplus=bplus.getText().toString().trim();
-                strabplus=abplus.getText().toString().trim();
-                stroplus=oplus.getText().toString().trim();
-                //straminus=aminus.getText().toString().trim();
-                strbminus=bminus.getText().toString().trim();
-                strabminus=abminus.getText().toString().trim();
-                strominus=ominus.getText().toString().trim();
-
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);}
-
-            }
-        });
+            abplussub.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
 
-        bminusadd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
+                          c3--;
+                          String testt = Integer.toString(c3);
+
+                          //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                          //dRef.child(clinicname).setValue(newuser);
+
+                          //Toast.makeText(getApplicationContext(), testt , Toast.LENGTH_SHORT).show();
+
+                          strabplus = abplus.getText().toString().trim(); //prev val nisi
+                    if(strabplus.isEmpty())
+                    {
+                        Toast.makeText(getApplicationContext(), "Not Possible" , Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        c = Integer.parseInt(strabplus);   //int b te rakhsi
+                        c = c - 1;                           // koybar plus chapse add korsi
+
+                        if (c < 0) {
+                            Toast.makeText(ClinicBloodd.this, "Already Empty!", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else {
+                            strabplus = Integer.toString(c);    //then converting to string
+
+                            abplus.setText(strabplus);
 
 
-                c6++;
-                String testt=   Integer.toString(c6);
+                            straplus = aplus.getText().toString().trim();
+                            strbplus = bplus.getText().toString().trim();
+                            //strabplus=abplus.getText().toString().trim();
+                            stroplus = oplus.getText().toString().trim();
+                            straminus = aminus.getText().toString().trim();
+                            strbminus = bminus.getText().toString().trim();
+                            strabminus = abminus.getText().toString().trim();
+                            strominus = ominus.getText().toString().trim();
 
-
-
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
-
-                Toast.makeText(getApplicationContext(), testt+"++" , Toast.LENGTH_SHORT).show();
-
-                strbminus=bminus.getText().toString().trim(); //prev val nisi
-                f= Integer.parseInt(strbminus);   //int a te rakhsi
-                f=f+c6;                           // koybar plus chapse add korsi
-                strbminus=Integer.toString(f);    //then converting to string
-
-
-                straplus=aplus.getText().toString().trim();
-                strbplus=bplus.getText().toString().trim();
-                strabplus=abplus.getText().toString().trim();
-                stroplus=oplus.getText().toString().trim();
-                straminus=aminus.getText().toString().trim();
-                //strbminus=bminus.getText().toString().trim();
-                strabminus=abminus.getText().toString().trim();
-                strominus=ominus.getText().toString().trim();
-
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);
-
-            }
-        });
-
-
-        bminussub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                c6--;
-                String testt=   Integer.toString(c6);
+                            // BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                            // dRef.child(clinicname).setValue(newuser);
+                        }
+                    }
 
 
 
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
-
-                Toast.makeText(getApplicationContext(), testt , Toast.LENGTH_SHORT).show();
-
-                strbminus=bminus.getText().toString().trim(); //prev val nisi
-                f= Integer.parseInt(strbminus);   //int te rakhsi
-                f=f+c6;                           // koybar plus chapse add korsi
-                if (f<0){
-                    Toast.makeText(ClinicBloodd.this, "Already Empty!", Toast.LENGTH_SHORT).show();
-                    return;
                 }
-                else {
-                strbplus=Integer.toString(f);    //then converting to string
+            });
 
 
-                straplus=aplus.getText().toString().trim();
-                strbplus=bplus.getText().toString().trim();
-                strabplus=abplus.getText().toString().trim();
-                stroplus=oplus.getText().toString().trim();
-                straminus=aminus.getText().toString().trim();
-               // strbminus=bminus.getText().toString().trim();
-                strabminus=abminus.getText().toString().trim();
-                strominus=ominus.getText().toString().trim();
-
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);}
-
-            }
-        });
+            oplusadd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
 
-        abminusadd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
 
-
-                c7++;
-                String testt=   Integer.toString(c7);
-
+                        c4++;
+                        String testt = Integer.toString(c4);
 
 
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
+                        //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                        //dRef.child(clinicname).setValue(newuser);
 
-                Toast.makeText(getApplicationContext(), testt+"++" , Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getApplicationContext(), testt+"++" , Toast.LENGTH_SHORT).show();
 
-                strabminus=abminus.getText().toString().trim(); //prev val nisi
-                g= Integer.parseInt(strabminus);   //int a te rakhsi
-                g=g+c7;                           // koybar plus chapse add korsi
-                strabminus=Integer.toString(g);    //then converting to string
+                        stroplus = oplus.getText().toString().trim(); //prev val nisi
 
+                    if(stroplus.isEmpty())
+                    {
+                        d=1;
+                        stroplus = Integer.toString(d);
+                    }
+                    else {
+                        d = Integer.parseInt(stroplus);   //int a te rakhsi
+                        d = d + 1;                           // koybar plus chapse add korsi
+                        stroplus = Integer.toString(d);
+                    }//then converting to string
 
-                straplus=aplus.getText().toString().trim();
-                strbplus=bplus.getText().toString().trim();
-                strabplus=abplus.getText().toString().trim();
-                stroplus=oplus.getText().toString().trim();
-                straminus=aminus.getText().toString().trim();
-                strbminus=bminus.getText().toString().trim();
-               // strabminus=abminus.getText().toString().trim();
-                strominus=ominus.getText().toString().trim();
-
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);
-
-            }
-        });
+                        oplus.setText(stroplus);
 
 
-        abminussub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                        straplus = aplus.getText().toString().trim();
+                        strbplus = bplus.getText().toString().trim();
+                        strabplus = abplus.getText().toString().trim();
+                        // stroplus=oplus.getText().toString().trim();
+                        straminus = aminus.getText().toString().trim();
+                        strbminus = bminus.getText().toString().trim();
+                        strabminus = abminus.getText().toString().trim();
+                        strominus = ominus.getText().toString().trim();
+
+                        //BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                       // dRef.child(clinicname).setValue(newuser);
 
 
-                c7--;
-                String testt=   Integer.toString(c7);
-
-
-
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
-
-                Toast.makeText(getApplicationContext(), testt , Toast.LENGTH_SHORT).show();
-
-                strabminus=abminus.getText().toString().trim(); //prev val nisi
-                g= Integer.parseInt(strabminus);   //int a te rakhsi
-                g=g+c7;                           // koybar plus chapse add korsi
-
-                if (g<0){
-                    Toast.makeText(ClinicBloodd.this, "Already Empty!", Toast.LENGTH_SHORT).show();
-                    return;
                 }
-                else {
-
-                strabminus=Integer.toString(g);    //then converting to string
+            });
 
 
-                straplus=aplus.getText().toString().trim();
-                strbplus=bplus.getText().toString().trim();
-                strabplus=abplus.getText().toString().trim();
-                stroplus=oplus.getText().toString().trim();
-                straminus=aminus.getText().toString().trim();
-                strbminus=bminus.getText().toString().trim();
-                //strabminus=abminus.getText().toString().trim();
-                strominus=ominus.getText().toString().trim();
-
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);}
-
-            }
-        });
+            oplussub.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
-
-        ominusadd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                        c4--;
+                        String testt = Integer.toString(c4);
 
 
+                        //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                        //dRef.child(clinicname).setValue(newuser);
 
-                c8++;
-                String testt=   Integer.toString(c8);
+                        // Toast.makeText(getApplicationContext(), testt , Toast.LENGTH_SHORT).show();
 
+                        stroplus = oplus.getText().toString().trim(); //prev val nisi
 
+                    if(stroplus.isEmpty())
+                    {
+                        Toast.makeText(getApplicationContext(), "Not Possible" , Toast.LENGTH_SHORT).show();
 
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
+                    }
+                    else {
+                        d = Integer.parseInt(stroplus);   //int a te rakhsi
+                        d = d - 1;                           // koybar plus chapse add korsi
 
-                Toast.makeText(getApplicationContext(), testt+"++" , Toast.LENGTH_SHORT).show();
-
-                strominus=ominus.getText().toString().trim(); //prev val nisi
-                h= Integer.parseInt(strominus);   //int a te rakhsi
-                h=h+c8;                           // koybar plus chapse add korsi
-                strominus=Integer.toString(h);    //then converting to string
-
-
-                straplus=aplus.getText().toString().trim();
-                strbplus=bplus.getText().toString().trim();
-                strabplus=abplus.getText().toString().trim();
-                stroplus=oplus.getText().toString().trim();
-                straminus=aminus.getText().toString().trim();
-                strbminus=bminus.getText().toString().trim();
-                strabminus=abminus.getText().toString().trim();
-              //  strominus=ominus.getText().toString().trim();
-
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);
-
-            }
-        });
+                        if (d < 0) {
+                            Toast.makeText(ClinicBloodd.this, "Already Empty!", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else {
+                            stroplus = Integer.toString(d);    //then converting to string
+                            oplus.setText(stroplus);
 
 
-        ominussub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                            straplus = aplus.getText().toString().trim();
+                            strbplus = bplus.getText().toString().trim();
+                            strabplus = abplus.getText().toString().trim();
+                            // stroplus=oplus.getText().toString().trim();
+                            straminus = aminus.getText().toString().trim();
+                            strbminus = bminus.getText().toString().trim();
+                            strabminus = abminus.getText().toString().trim();
+                            strominus = ominus.getText().toString().trim();
 
-              /*  */
-
-                 c8--;
-                String testt=   Integer.toString(c8);
-
-
-
-                //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                //dRef.child(clinicname).setValue(newuser);
-
-                Toast.makeText(getApplicationContext(), testt , Toast.LENGTH_SHORT).show();
-
-                strominus=ominus.getText().toString().trim(); //prev val nisi
-                h= Integer.parseInt(strominus);   //int a te rakhsi
+                            //BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                            // dRef.child(clinicname).setValue(newuser);
+                        }
+                    }
 
 
-                h=h+c8;
-                if (h<0){
-
-                    Toast.makeText(ClinicBloodd.this, "Already empty!", Toast.LENGTH_SHORT).show();
-                    return;
                 }
-                else {
-                strominus=Integer.toString(h);    //then converting to string
+            });
 
 
-                straplus=aplus.getText().toString().trim();
-                strbplus=bplus.getText().toString().trim();
-                strabplus=abplus.getText().toString().trim();
-                stroplus=oplus.getText().toString().trim();
-                straminus=aminus.getText().toString().trim();
-                strbminus=bminus.getText().toString().trim();
-                strabminus=abminus.getText().toString().trim();
-               // strominus=ominus.getText().toString().trim();
-
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);}
+            aminusadd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
 
-            }
-        });
+                        c5++;
+                        String testt = Integer.toString(c5);
+
+
+                        //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                        //dRef.child(clinicname).setValue(newuser);
+
+                       // Toast.makeText(getApplicationContext(), testt + "++", Toast.LENGTH_SHORT).show();
+
+                        straminus = aminus.getText().toString().trim(); //prev val nisi
+                    if(straminus.isEmpty())
+                    {
+                        e=1;
+                        straminus = Integer.toString(e);
+                    }
+                    else {
+                        e = Integer.parseInt(straminus);   //int a te rakhsi
+                        e = e + 1;                           // koybar plus chapse add korsi
+                        straminus = Integer.toString(e);
+                    }//then converting to string
+
+                        aminus.setText(straminus);
+
+
+                        straplus = aplus.getText().toString().trim();
+                        strbplus = bplus.getText().toString().trim();
+                        strabplus = abplus.getText().toString().trim();
+                        stroplus = oplus.getText().toString().trim();
+                        // straminus=aminus.getText().toString().trim();
+                        strbminus = bminus.getText().toString().trim();
+                        strabminus = abminus.getText().toString().trim();
+                        strominus = ominus.getText().toString().trim();
+
+                       // BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                        //dRef.child(clinicname).setValue(newuser);
+
+
+                }
+            });
+
+
+            aminussub.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+
+                        c5--;
+                        String testt = Integer.toString(c5);
+
+
+                        //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                        //dRef.child(clinicname).setValue(newuser);
+
+                        //Toast.makeText(getApplicationContext(), testt , Toast.LENGTH_SHORT).show();
+
+                        straminus = aminus.getText().toString().trim(); //prev val nisi
+
+                    if(straminus.isEmpty())
+                    {
+                        Toast.makeText(getApplicationContext(), "Not Possible" , Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        e = Integer.parseInt(straminus);   //int a te rakhsi
+                        e = e - 1;                           // koybar plus chapse add korsi
+
+                        if (e < 0) {
+                            Toast.makeText(ClinicBloodd.this, "Already Empty!", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else {
+                            straminus = Integer.toString(e);    //then converting to string
+                            aminus.setText(straminus);
+
+
+                            straplus = aplus.getText().toString().trim();
+                            strbplus = bplus.getText().toString().trim();
+                            strabplus = abplus.getText().toString().trim();
+                            stroplus = oplus.getText().toString().trim();
+                            //straminus=aminus.getText().toString().trim();
+                            strbminus = bminus.getText().toString().trim();
+                            strabminus = abminus.getText().toString().trim();
+                            strominus = ominus.getText().toString().trim();
+
+                            // BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                            // dRef.child(clinicname).setValue(newuser);
+                        }
+                    }
+
+
+                }
+            });
+
+
+            bminusadd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+
+                        c6++;
+                        String testt = Integer.toString(c6);
+
+
+                        //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                        //dRef.child(clinicname).setValue(newuser);
+
+                        // Toast.makeText(getApplicationContext(), testt+"++" , Toast.LENGTH_SHORT).show();
+
+                        strbminus = bminus.getText().toString().trim(); //prev val nisi
+
+                    if(strbminus.isEmpty())
+                    {
+                        f=1;
+                        strbminus = Integer.toString(f);
+                    }
+                    else {
+                        f = Integer.parseInt(strbminus);   //int a te rakhsi
+                        f = f + 1;                           // koybar plus chapse add korsi
+                        strbminus = Integer.toString(f);
+                    }//then converting to string
+
+                        bminus.setText(strbminus);
+
+
+                        straplus = aplus.getText().toString().trim();
+                        strbplus = bplus.getText().toString().trim();
+                        strabplus = abplus.getText().toString().trim();
+                        stroplus = oplus.getText().toString().trim();
+                        straminus = aminus.getText().toString().trim();
+                        //strbminus=bminus.getText().toString().trim();
+                        strabminus = abminus.getText().toString().trim();
+                        strominus = ominus.getText().toString().trim();
+
+                       // BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                       // dRef.child(clinicname).setValue(newuser);
+
+
+                }
+            });
+
+
+            bminussub.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+
+                        c6--;
+                        String testt = Integer.toString(c6);
+
+
+                        //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                        //dRef.child(clinicname).setValue(newuser);
+
+                        //Toast.makeText(getApplicationContext(), testt , Toast.LENGTH_SHORT).show();
+
+                        strbminus = bminus.getText().toString().trim(); //prev val nisi
+
+                    if(strbminus.isEmpty())
+                    {
+                        Toast.makeText(getApplicationContext(),"Not Possible" , Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        f = Integer.parseInt(strbminus);   //int te rakhsi
+                        f = f - 1;                           // koybar plus chapse add korsi
+                        if (f < 0) {
+                            Toast.makeText(ClinicBloodd.this, "Already Empty!", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else {
+                            strbplus = Integer.toString(f);    //then converting to string
+
+                            bminus.setText(strbplus);
+
+
+                            straplus = aplus.getText().toString().trim();
+                            strbplus = bplus.getText().toString().trim();
+                            strabplus = abplus.getText().toString().trim();
+                            stroplus = oplus.getText().toString().trim();
+                            straminus = aminus.getText().toString().trim();
+                            // strbminus=bminus.getText().toString().trim();
+                            strabminus = abminus.getText().toString().trim();
+                            strominus = ominus.getText().toString().trim();
+
+                            /// BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                            // dRef.child(clinicname).setValue(newuser);
+                        }
+                    }
+
+
+                }
+            });
+
+
+            abminusadd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+
+
+                        c7++;
+                        String testt = Integer.toString(c7);
+
+
+                        //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                        //dRef.child(clinicname).setValue(newuser);
+
+                        //Toast.makeText(getApplicationContext(), testt+"++" , Toast.LENGTH_SHORT).show();
+
+                        strabminus = abminus.getText().toString().trim(); //prev val nisi
+                    if(strabminus.isEmpty())
+                    {
+                        g=1;
+                        strabminus = Integer.toString(g);
+                    }
+                    else {
+                        g = Integer.parseInt(strabminus);   //int a te rakhsi
+                        g = g + 1;                           // koybar plus chapse add korsi
+                        strabminus = Integer.toString(g);
+                    }//then converting to string
+                        abminus.setText(strabminus);
+
+
+                        straplus = aplus.getText().toString().trim();
+                        strbplus = bplus.getText().toString().trim();
+                        strabplus = abplus.getText().toString().trim();
+                        stroplus = oplus.getText().toString().trim();
+                        straminus = aminus.getText().toString().trim();
+                        strbminus = bminus.getText().toString().trim();
+                        // strabminus=abminus.getText().toString().trim();
+                        strominus = ominus.getText().toString().trim();
+
+                       // BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                       // dRef.child(clinicname).setValue(newuser);
+
+
+                }
+            });
+
+
+            abminussub.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+
+                        c7--;
+                        String testt = Integer.toString(c7);
+
+
+                        //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                        //dRef.child(clinicname).setValue(newuser);
+
+                       // Toast.makeText(getApplicationContext(), testt, Toast.LENGTH_SHORT).show();
+
+                        strabminus = abminus.getText().toString().trim(); //prev val nisi
+                    if(strabminus.isEmpty())
+                    {
+                        Toast.makeText(getApplicationContext(), "Not Possible", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else {
+                        g = Integer.parseInt(strabminus);   //int a te rakhsi
+                        g = g - 1;                           // koybar plus chapse add korsi
+
+                        if (g < 0) {
+                            Toast.makeText(ClinicBloodd.this, "Already Empty!", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else {
+
+                            strabminus = Integer.toString(g);    //then converting to string
+                            abminus.setText(strabminus);
+
+
+                            straplus = aplus.getText().toString().trim();
+                            strbplus = bplus.getText().toString().trim();
+                            strabplus = abplus.getText().toString().trim();
+                            stroplus = oplus.getText().toString().trim();
+                            straminus = aminus.getText().toString().trim();
+                            strbminus = bminus.getText().toString().trim();
+                            //strabminus=abminus.getText().toString().trim();
+                            strominus = ominus.getText().toString().trim();
+
+                            // BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                            // dRef.child(clinicname).setValue(newuser);
+                        }
+                    }
+
+
+                }
+            });
+
+
+            ominusadd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+
+
+                        c8++;
+                        String testt = Integer.toString(c8);
+
+
+                        //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                        //dRef.child(clinicname).setValue(newuser);
+
+                        //Toast.makeText(getApplicationContext(), testt + "++", Toast.LENGTH_SHORT).show();
+
+                        strominus = ominus.getText().toString().trim(); //prev val nisi
+                    if(strominus.isEmpty())
+                    {
+                        h=1;
+                        strominus = Integer.toString(h);
+                    }
+                    else {
+                        h = Integer.parseInt(strominus);   //int a te rakhsi
+                        h = h + 1;                           // koybar plus chapse add korsi
+                        strominus = Integer.toString(h);
+                    }//then converting to string
+                        ominus.setText(strominus);
+
+
+                        straplus = aplus.getText().toString().trim();
+                        strbplus = bplus.getText().toString().trim();
+                        strabplus = abplus.getText().toString().trim();
+                        stroplus = oplus.getText().toString().trim();
+                        straminus = aminus.getText().toString().trim();
+                        strbminus = bminus.getText().toString().trim();
+                        strabminus = abminus.getText().toString().trim();
+                        //  strominus=ominus.getText().toString().trim();
+
+                        //BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                        //dRef.child(clinicname).setValue(newuser);
+
+
+                }
+            });
+
+
+            ominussub.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                        /*  */
+
+                        c8--;
+                        String testt = Integer.toString(c8);
+
+
+                        //  BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
+                        //dRef.child(clinicname).setValue(newuser);
+
+                       // Toast.makeText(getApplicationContext(), testt, Toast.LENGTH_SHORT).show();
+
+                        strominus = ominus.getText().toString().trim(); //prev val nisi
+                    if(strominus.isEmpty())
+                    {
+                        Toast.makeText(getApplicationContext(), "Not Possible", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        h = Integer.parseInt(strominus);   //int a te rakhsi
+
+
+                        h = h - 1;
+                        if (h < 0) {
+
+                            Toast.makeText(ClinicBloodd.this, "Already empty!", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else {
+                            strominus = Integer.toString(h);    //then converting to string
+                            ominus.setText(strominus);
+
+
+                            straplus = aplus.getText().toString().trim();
+                            strbplus = bplus.getText().toString().trim();
+                            strabplus = abplus.getText().toString().trim();
+                            stroplus = oplus.getText().toString().trim();
+                            straminus = aminus.getText().toString().trim();
+                            strbminus = bminus.getText().toString().trim();
+                            strabminus = abminus.getText().toString().trim();
+                            // strominus=ominus.getText().toString().trim();
+
+                            //BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                            //dRef.child(clinicname).setValue(newuser);
+                        }
+                    }
+
+
+
+                }
+            });
+
+
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                straplus=aplus.getText().toString().trim();
-               strbplus=bplus.getText().toString().trim();
-                strabplus=abplus.getText().toString().trim();
-                stroplus=oplus.getText().toString().trim();
-                straminus=aminus.getText().toString().trim();
-                strbminus=bminus.getText().toString().trim();
-                strabminus=abminus.getText().toString().trim();
-                strominus=ominus.getText().toString().trim();
 
-                BloodBankInfo newuser=new BloodBankInfo(straplus,strbplus,strabplus,stroplus,straminus,strbminus,strabminus,strominus,type);
-                dRef.child(clinicname).setValue(newuser);
+                straplus = aplus.getText().toString().trim();
+                strbplus = bplus.getText().toString().trim();
+                strabplus = abplus.getText().toString().trim();
+                stroplus = oplus.getText().toString().trim();
+                straminus = aminus.getText().toString().trim();
+                strbminus = bminus.getText().toString().trim();
+                strabminus = abminus.getText().toString().trim();
+                strominus = ominus.getText().toString().trim();
+                if (straplus.isEmpty() || strbplus.isEmpty() || strabplus.isEmpty() || strabminus.isEmpty() || straminus.isEmpty() || strbminus.isEmpty() || strominus.isEmpty() || stroplus.isEmpty()) {
 
-                Toast.makeText(getApplicationContext(), "BloodBank has been updated successfully!", Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(getApplicationContext(), "Field Empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    BloodBankInfo newuser = new BloodBankInfo(straplus, strbplus, strabplus, stroplus, straminus, strbminus, strabminus, strominus, type);
+                    dRef.child(clinicname).setValue(newuser);
+
+                    Toast.makeText(getApplicationContext(), "BloodBank has been updated successfully!", Toast.LENGTH_SHORT).show();
+                }
+
 
 
             }

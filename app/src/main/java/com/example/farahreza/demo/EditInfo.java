@@ -74,18 +74,20 @@ public class EditInfo extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot value : dataSnapshot.getChildren()) {
                     user = value.getValue(ClinicSignUpInformation.class);
+                    name = user.getName();
+                    email = user.getEmail();
+                    pass = user.getPassword();
+                    phone = user.getPhoneNo();
+                    Placename = user.getLocation();
+                    Name.setHint(user.getName());
+
+                    Email.setHint(user.getEmail());
+
+                    Phone.setHint(user.getPhoneNo()
+                    );
                 }
 
-                name = user.getName();
-                email = user.getEmail();
-                pass = user.getPassword();
-                phone = user.getPhoneNo();
-                Placename = user.getLocation();
-                Name.setHint(name);
 
-                Email.setHint(email);
-
-                Phone.setHint(phone);
 
 
             }

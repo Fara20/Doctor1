@@ -61,13 +61,19 @@ EditText vecname,contact,email;
                 FirebaseUser user=mAuth.getCurrentUser();
                 String userid=user.getUid();
 
+                if(strname.isEmpty()||strcontact.isEmpty())
+                {
+                    Toast.makeText(getApplicationContext(), "Field Empty", Toast.LENGTH_SHORT).show();
+                }
 
 
+                   else {
 
-                Ambulance newuser=new Ambulance(strname,strcontact);
-                dRef.child(strname).setValue(newuser);
+                    Ambulance newuser = new Ambulance(strname, strcontact);
+                    dRef.child(strname).setValue(newuser);
 
-                Toast.makeText(getApplicationContext(), "Ambulance Inserted successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Ambulance Inserted successfully!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

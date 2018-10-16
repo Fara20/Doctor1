@@ -241,7 +241,7 @@ public class DocAppointmentSelect extends AppCompatActivity {
 
                 final String mix=clinic+"-"+uid+"-"+date+"-"+doc;
                 flag=0;
-                final   AppointmentInfo info=new AppointmentInfo(pname,clinic,location,date,time,doc,uid);
+                final   AppointmentInfo info=new AppointmentInfo(pname,clinic,location,date,time,doc,uid,num);
                 DatabaseReference dr=FirebaseDatabase.getInstance().getReference("Capacity").child(doc);
                 DatabaseReference newdr=FirebaseDatabase.getInstance().getReference("AppointmentInfo");
                 Query nwqry=newdr.orderByKey().equalTo(mix);
@@ -294,7 +294,7 @@ public class DocAppointmentSelect extends AppCompatActivity {
                         }
                         // CapacityDoc newcap=new CapacityDoc(doc,date,Integer.toString(Integer.parseInt(cap)-1),Integer.toString(Integer.parseInt(capacity)+1));
 
-                        reff.child(mix).setValue(info);
+                        reff.push().setValue(info);
 
 
                         Calendar cal = Calendar.getInstance();

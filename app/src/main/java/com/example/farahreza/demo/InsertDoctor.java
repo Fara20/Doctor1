@@ -48,6 +48,7 @@ public class InsertDoctor extends AppCompatActivity {
     String type="Doctor";
 
     String strname,strcapacity,timeslot1,timeslot2,timeslot3;
+    int flg1=0,flg2=0,flg3=0,flg4=0,flg5=0;
 
 
     @Override
@@ -192,28 +193,38 @@ public class InsertDoctor extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 strname=name.getText().toString().trim();
+                flg1=1;
                 strcapacity=capacity.getText().toString().trim();
+                flg2=1;
 
 
                   int id1 = grpgender.getCheckedRadioButtonId();
                   genderbtn = findViewById(id1);
+                  flg3=1;
                 String gender = genderbtn.getText().toString();
+                flg4=1;
                 String speciality =String.valueOf(spinner2.getSelectedItem());
+                flg5=1;
 
 
 
+                if(strname.isEmpty()||strcapacity.isEmpty()||gender.isEmpty()||speciality.isEmpty())
+                {
+                    Toast.makeText(getApplicationContext(), "Field Empty!", Toast.LENGTH_SHORT).show();
+                }
+                else {
 
 
+                    DoctorInfo newuser = new DoctorInfo(strname, gender, speciality, strcapacity, timeslot1, timeslot2, timeslot3, type);
+                    DatabaseReference cref = FirebaseDatabase.getInstance().getReference("Capacity");
+                    Calendar now = Calendar.getInstance();
+                    String date = new StringBuilder().append(now.get(Calendar.YEAR)).append("-").append(Calendar.MONTH).append("-").append(Calendar.DAY_OF_MONTH).toString();
+                    CapacityDoc newcap = new CapacityDoc(strname, date, strcapacity, Integer.toString(0));
+                    cref.push().setValue(newcap);
+                    dRef.child(clinicname).push().setValue(newuser);
 
-                DoctorInfo newuser=new DoctorInfo(strname,gender,speciality,strcapacity,timeslot1,timeslot2,timeslot3,type);
-                DatabaseReference cref=FirebaseDatabase.getInstance().getReference("Capacity");
-                Calendar now = Calendar.getInstance();
-                String date=new StringBuilder().append(now.get(Calendar.YEAR)).append("-").append(Calendar.MONTH).append("-").append(Calendar.DAY_OF_MONTH).toString();
-                CapacityDoc newcap=new CapacityDoc(strname,date,strcapacity,Integer.toString(0));
-                cref.push().setValue(newcap);
-                dRef.child(clinicname).push().setValue(newuser);
-
-                Toast.makeText(getApplicationContext(), "Doctor Inserted successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Doctor Inserted successfully!", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

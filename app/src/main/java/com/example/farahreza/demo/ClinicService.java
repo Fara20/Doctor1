@@ -25,12 +25,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 
 public class ClinicService extends AppCompatActivity {
     Button reminder1;
-    Button tips;
+    Button cancel;
     Button Sms1;
     CardView InsertDoc;
     Button blood;
@@ -65,6 +66,7 @@ public class ClinicService extends AppCompatActivity {
         Ambb=findViewById(R.id.ambb);
         emer=findViewById(R.id.emerr);
         Blood=findViewById(R.id.bloodbank);
+        cancel=findViewById(R.id.cancel);
         Plist=findViewById(R.id.plist);
        Doclist=findViewById(R.id.docList);
       /*  reminder=findViewById(R.id.button7);
@@ -74,6 +76,8 @@ public class ClinicService extends AppCompatActivity {
         blood=findViewById(R.id.button4);
 
         */
+      FirebaseMessaging.getInstance().subscribeToTopic("Appointment");
+      getApplicationContext().startService(new Intent(getApplicationContext(),SmsService.class));
         mAuth=FirebaseAuth.getInstance();
         reference= FirebaseDatabase.getInstance().getReference("ClinicSignUpInformation");
         usrqry=reference.orderByKey().equalTo(session.getusename());
@@ -191,6 +195,7 @@ public class ClinicService extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent c=new Intent(getApplicationContext(),InsertDoctor.class);
                     startActivity(c);
+                  //  Toast.makeText(getApplicationContext(),session.gethospital(),Toast.LENGTH_SHORT).show();
 
                 }
             });
@@ -245,6 +250,16 @@ public class ClinicService extends AppCompatActivity {
 
                 Intent e=new Intent(getApplicationContext(),ClinicPatientList.class);
                 startActivity(e);
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent e=new Intent(getApplicationContext(),ClinicCancel.class);
+                startActivity(e);
+
             }
         });
 

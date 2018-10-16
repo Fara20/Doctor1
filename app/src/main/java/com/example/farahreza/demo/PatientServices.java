@@ -226,8 +226,8 @@ public class PatientServices extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-             //   final  Intent emm=new Intent(getApplicationContext(),BloodBank.class);
-            //    startActivity(emm);
+               final  Intent emm=new Intent(getApplicationContext(),BloodRetrival.class);
+               startActivity(emm);
             }
         });
         tipscard.setOnClickListener(new View.OnClickListener() {

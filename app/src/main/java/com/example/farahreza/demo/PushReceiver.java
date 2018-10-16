@@ -22,9 +22,9 @@ public class PushReceiver extends BroadcastReceiver {
             mNotificationManager.createNotificationChannel(channel);
         }
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "f")
-                .setSmallIcon(R.mipmap.ic_launcher) // notification icon
+                .setSmallIcon(R.drawable.clncc) // notification icon
                 .setContentTitle("Do Not Miss Your Appointment") // title for notification
-                .setContentText("You Have an appointent on 2 Days Time")// message for notification
+                .setContentText("You Have an appointment on 2 Days Time")// message for notification
                 // set alarm sound for notification
                 .setAutoCancel(true); // clear notification after click
         ////Intent i = new Intent(context, PatientServices.class);

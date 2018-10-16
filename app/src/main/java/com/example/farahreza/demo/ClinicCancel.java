@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,30 +21,34 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class PatientCancelAppointment extends AppCompatActivity {
+public class ClinicCancel extends AppCompatActivity {
+
 
     ListView lv;
 
-    ArrayList<AppointmentInfo> dctrlst;
+    ArrayList<DoctorInfo> dctrlst;
+    ArrayList<String>dctname;
     AutoCompleteTextView autoCompleteTextView;
-    DatabaseReference dr,dreff;
-    Query usrqry,qry;
-    String name,date1;
     Button btn;
+
+    DatabaseReference dr;
+    String clinicname,doc;
+    DatabaseReference dRef, dRef1;
     Session session;
-    String dname;
-    String date;
-    String capacity,datcap,cap,key,fixcap;
-    CancelAdapter adapter;
+    Query usrqry;
+    FirebaseAuth mAuth;
+    ClinicSignUpInformation user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_cancel_appointment);
+        setContentView(R.layout.activity_clinic_cancel);
 
         autoCompleteTextView=findViewById(R.id.List);
+
         lv=findViewById(R.id.RetriveInfo);
-        dctrlst=new ArrayList<AppointmentInfo>();
-        session=new Session(this);
+        dctrlst=new ArrayList<DoctorInfo>();
+        dctname=new ArrayList<String>();
 
         btn=findViewById(R.id.btnSubmit1);
 
@@ -68,31 +73,38 @@ public class PatientCancelAppointment extends AppCompatActivity {
                 return true;
             }
         });
-        dr= FirebaseDatabase.getInstance().getReference("AppointmentInfo");
 
-        dreff=FirebaseDatabase.getInstance().getReference("PatientUsers");
-        usrqry=dreff.orderByKey().equalTo(session.getusename());
+        mAuth=FirebaseAuth.getInstance();
+        dRef= FirebaseDatabase.getInstance().getReference("DoctorInfo");
+        dRef1=FirebaseDatabase.getInstance().getReference("ClinicSignUpInformation");
+        session=new Session(this);
+
+        dRef1= FirebaseDatabase.getInstance().getReference().child("ClinicSignUpInformation");
+        usrqry=dRef1.orderByKey().equalTo(session.getusename());
+
         usrqry.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot value:dataSnapshot.getChildren())
-                {
-                    PatientUsers users=value.getValue(PatientUsers.class);
 
-                    name= users.getName();
+
+                {
+                    user=value.getValue(ClinicSignUpInformation.class);
                 }
+
+
+                clinicname=user.getName();
+
+                dr=FirebaseDatabase.getInstance().getReference("DoctorInfo").child(clinicname);
 
                 dr.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot ds:dataSnapshot.getChildren())
                         {
-                            AppointmentInfo user1=ds.getValue(AppointmentInfo.class);
-                            if(name.compareTo(user1.getName())==0) {
-                                dctrlst.add(user1);
-                            }
-                            //dctrlst.add(user);
-
+                            DoctorInfo user=ds.getValue(DoctorInfo.class);
+                            dctrlst.add(user);
+                            dctname.add(user.getName());
 
                         }
 
@@ -115,7 +127,7 @@ public class PatientCancelAppointment extends AppCompatActivity {
 
                         //sort();
 
-                        adapter=new CancelAdapter(PatientCancelAppointment.this,dctrlst);
+                        studentAdapter adapter=new studentAdapter(ClinicCancel.this,dctrlst);
                         //  lv.setAdapter(adapter);
 
                         //  ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(DoctorList.this,android.R.layout.simple_list_item_1,dctname);
@@ -141,8 +153,8 @@ public class PatientCancelAppointment extends AppCompatActivity {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                               dname=autoCompleteTextView.getText().toString();
-                                //Toast.makeText(PatientCancelAppointment.this,txt,Toast.LENGTH_LONG).show();
+                                doc=autoCompleteTextView.getText().toString();
+                                //Toast.makeText(DoctorList.this,txt,Toast.LENGTH_LONG).show();
                             }
                         });
 
@@ -154,34 +166,19 @@ public class PatientCancelAppointment extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(getApplicationContext(),"Error", Toast.LENGTH_LONG).show();
+
                     }
                 });
 
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                       dname=lv.getItemAtPosition(i).toString();
-                        autoCompleteTextView.setText(dname);
-
-                        //Toast.makeText(PatientCancelAppointment.this,text,Toast.LENGTH_LONG).show();
+                      doc=lv.getItemAtPosition(i).toString();
+                        //Toast.makeText(ClinicCancel.this,text,Toast.LENGTH_LONG).show();
+                        autoCompleteTextView.setText(doc);
                     }
                 });
 
-
-
-                //  Name=user.getName();
-
-
-                //FirebaseUser user = mAuth.getCurrentUser();
-                //  String userid=user.getUid();
-                //Toast.makeText(getApplicationContext()," "+userid,Toast.LENGTH_SHORT).show();
-
-                //PatientUsers newuser=new PatientUsers(Name,Phone,email,P);
-
-
-                //reference.child(userid).setValue(newuser);
 
             }
 
@@ -191,70 +188,17 @@ public class PatientCancelAppointment extends AppCompatActivity {
             }
         });
 
+
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                qry=dr.orderByChild("docname").equalTo(dname);
-                qry.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for(DataSnapshot value:dataSnapshot.getChildren())
-                        {
-                           date=value.getValue(AppointmentInfo.class).getDate();
-                            value.getRef().removeValue();
-                        }
-
-                  final   DatabaseReference nwdr=FirebaseDatabase.getInstance().getReference("Capacity").child(dname);
-                        Query qry1=nwdr.orderByChild("date").equalTo(date);
-                        qry1.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                for(DataSnapshot val:dataSnapshot.getChildren())
-                                {
-                                    capacity=val.getValue(CapacityDoc.class).getCurcapacity();
-                                    datcap=val.getValue(CapacityDoc.class).getDate();
-                                    cap=val.getValue(CapacityDoc.class).getCapacity();
-                                    key=val.getKey();
-                                  //  flag=1;
-                                }
-                              CapacityDoc  newcap=new CapacityDoc(dname,date,Integer.toString(Integer.parseInt(cap)+1),Integer.toString(Integer.parseInt(capacity)-1));
-                                nwdr.child(key).setValue(newcap);
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(getApplicationContext(),"Error", Toast.LENGTH_LONG).show();
-
-                    }
-                });
-
-
-
-                Toast.makeText(getApplicationContext(),"Appointment Cancelled Sucessfully!", Toast.LENGTH_LONG).show();
-
-                final Intent c=new Intent(getApplicationContext(),PatientCancelAppointment.class);
+                final Intent c=new Intent(getApplicationContext(),DocCancelDate.class);
                 //c.putExtra("clinic",C);
-
+                c.putExtra("doc",doc);
                 startActivity(c);
-
-
-
-
             }
         });
-
-
 
     }
 }

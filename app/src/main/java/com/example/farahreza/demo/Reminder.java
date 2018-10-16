@@ -29,7 +29,7 @@ public class Reminder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder);
-        medicine =findViewById(R.id.searchEditText);
+       // medicine =findViewById(R.id.searchEditText);
         pickerDate = (DatePicker)findViewById(R.id.pickerdate);
         pickerTime = (TimePicker)findViewById(R.id.pickertime);
 
@@ -50,9 +50,7 @@ public class Reminder extends AppCompatActivity {
             public void onClick(View v) {
                 Calendar current = Calendar.getInstance();
                 Calendar cal = Calendar.getInstance();
-                if((medicine.getText().toString()).equals(""))
-                    Toast.makeText(getApplicationContext(),"please set a medicine first!",Toast.LENGTH_LONG).show();
-                else
+
 
 
 

@@ -13,13 +13,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class CancelAdapter extends BaseAdapter implements Filterable {
+public class ClinicCancelAdapter  extends BaseAdapter implements Filterable {
+
     private Context activity;
     private ArrayList<AppointmentInfo> allStudent = new ArrayList<>();
     private ArrayList<AppointmentInfo> allStudent1 = new ArrayList<>();
     private LayoutInflater layoutInflater = null;
 
-    public CancelAdapter(Context activity, ArrayList<AppointmentInfo> allStudent) {
+    public ClinicCancelAdapter(Context activity, ArrayList<AppointmentInfo> allStudent) {
         this.activity = activity;
         this.allStudent = allStudent;
         allStudent1=allStudent;
@@ -36,6 +37,7 @@ public class CancelAdapter extends BaseAdapter implements Filterable {
         });
         this.layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
+
     @Override
     public Filter getFilter() {
         return new Filter()
@@ -55,7 +57,7 @@ public class CancelAdapter extends BaseAdapter implements Filterable {
                     ArrayList<AppointmentInfo> filteredContacts = new ArrayList<AppointmentInfo>();
 
                     for (AppointmentInfo c : allStudent) {
-                        if (c.docname.toUpperCase().contains(charSequence.toString().toUpperCase())) {
+                        if (c.uid.toUpperCase().contains(charSequence.toString().toUpperCase())) {
                             // if `contains` == true then add it
                             // to our filtered list
                             filteredContacts.add(c);
@@ -82,15 +84,15 @@ public class CancelAdapter extends BaseAdapter implements Filterable {
     private static class ViewHolder{
         private TextView name,docname,time,date;
     }
-    private CancelAdapter.ViewHolder viewHolder = null;
+    private ClinicCancelAdapter.ViewHolder viewHolder = null;
 
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         View view=convertView;
         final int pos = position;
         if(view == null){
-            viewHolder = new CancelAdapter.ViewHolder();
-            view = layoutInflater.inflate(R.layout.row_cell_student5,null);
+            viewHolder = new ClinicCancelAdapter.ViewHolder();
+            view = layoutInflater.inflate(R.layout.row_cell_student6,null);
             viewHolder.name = view.findViewById(R.id.name);
             viewHolder.docname= view.findViewById(R.id.docname);
             viewHolder.date= view.findViewById(R.id.date);
@@ -105,7 +107,7 @@ public class CancelAdapter extends BaseAdapter implements Filterable {
 
             view.setTag(viewHolder);
         }else {
-            viewHolder= (CancelAdapter.ViewHolder) view.getTag();
+            viewHolder= (ClinicCancelAdapter.ViewHolder) view.getTag();
         }
 
         viewHolder.name.setText(allStudent.get(pos).getName());
@@ -144,8 +146,8 @@ public class CancelAdapter extends BaseAdapter implements Filterable {
         View view=convertView;
         final int pos = position;
         if(view == null){
-            viewHolder = new CancelAdapter.ViewHolder();
-            view = layoutInflater.inflate(R.layout.row_cell_student5,null);
+            viewHolder = new ClinicCancelAdapter.ViewHolder();
+            view = layoutInflater.inflate(R.layout.row_cell_student6,null);
             viewHolder.name = view.findViewById(R.id.name);
             viewHolder.docname= view.findViewById(R.id.docname);
             viewHolder.date= view.findViewById(R.id.date);
@@ -160,7 +162,7 @@ public class CancelAdapter extends BaseAdapter implements Filterable {
 
             view.setTag(viewHolder);
         }else {
-            viewHolder= (CancelAdapter.ViewHolder) view.getTag();
+            viewHolder= (ClinicCancelAdapter.ViewHolder) view.getTag();
         }
 
         viewHolder.name.setText("Patient Name:"+allStudent.get(pos).getName());
@@ -176,6 +178,4 @@ public class CancelAdapter extends BaseAdapter implements Filterable {
         viewHolder.date.setText(allStudent.get(pos).getTimeslot3());*/
         return view;
     }
-
-
 }

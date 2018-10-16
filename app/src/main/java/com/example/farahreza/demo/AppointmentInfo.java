@@ -19,7 +19,7 @@ public class AppointmentInfo {
 
     }
 
-    public AppointmentInfo(String name, String hospital, String location, String date, String time, String docname, String uid) {
+    /*public AppointmentInfo(String name, String hospital, String location, String date, String time, String docname, String uid) {
         this.name = name;
         this.hospital = hospital;
         this.location = location;
@@ -27,11 +27,11 @@ public class AppointmentInfo {
         this.time = time;
         this.docname = docname;
         this.uid = uid;
-    }
+    }*/
 
     @Override
     public String toString() {
-        return name;
+        return docname;
 
     }
 

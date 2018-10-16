@@ -65,15 +65,16 @@ public class PatientEditInfo extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot value : dataSnapshot.getChildren()) {
                     user = value.getValue(PatientUsers.class);
+                    name = user.getName();
+                    email = user.getEmail();
+                    pass = user.getPassword();
+                    phone = user.getPassword();
+                    Name1.setHint(user.getName());
+                    Email.setHint(user.getEmail());
+                     Phone.setHint(user.getPhone());
                 }
 
-                name = user.getName();
-                email = user.getEmail();
-                pass = user.getPassword();
-                phone = user.getPassword();
-                Name1.setHint(name);
-                Email.setHint(email);
-                Phone.setHint(phone);
+
 
 
 

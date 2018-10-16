@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#eeebeb"
+    tools:context=".BloodInfo">
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/bb"
+        android:layout_gravity="center"
+        android:layout_marginTop="30sp"
+
+
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Blood Bank"
+        android:fontFamily="monospace"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#b71c1c"
+        android:textSize="25dp"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="22sp"
+        android:layout_marginBottom="10sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A+  :"
+            android:drawableLeft="@drawable/ic_add_location_black_24dp"
+            android:textColor="#b71c1c"
+            android:textSize="25dp"/>
+
+
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="enter"
+            android:textSize="22dp"
+            android:editable="false"
+            android:layout_gravity="center"
+            android:textColor="#b71c1c"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:id="@+id/aplus"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  bags"
+            android:textColor="#b71c1c"
+            android:textSize="22dp"/>
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="22sp"
+        android:layout_marginBottom="10sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A-  :"
+            android:drawableLeft="@drawable/ic_add_location_black_24dp"
+            android:textColor="#b71c1c"
+            android:textSize="25dp"/>
+
+
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="enter"
+            android:textSize="22dp"
+            android:editable="false"
+            android:layout_gravity="center"
+            android:textColor="#b71c1c"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:id="@+id/aminus"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  bags"
+            android:textColor="#b71c1c"
+            android:textSize="22dp"/>
+
+    </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="22sp"
+                android:layout_marginBottom="10sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AB+  :"
+                    android:drawableLeft="@drawable/ic_add_location_black_24dp"
+                    android:textColor="#b71c1c"
+                    android:textSize="25dp"/>
+
+
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="enter"
+                    android:textSize="22dp"
+                    android:editable="false"
+                    android:layout_gravity="center"
+                    android:textColor="#b71c1c"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:id="@+id/abplus"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  bags"
+                    android:textColor="#b71c1c"
+                    android:textSize="22dp"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="22sp"
+                android:layout_marginBottom="10sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AB-  :"
+                    android:drawableLeft="@drawable/ic_add_location_black_24dp"
+                    android:textColor="#b71c1c"
+                    android:textSize="25dp"/>
+
+
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="enter"
+                    android:textSize="22dp"
+                    android:editable="false"
+                    android:layout_gravity="center"
+                    android:textColor="#b71c1c"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:id="@+id/abminus"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  bags"
+                    android:textColor="#b71c1c"
+                    android:textSize="22dp"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="22sp"
+                android:layout_marginBottom="10sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="B+  :"
+                    android:drawableLeft="@drawable/ic_add_location_black_24dp"
+                    android:textColor="#b71c1c"
+                    android:textSize="25dp"/>
+
+
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="enter"
+                    android:textSize="22dp"
+                    android:editable="false"
+                    android:layout_gravity="center"
+                    android:textColor="#b71c1c"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:id="@+id/bplus"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  bags"
+                    android:textColor="#b71c1c"
+                    android:textSize="22dp"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="22sp"
+                android:layout_marginBottom="10sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="B-  :"
+                    android:drawableLeft="@drawable/ic_add_location_black_24dp"
+                    android:textColor="#b71c1c"
+                    android:textSize="25dp"/>
+
+
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="enter"
+                    android:textSize="22dp"
+                    android:editable="false"
+                    android:layout_gravity="center"
+                    android:textColor="#b71c1c"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:id="@+id/bminus"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  bags"
+                    android:textColor="#b71c1c"
+                    android:textSize="22dp"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="22sp"
+                android:layout_marginBottom="10sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="O+  :"
+                    android:drawableLeft="@drawable/ic_add_location_black_24dp"
+                    android:textColor="#b71c1c"
+                    android:textSize="25dp"/>
+
+
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="enter"
+                    android:textSize="22dp"
+                    android:editable="false"
+                    android:layout_gravity="center"
+                    android:textColor="#b71c1c"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:id="@+id/oplus"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  bags"
+                    android:textColor="#b71c1c"
+                    android:textSize="22dp"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="22sp"
+                android:layout_marginBottom="10sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="O-  :"
+                    android:drawableLeft="@drawable/ic_add_location_black_24dp"
+                    android:textColor="#b71c1c"
+                    android:textSize="25dp"/>
+
+
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="enter"
+                    android:textSize="22dp"
+                    android:editable="false"
+                    android:layout_gravity="center"
+                    android:textColor="#b71c1c"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:id="@+id/ominus"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  bags"
+                    android:textColor="#b71c1c"
+                    android:textSize="22dp"/>
+
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+

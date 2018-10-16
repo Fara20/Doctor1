@@ -21,6 +21,15 @@ public class Session {
         String usename = prefs.getString("usename","");
         return usename;
     }
+    public void sethospital(String usename) {
+        prefs.edit().putString("hospital", usename).commit();
+    }
+
+    public String gethospital() {
+        String usename = prefs.getString("hospital","");
+        return usename;
+    }
+
 
     public void clearAll()
     {

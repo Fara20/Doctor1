@@ -309,15 +309,7 @@
                 android:orientation="horizontal"
                 android:layout_gravity="center">
 
-                <Button
-                    android:id="@+id/sms"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/circle"
-                    android:drawableTop="@drawable/phone"
-                    android:paddingTop="20dp"
-                    android:text="Contact"
-                    android:textColor="#fff" />
+
 
                 <Button
                     android:id="@+id/cancel"
